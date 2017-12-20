@@ -1,0 +1,12 @@
+#!/bin/bash
+# -*- mode: shell-script -*-
+
+export PATH="$PATH:$HOME/.bin:$HOME/.cargo/bin"
+
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+export EDITOR="emacs -nw"
+export ALTERNATE_EDITOR="nano"
+
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src/"

@@ -1,0 +1,12 @@
+*~
+**/fish/.config/fish/fisd.*
+**/emacs/auto-save-list/**
+**/emacs/.emacs.d/recentf**/emacs/.emacs.d/tramp
+**/fish/**/fishd.*
+**/emacs/**/recentf
+**/emacs/**/tramp
+**/\#*\#
+emacs/.emacs.d/.mc-lists.el
+emacs/.emacs.d/url
+emacs/.emacs.d/.#recentf
+\#*\#

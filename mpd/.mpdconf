@@ -1,0 +1,10 @@
+# -*- mode: conf -*-
+music_directory     "/home/skeleten/Music"
+playlist_directory "/home/skeleten/Music/playlists"
+
+audio_output {
+        type    "pulse"
+        name    "MPD PulseAudio Ausgabe"
+	#        server  "localhost"   # optional
+        #sink    "alsa_output" # optional
+}

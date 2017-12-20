@@ -1,0 +1,301 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[colors]
+background = #FF000000
+foreground = #ffffff
+;primary = #00ff54
+;primary = #009090
+primary = #ee863e
+alert = #bd2c40
+
+[bar/top]
+monitor = ${env:pb_disp:eDP1}
+; monitor = eDP1
+; HDMI1; monitor-fallback = HDMI1
+; eDP1
+width = 100%
+height = 15
+radius = 0.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 1
+line-color = ${colors.primary}
+
+border-size = 0
+border-color = ${colors.background}
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = DejaVu Sans:fontformat=truetype:size=8;2
+font-1 = FontAwesome:pixelsize=10;2
+
+; superscript - for ws index
+font-2 = Abyssinica SIL:fontformat=truetype:size=6;-2
+; subscript icons
+font-3 = FontAwesome:pixelsize=10;2
+
+font-4 = DejaVu Sans:fontformat=truetype:size=10;1
+
+modules-left = i3
+modules-center = xwindow
+modules-right = mpd cpu memory volume filesystem wlan battery date
+
+; no tray
+tray-position = right
+tray-padding = 5
+
+[module/mpd]
+type = internal/mpd
+
+host = 127.0.0.1
+port = 6600
+
+interval = 2
+; Available tags:
+;   <label-song> (default)
+;   <label-time>
+;   <bar-progress>
+;   <toggle> - gets replaced with <icon-(pause|play)>
+;   <toggle-stop> - gets replaced with <icon-(stop|play)>
+;   <icon-random>
+;   <icon-repeat>
+;   <icon-repeatone>
+;   <icon-prev>
+;   <icon-stop>
+;   <icon-play>
+;   <icon-pause>
+;   <icon-next>
+;   <icon-seekb>
+;   <icon-seekf>
+format-online = <label-song> <icon-prev> <icon-seekb> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>   <label-time> <bar-progress>
+
+; Available tags:
+;   <label-offline>
+;format-offline = <label-offline>
+
+; Available tokens:
+;   %artist%
+;   %album%
+;   %date%
+;   %title%
+; Default: %artist% - %title%
+label-song = 𝄞 %artist% - %title%
+
+; Available tokens:
+;   %elapsed%
+;   %total%
+; Default: %elapsed% / %total%
+;label-time = %elapsed% / %total%
+
+; Available tokens:
+;   None
+label-offline =  mpd is offline
+
+; Only applies if <icon-X> is used
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-seekb = 
+icon-seekf = 
+icon-random = 
+icon-repeat = 
+icon-repeatone = 
+
+; Used to display the state of random/repeat/repeatone
+; Only applies if <icon-[random|repeat|repeatone]> is used
+toggle-on-foreground = #ff
+toggle-off-foreground = #55
+
+; Only applies if <bar-progress> is used
+bar-progress-width = 45
+bar-progress-indicator = ┼
+bar-progress-fill = ─
+bar-progress-empty = ─
+
+[module/xwindow]
+type = internal/xwindow
+format-underline = #00000000
+format-foreground = ${colors.primary}
+label = %title:0:75:...%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+;
+mount-0 = /
+;
+label-mounted =  %percentage_used%%
+label-unmounted =  not mounted
+label-mounted-underline = ${colors.primary}
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+fuzzy-match = false
+;
+ws-icon-0 = 1:term;
+ws-icon-1 = 2:code;
+ws-icon-2 = 3:www;
+ws-icon-3 = 4:ssh;
+ws-icon-4 = 5:chat;
+ws-icon-5 = 6;
+ws-icon-6 = 
+ws-icon-7 = 7; 
+ws-icon-8 = 
+ws-icon-9 = 10:game;
+;
+ws-icon-default = 
+;
+label-mode-padding = 1
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+;
+; focused = Active workspace on focused monitor
+label-focused = %{T3}%index% %{T4}%icon%
+label-focused-background = ${colors.primary}
+label-focused-foreground = #000000
+label-focused-underline = ${colors.primary}
+label-focused-padding = 1
+;
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %{T3}%index% %{T4}%icon%
+label-unfocused-padding = 1
+;
+; visible = Active workspace on unfocused monitor
+label-visible = %{T3}%index% %{T4}%icon%
+label-visible-background = ${colors.background}
+label-visible-underline = ${colors.primary}
+label-visible-padding = 1
+;
+; urgent = Workspace with urgency hint set
+label-urgent = %{T3}%index% %{T4}%icon%
+label-urgent-underline = ${colors.alert}
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-underline = ${colors.primary}
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-underline = ${colors.primary}
+format = <label>
+label = "%percentage_used%%"
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+;
+format-connected = <label-connected>
+format-connected-alt = <label-connected-alt>
+format-connected-underline = ${colors.primary}
+label-connected =  %essid:0:3:% %signal%%
+label-connected-alt =  %essid% %signal%% %local_ip%
+;
+format-disconnected = <label-disconnected>
+format-disconnected-underline = ${colors.alert}
+label-disconnected =  Disconnected
+
+[module/date]
+type = internal/date
+interval = 5
+;
+date =
+date-alt = " %a, %b %d %Y"
+,
+time =  %l:%M %p
+;
+format-underline = ${colors.primary}
+;
+label = %date% %time%
+
+[module/volume]
+type = internal/volume
+;
+label-volume = " %percentage%%"
+label-volume-foreground = ${root.foreground}
+label-volume-underline = ${colors.primary}
+label-muted =  0%
+label-muted-underline = ${colors.primary}
+
+[module/battery]
+poll-interval = 2
+type = internal/battery
+battery = BAT0
+adapter = AC
+;
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = ${colors.primary}
+label-charging =  %percentage%% %consumption%W ~%time%
+;
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = ${colors.primary}
+label-discharging =  %percentage%% %consumption%W %time%
+;
+format-full-prefix = " "
+format-full-underline = ${colors.primary}
+;
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+;
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+; Framerate in milliseconds
+animation-charging-framerate = 750
+;
+time-format = %H:%M
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+format-prefix = " "
+format-underline = ${colors.primary}
+format-warn = <label-warn>
+format-warn-underline = ${colors.alert}
+
+label = "%temperature%"
+label-warn = %temperature%
+label-warn-foreground = ${colors.alert}
+
+[settings]
+screenchange-reload = true
+throttle-output = 5
+throttle-output-for = 10
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0

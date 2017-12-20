@@ -1,0 +1,5 @@
+(add-hook 'prog-mode-hook 'company-mode)
+(add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'prog-mode-hook 'prettify-symbols-mode)
+(add-hook 'prog-mode-hook 'smartparens-mode)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
