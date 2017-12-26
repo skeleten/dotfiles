@@ -59,3 +59,4 @@
 ;; Misc									      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "C-0") 'ace-jump-mode)
+(global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
