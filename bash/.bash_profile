@@ -4,6 +4,10 @@ if [[ -f ~/.profile ]]; then
     . ~/.profile
 fi
 
+if [[ -f ~/.bashenv ]]; then
+    . ~/.bashenv
+fi
+
 if [[ $- == *i* && -f ~/.bashrc ]]; then
     . ~/.bashrc
 fi
