@@ -1,4 +1,0 @@
-#!/bin/bash
-# -*- mode: shell-script -*-
-echo $1
-emacsclient $1
