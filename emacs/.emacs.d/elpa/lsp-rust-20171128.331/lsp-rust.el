@@ -51,12 +51,12 @@ at the environment variable RLS_ROOT, if set."
   "Return the command used to start the RLS for defining the LSP Rust client."
   (or lsp-rust-rls-command
       (when-let ((rls-root (getenv "RLS_ROOT")))
-        `("cargo" "+nightly" "run" "--quiet"
-          ,(concat "--manifest-path="
-                   (concat
-                    (file-name-as-directory (expand-file-name rls-root))
-                    "Cargo.toml"))
-          "--release"))))
+	` ("cargo" "run" "--quiet"	;; `("cargo" "+nightly" "run" "--quiet"
+	   ,(concat "--manifest-path="
+		    (concat
+		     (file-name-as-directory (expand-file-name rls-root))
+		     "Cargo.toml"))
+	   "--release"))))
 
 (defun lsp-rust--get-root ()
   (let (dir)
