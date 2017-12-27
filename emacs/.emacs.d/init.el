@@ -16,6 +16,8 @@
   "Font to use in buffers")
 (defvar skeleten/theme 'none
   "Theme to load or 'none to skip")
+(defvar skeleten/org-files-base-dir ""
+  "Base directory of org files")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; General settings                                                           ;;
@@ -28,6 +30,7 @@
 					; everything else will be interpretet as
 					; a theme name and trying to get loaded
 					; via `load-theme'
+(setq skeleten/org-files-base-dir "~/org")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Load the configurations                                                    ;;
