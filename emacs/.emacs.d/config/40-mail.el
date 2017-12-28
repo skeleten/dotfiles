@@ -42,3 +42,4 @@
       smtpmail-smtp-user "me@skeleten.me"
       smtpmail-local-domain "skeleten.me")
 
+(setq mu4e-get-mail-command "offlineimap")
