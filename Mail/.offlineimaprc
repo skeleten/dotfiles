@@ -1,0 +1,36 @@
+# -*- mode: conf -*-
+[general]
+accounts = skeleten, VKM
+pythonfile = ~/.offlineimap.py
+
+[Account skeleten]
+localrepository = skeleten-local
+remoterepository = skeleten-remote
+postsynchook = mu index --maildir ~/Maildir/ || echo ""
+
+[Account VKM]
+localrepository = VKM-local
+remoterepository = VKM-remote
+postsynchook = mu index --maildir ~/Maildir/ || echo ""
+
+[Repository skeleten-local]
+type = Maildir
+localfolders = ~/Maildir/skeleten
+
+[Repository skeleten-remote]
+type = IMAP
+remotehost = mail.skeleten.me
+remoteuser = me@skeleten.me
+remotepasseval = get_pass("skeleten")
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Repository VKM-local]
+type = Maildir
+localfolders = ~/Maildir/VKM
+
+[Repository VKM-remote]
+type = IMAP
+remotehost = mail.vkm.tu-darmstadt.de
+remoteuser = thomson
+remotepasseval = get_pass("VKM")
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
