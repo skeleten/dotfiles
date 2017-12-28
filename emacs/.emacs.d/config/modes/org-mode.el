@@ -3,6 +3,8 @@
 (add-hook 'org-mode-hook
 	  'linum-mode)
 
+(setq org-default-notes-file "~/org/Main.org")
+
 ;; (defun load-directory (dir)
 ;;  (let ((load-it (lambda (f) (load-file (concat (file-name-as-directory dir) f)))))
 ;;    (mapc load-it (directory-files dir nil "\\.el$"))))
