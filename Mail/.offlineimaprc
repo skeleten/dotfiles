@@ -34,3 +34,4 @@ remotehost = mail.vkm.tu-darmstadt.de
 remoteuser = thomson
 remotepasseval = get_pass("VKM")
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+folderfilter = filter_folder_exchange
