@@ -2,6 +2,7 @@
 [general]
 accounts = skeleten, VKM
 pythonfile = ~/.offlineimap.py
+maxsyncaccounts = 4
 
 [Account skeleten]
 localrepository = skeleten-local
