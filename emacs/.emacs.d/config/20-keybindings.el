@@ -1,4 +1,21 @@
 ;; holds anything related to keybindings
+(defun skeleten/define-global-key (key desc command)
+  "Bind a key to the global key map with an description"
+  (global-set-key (kbd key) command)
+  (which-key-add-key-based-replacements key desc))
+(defun skeleten/define-global-prefix (pref desc)
+  "Define a description for a global prefix"
+  (which-key-add-prefix-title pref desc))
+
+(defun skeleten/define-global-keys (list)
+  "Define a list of Key description and commands to the global keymap."
+  (if (consp list)
+      (let ((key (car list))
+	    (desc (car (cdr list)))
+	    (command (car (cdr (cdr list))))
+	    (rest (cdr (cdr (cdr list)))))
+	(skeleten/define-global-key key desc command)
+	(skeleten/define-global-keys rest))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Clear out unwanted collisions                                              ;;
@@ -8,27 +25,36 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ivy Bindings                                                               ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(skeleten/define-global-keys
+ '("C-s"	"Search"			swiper
+   "C-c C-r"	"Resume previous completion"	ivy-resume
+   "M-x"	"M-x"				counsel-M-x
+   "C-x C-f"	"Find file"			counsel-find-file
+   "C-h f"	"Describe function"		counsel-describe-function
+   "C-h k"	"Describe key"			counsel-describe-key
+   "C-h v"	"Describe variable"		counsel-describe-variable
+   "C-x 8 RET"	"Insert Unicode char"		counsel-unicode-char))
 (global-set-key "\C-s" 'swiper)
-(global-set-key (kbd "C-c C-r") 'ivy-resume)
-(global-set-key (kbd "<f6>") 'ivy-resume)
-(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
-(global-set-key (kbd "<f1> f") 'counsel-describe-function)
-(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-(global-set-key (kbd "<f1> l") 'counsel-find-library)
-(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-(global-set-key (kbd "C-c g") 'counsel-git)
-(global-set-key (kbd "C-c j") 'counsel-git-grep)
-(global-set-key (kbd "C-c k") 'counsel-ag)
-(global-set-key (kbd "C-x l") 'counsel-locate)
-(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-(define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+;; (global-set-key (kbd "C-c C-r") 'ivy-resume) 
+;; (global-set-key (kbd "<f6>") 'ivy-resume)
+;; (global-set-key (kbd "M-x") 'counsel-M-x)
+;; (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+;; (global-set-key (kbd "<f1> f") 'counsel-describe-fPunction)
+;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+;; (global-set-key (kbd "<f1> l") 'counsel-find-library)
+;; (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+;; (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+;; (global-set-key (kbd "C-c g") 'counsel-git)
+;; (global-set-key (kbd "C-c j") 'counsel-git-grep)
+;; (global-set-key (kbd "C-c k") 'counsel-ag)
+;; (global-set-key (kbd "C-x l") 'counsel-locate)
+;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+;; (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Neotree bindings                                                           ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key (kbd "M-m f t") 'neotree-toggle)
+(skeleten/define-global-key "M-m f t" "Toggle Neotree" 'neotree-toggle)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Multiple Cursors bindings                                                  ;;
@@ -48,17 +74,20 @@
 ;; Misc                                                                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "M-n") 'er/expand-region)
-(global-set-key (kbd "M-m c") 'compile)
+(skeleten/define-global-key "M-m c" "Compile" 'compile)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Magit keybindings                                                          ;;
+;; MAGIT keybindings                                                          ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc									      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key (kbd "C-0") 'ace-jump-mode)
+(skeleten/define-global-key "M-s" "Jump to char on screen" 'ace-jump-mode)
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
-(global-set-key (kbd "M-m m o") 'mu4e)
-(global-set-key (kbd "M-m m u") 'offlineimap)
+;; Email
+(skeleten/define-global-prefix "M-m" "+Mail")
+(skeleten/define-global-keys
+ '("M-m m o"	"Open Email interface"		mu4e
+   "M-m m u"	"Update Email and index"	mu4e-update-mail-and-index))
