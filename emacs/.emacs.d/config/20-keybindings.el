@@ -71,7 +71,7 @@
 (skeleten/define-global-key "M-s" "Jump to char on screen" 'ace-jump-mode)
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 ;; Email
-(skeleten/define-global-prefix "M-m" "+Mail")
+(skeleten/define-global-prefix "M-m m" "Mail")
 (skeleten/define-global-keys
  '("M-m m o"	"Open Email interface"		mu4e
    "M-m m u"	"Update Email and index"	mu4e-update-mail-and-index))
