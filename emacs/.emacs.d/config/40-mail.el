@@ -8,11 +8,20 @@
 	   :match-func (lambda (msg)
 			 (when msg
 			   (string-prefix-p "/skeleten" (mu4e-message-field msg :maildir)))))
+	 :vars '(
+		 (mu4e-trash-folder . "/skeleten/Trash")
+		 (mu4e-refile-folder . "/skeleten/Archive")
+		 )
 	 ,(make-mu4e-context
 	   :name "VKM"
 	   :match-func (lambda (msg)
 			 (when msg
-			   (string-prefix-p "/VKM" (mu4e-message-field msg :maildir)))))))
+			   (string-prefix-p "/VKM" (mu4e-message-field msg :maildir))))
+	   :vars '(
+		   (mu4e-trash-folder . "/VKM/Deleted Items")
+		   (mu4e-refile-folder . "/VKM/Archive")
+		   )
+	   )))
 ;; Bookmarks for mu4e; They go to searches
 ;; b <key> to jump to them
 (setq mu4e-bookmarks
