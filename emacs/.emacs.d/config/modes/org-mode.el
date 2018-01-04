@@ -14,3 +14,5 @@
 		(concat
 		 (file-name-as-directory skeleten/org-files-base-dir) f))
        (directory-files skeleten/org-files-base-dir nil "\\.org$")))
+(setq org-log-done 'time)
+

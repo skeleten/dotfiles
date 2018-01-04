@@ -68,22 +68,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc									      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(skeleten/define-global-key "M-s" "Jump to char on screen" 'ace-jump-mode)
+(skeleten/define-global-key "M-s" "Jump to char on screen" 'ace-jump-char-mode)
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 ;; Email
 (skeleten/define-global-prefix "M-m m" "Mail")
 (skeleten/define-global-keys
  '("M-m m o"	"Open Email interface"		mu4e
    "M-m m u"	"Update Email and index"	mu4e-update-mail-and-index))
-
-;; Other
+;; Folding
 (skeleten/define-global-key
- "C-S-o"	"Newline under and indent"
- (lambda ()
-   (interactive)
-   (open-line 1)
-   (tab-to-tab-stop)))
-
-;; Origami
-(skeleten/define-global-key
- "C-."	"Toggle Node"			'origami-toggle-node)
+ "C-."		"Toggle folding"		'origami-toggle-node)
