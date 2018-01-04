@@ -31,7 +31,7 @@
    "M-x"	"M-x"				counsel-M-x
    "C-x C-f"	"Find file"			counsel-find-file
    "C-h f"	"Describe function"		counsel-describe-function
-   "C-h k"	"Describe key"			counsel-describe-key
+   "C-h k"	"Describe key"			describe-key
    "C-h v"	"Describe variable"		counsel-describe-variable
    "C-x 8 RET"	"Insert Unicode char"		counsel-unicode-char))
 
@@ -75,3 +75,15 @@
 (skeleten/define-global-keys
  '("M-m m o"	"Open Email interface"		mu4e
    "M-m m u"	"Update Email and index"	mu4e-update-mail-and-index))
+
+;; Other
+(skeleten/define-global-key
+ "C-S-o"	"Newline under and indent"
+ (lambda ()
+   (interactive)
+   (open-line 1)
+   (tab-to-tab-stop)))
+
+;; Origami
+(skeleten/define-global-key
+ "C-."	"Toggle Node"			'origami-toggle-node)
