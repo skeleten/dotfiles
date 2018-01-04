@@ -13,6 +13,7 @@
 	    (lambda ()
 	      (setq company-backends
 		    '((company-lsp
-		       :with company-yasnippet))))))
+		       :with company-yasnippet)))))
+  (add-hook 'rust-mode-hook 'origami-mode))
 
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)

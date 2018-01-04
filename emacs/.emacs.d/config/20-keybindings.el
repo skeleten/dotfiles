@@ -75,3 +75,6 @@
 (skeleten/define-global-keys
  '("M-m m o"	"Open Email interface"		mu4e
    "M-m m u"	"Update Email and index"	mu4e-update-mail-and-index))
+;; Folding
+(skeleten/define-global-key
+ "C-."		"Toggle folding"		'origami-toggle-node)
