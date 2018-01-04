@@ -68,7 +68,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc									      ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(skeleten/define-global-key "M-s" "Jump to char on screen" 'ace-jump-mode)
+(skeleten/define-global-key "M-s" "Jump to char on screen" 'ace-jump-char-mode)
 (global-set-key (kbd "C-a") 'smarter-move-beginning-of-line)
 ;; Email
 (skeleten/define-global-prefix "M-m m" "Mail")
