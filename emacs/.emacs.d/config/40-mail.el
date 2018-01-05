@@ -75,11 +75,7 @@
         (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
     (string-match "/\\(.*?\\)/" maildir)
     (match-string 1 maildir))
-      (completing-read (format "Compose with account: (%s) "
-             (mapconcat #'(lambda (var) (car var))
-            my-mu4e-account-alist "/"))
-           (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
-           nil t nil nil (caar my-mu4e-account-alist))))
+      (mu4e-context-name (mu4e-context-current))))
    (account-vars (cdr (assoc account my-mu4e-account-alist))))
     (if account-vars
   (mapc #'(lambda (var)
