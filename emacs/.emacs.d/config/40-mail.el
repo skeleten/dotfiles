@@ -25,7 +25,15 @@
 ;; Bookmarks for mu4e; They go to searches
 ;; b <key> to jump to them
 (setq mu4e-bookmarks
-      `( ,(make-mu4e-bookmark
+      `(,(make-mu4e-bookmark
+	   :name "VKM"
+	   :query "maildir:\"/VKM/*\" AND NOT flag:trashed"
+	   :key ?v)
+	,(make-mu4e-bookmark
+	  :name "Privat"
+	  :query "maildir:\"/skeleten/*\" AND NOT flag:trashed"
+	  :key ?p)
+	,(make-mu4e-bookmark
 	   :name  "Unread messages"
 	   :query "flag:unread AND NOT flag:trashed"
 	   :key ?u)
