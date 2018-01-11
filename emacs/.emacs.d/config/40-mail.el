@@ -11,6 +11,7 @@
 	 :vars '(
 		 (mu4e-trash-folder . "/skeleten/Trash")
 		 (mu4e-refile-folder . "/skeleten/Archive")
+		 (mu4e-sent-folder . "/skeleten/Sent")
 		 ))
 	 ,(make-mu4e-context
 	   :name "VKM"
@@ -20,6 +21,7 @@
 	   :vars '(
 		   (mu4e-trash-folder . "/VKM/Deleted Items")
 		   (mu4e-refile-folder . "/VKM/Archive")
+		   (mu4e-sent-func . "/VKM/Sent Items")
 		   ))
 	 ))
 ;; Bookmarks for mu4e; They go to searches
