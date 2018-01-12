@@ -29,11 +29,11 @@
 (setq mu4e-bookmarks
       `(,(make-mu4e-bookmark
 	   :name "VKM"
-	   :query "maildir:\"/VKM/*\" AND NOT flag:trashed"
+	   :query "maildir:\"/VKM/INBOX*\" AND NOT flag:trashed"
 	   :key ?v)
 	,(make-mu4e-bookmark
 	  :name "Privat"
-	  :query "maildir:\"/skeleten/*\" AND NOT flag:trashed"
+	  :query "maildir:\"/skeleten/INBOX*\" AND NOT flag:trashed"
 	  :key ?p)
 	,(make-mu4e-bookmark
 	   :name  "Unread messages"
