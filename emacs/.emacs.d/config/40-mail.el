@@ -93,4 +93,5 @@
         account-vars)
   (error "No email account found"))))
 
+(setq mu4e-headers-date-format "%Y-%m-%d")
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
