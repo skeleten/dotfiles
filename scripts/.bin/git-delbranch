@@ -1,0 +1,11 @@
+#!/bin/sh
+# -*- mode: shell-script -*-
+
+remote_name="$2"
+
+if [ -z $remote_name ]; then
+    remote_name="origin"
+fi
+
+git branch -D "$1" &&
+    git push origin ":$1"
