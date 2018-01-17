@@ -93,5 +93,15 @@
         account-vars)
   (error "No email account found"))))
 
-(setq mu4e-headers-date-format "%Y-%m-%d")
+(setq mu4e-headers-date-format "%Y-%m-%d"
+      mu4e-use-fancy-chars t
+      mu4e-view-show-images t
+      mu4e-headers-fields '((:human-date . 12)
+			    (:flags . 6)
+			    (:from . 22)
+			    (:subject)))
+
+(when (fboundp 'imagemagick-register-types)
+  (imagemagick-register-types))
+
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
