@@ -17,6 +17,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun skeleten/load-theme ()
   "Load and set up the theme"
+  (interactive)
   (if (boundp 'skeleten/theme)
       (pcase skeleten/theme
 	('doom (progn
@@ -31,7 +32,15 @@
 		      (setq doom-themes-enable-bold t
 			    doom-themes-enable-italic t)
 		      (load-theme 'doom-molokai t)
-		      (doom-themes-visual-bell-config))) 
+		      (doom-themes-visual-bell-config)))
+	('moe-dark (progn
+		     (require 'moe-theme)
+		     (setq custom-safe-themes 't)
+		     (load-theme 'moe-dark)))
+	('moe-light (progn
+		     (require 'moe-theme)
+		     (setq custom-safe-themes 't)
+		     (load-theme 'moe-dark)))
 	('none nil)
 	(other (progn
 		 (setq custom-safe-themes 't)
@@ -40,6 +49,7 @@
 
 (defun skeleten/load-font ()
   "Load and set up the font"
+  (interactive)
   (set-face-attribute 'default nil :font skeleten/font)
   (set-frame-font skeleten/font nil t))
 
@@ -57,7 +67,8 @@
 (require 'window-number)
 (window-number-mode)
 (window-number-meta-mode)
-
-(require 'multiple-cursors)
+(require 'multiple-cursors) ; not *really* a appearance thingy.
+(require 'powerline)
+(powerline-default-theme)
 
 (ace-popup-menu-mode 1)
