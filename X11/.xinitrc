@@ -8,7 +8,7 @@ export SSH_AUTH_SOCK
 case $(hostname) in
     "styx")
 	xrandr --output HDMI-A-0 --primary --auto \
-	       --output DisplayPort-1 --right-of HDMI-A-0 --auto
+	       --output DisplayPort-2 --right-of HDMI-A-0 --auto
     ;;
 esac
 
