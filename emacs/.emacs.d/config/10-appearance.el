@@ -69,8 +69,13 @@
 (require 'window-number)
 (window-number-mode)
 (window-number-meta-mode)
+
 (require 'multiple-cursors) ; not *really* a appearance thingy.
+
 (require 'powerline)
 (powerline-default-theme)
 
 (ace-popup-menu-mode 1)
+
+(setq neo-theme
+      (if (display-graphic-p) 'icons 'arrow))

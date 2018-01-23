@@ -44,27 +44,3 @@
 (load-directory "~/.emacs.d/config/")
 (load-directory "~/.emacs.d/config/modes/")
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Custom stuff                                                               ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(auth-source-save-behavior nil)
- '(custom-safe-themes
-   (quote
-    ("b9a06c75084a7744b8a38cb48bc987de10d68f0317697ccbd894b2d0aca06d2b" default)))
- '(package-selected-packages
-   (quote
-    (swiper-helm helm powerline moe-theme dashboard paredit origami web-mode which-key offlineimap ace-jump-mode company-restclient restclient lsp-rust flycheck-rust company-lsp auctex zencoding-mode yaml-mode window-number toml-mode smartparens rainbow-mode rainbow-delimiters racer powershell neotree multiple-cursors monokai-theme mediawiki markdown-mode magit ivy ht flycheck flatland-theme fish-mode expand-region doom-themes company ace-popup-menu)))
- '(send-mail-function (quote smtpmail-send-it))
- '(smtpmail-smtp-server "mail.skeleten.me")
- '(smtpmail-smtp-service 25))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
