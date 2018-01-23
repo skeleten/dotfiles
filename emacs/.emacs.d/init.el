@@ -58,7 +58,7 @@
     ("b9a06c75084a7744b8a38cb48bc987de10d68f0317697ccbd894b2d0aca06d2b" default)))
  '(package-selected-packages
    (quote
-    (powerline moe-theme dashboard paredit origami web-mode which-key offlineimap ace-jump-mode company-restclient restclient lsp-rust flycheck-rust company-lsp auctex zencoding-mode yaml-mode window-number toml-mode smartparens rainbow-mode rainbow-delimiters racer powershell neotree multiple-cursors monokai-theme mediawiki markdown-mode magit ivy ht flycheck flatland-theme fish-mode expand-region doom-themes company ace-popup-menu)))
+    (swiper-helm helm powerline moe-theme dashboard paredit origami web-mode which-key offlineimap ace-jump-mode company-restclient restclient lsp-rust flycheck-rust company-lsp auctex zencoding-mode yaml-mode window-number toml-mode smartparens rainbow-mode rainbow-delimiters racer powershell neotree multiple-cursors monokai-theme mediawiki markdown-mode magit ivy ht flycheck flatland-theme fish-mode expand-region doom-themes company ace-popup-menu)))
  '(send-mail-function (quote smtpmail-send-it))
  '(smtpmail-smtp-server "mail.skeleten.me")
  '(smtpmail-smtp-service 25))

@@ -60,8 +60,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Misc                                                                       ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
+;; (ivy-mode 1)
+;;(setq ivy-use-virtual-buffers t)
+(require 'helm-config)
+
 (setq enable-recursive-minibuffers t)
 
 (require 'window-number)

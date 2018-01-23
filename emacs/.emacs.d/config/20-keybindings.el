@@ -27,13 +27,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (skeleten/define-global-keys
  '("C-s"	"Search"			swiper
-   "C-c C-r"	"Resume previous completion"	ivy-resume
-   "M-x"	"M-x"				counsel-M-x
-   "C-x C-f"	"Find file"			counsel-find-file
-   "C-h f"	"Describe function"		counsel-describe-function
+   "M-x"	"M-x"				helm-M-x
+   "C-x C-f"	"Find file"			helm-find-files
+   "C-h f"	"Describe function"		helm-describe-function
    "C-h k"	"Describe key"			describe-key
-   "C-h v"	"Describe variable"		counsel-describe-variable
-   "C-x 8 RET"	"Insert Unicode char"		counsel-unicode-char))
+   ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Neotree bindings                                                           ;;
