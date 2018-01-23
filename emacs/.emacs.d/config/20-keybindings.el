@@ -31,6 +31,7 @@
    "C-x C-f"	"Find file"			helm-find-files
    "C-h f"	"Describe function"		helm-describe-function
    "C-h k"	"Describe key"			describe-key
+   "C-x b"	"Switch buffer"			helm-buffers-list
    ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
