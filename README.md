@@ -8,7 +8,7 @@ I'm using stow, so you can install them with
 $ echo */ | xargs stow
 ```
 
-(execute stow for all directories in the `pwd` that are not hidden)
+(execute stow for all directories in the working directory that are not hidden)
 
 My current setup mostly uses:
 
