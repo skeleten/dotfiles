@@ -515,7 +515,7 @@ point reaches the beginning or end of the buffer, stop there."
 	  'smartparens-mode)
 
 #+end_src
-p** yaml-mode
+** yaml-mode
 #+begin_src emacs-lisp  :results silent
 (add-to-list 'auto-mode-alist
 	     '("\\.yml\\'" . yaml-mode))
