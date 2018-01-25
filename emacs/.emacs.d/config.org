@@ -2,7 +2,7 @@
 
 * Definition of variables etc.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (defvar skeleten/font nil
   "Font to use in buffers")
 (defvar skeleten/theme 'none
@@ -12,7 +12,7 @@
 #+end_src 
 
 * Genral settings
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (setq skeleten/font "Source Code Pro 12")
 (setq skeleten/theme 'moe-dark)		; Possible  values currently are:
 					;  'doom - for the Doom
@@ -29,7 +29,7 @@
 ** Better moving at to the beginning of a line
    [[http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/][Credit]]
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (defun smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
 
@@ -56,19 +56,19 @@ point reaches the beginning or end of the buffer, stop there."
 
 * Appearance
 ** Remove clutter
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 #+end_src
 ** Mode line
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
   (column-number-mode +1)
   (require 'powerline)
   (powerline-default-theme)
 #+end_src
 ** Visuals
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
   (defun skeleten/load-theme ()
     "Load and set up the theme"
     (interactive)
@@ -110,7 +110,7 @@ point reaches the beginning or end of the buffer, stop there."
   (skeleten/load-font)
 #+end_src
 ** Window Number
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (require 'window-number)
 (window-number-mode)
 (window-number-meta-mode)
@@ -118,12 +118,12 @@ point reaches the beginning or end of the buffer, stop there."
 
 * Keybindings
 ** Use `smarter-move-beginning-of-line`
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (global-set-key [remap move-beginning-of-line]
                 'smarter-move-beginning-of-line)
 #+end_src
 ** Helper functions
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (defun skeleten/define-global-key (key desc command)
   "Bind a key to the global key map with an description"
   (global-set-key (kbd key) command)
@@ -143,11 +143,11 @@ point reaches the beginning or end of the buffer, stop there."
 	(skeleten/define-global-keys rest))))
 #+end_src
 ** Unbind some stuff to avoid collisions
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (global-unset-key (kbd "M-m"))
 #+end_src
 ** Finding and searching stuff
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (skeleten/define-global-keys
  '("C-s"	"Search"			swiper
    "M-x"	"M-x"				helm-M-x
@@ -158,51 +158,62 @@ point reaches the beginning or end of the buffer, stop there."
    ))
 #+end_src
 ** Neotree
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (skeleten/define-global-key "M-m f t" "Toggle Neotree" 'neotree-toggle)
 #+end_src
 ** Multiple-Cursors
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C-<") 'mc/mark-next-like-this)
 (global-set-key (kbd "C->") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 #+end_src
 ** Company
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (global-set-key [?\M-\t] 'company-complete)
 (global-set-key [?\C-\t] 'company-complete)
 #+end_src
 ** Magit
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
   (global-set-key (kbd "C-x g") 'magit-status)
 #+end_src
+** Mail
+#+begin_src emacs-lisp  :results silent
+  (skeleten/define-global-prefix "M-m m" "Mail")
+  (skeleten/define-global-keys
+   '("M-m m o"    "Open Email interface"          mu4e
+     "M-m m u"    "Update email and index"        mu4e-update-mail-and-index))
+#+end_src
+** Org
+#+begin_src emacs-lisp  :results silent 
+  (skeleten/define-global-prefix "M-m o" "Org mode")
+  (skeleten/define-global-keys
+   '("M-m o a"    "Open Org Agenda"       org-agenda))
+#+end_src
+   
 ** TODO Sort / Misc
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (global-set-key (kbd "M-n") 'er/expand-region)
 (skeleten/define-global-key "M-m c" "Compile" 'compile)
-(skeleten/define-global-prefix "M-m m" "Mail")
 (skeleten/define-global-keys
  '("M-m s"	"Jump to char on screen"	ace-jump-char-mode
-   "M-m m o"	"Open Email interface"		mu4e
-   "M-m m u"	"Update Email and index"	mu4e-update-mail-and-index
    "C-."	"Toggle folding"		origami-toggle-node))
 
 #+end_src
 * Coding
 ** Smartparens
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (require 'smartparens-config)
 #+end_src
 ** Company
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (setq company-idle-delay 2)
 (setq company-tooltip-align-annotations t)
 (setq company-minimum-prefix-length 0)
 #+end_src
 * Mail
 ** init stuff
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
   (require 'org-mu4e)
   (add-to-list 'load-path
                "/usr/share/emacs/site-lisp/mu4e")
@@ -211,81 +222,81 @@ point reaches the beginning or end of the buffer, stop there."
     (imagemagick-register-types))
 #+end_src
 ** Accounts, etc
-#+begin_src emacs-lisp
-(setq mu4e-contexts
-      `( ,(make-mu4e-context
-	   :name "skeleten"
-	   :match-func (lambda (msg)
-			 (when msg
-			   (string-prefix-p "/skeleten" (mu4e-message-field msg :maildir))))
-	 :vars '(
-		 (mu4e-trash-folder . "/skeleten/Trash")
-		 (mu4e-refile-folder . "/skeleten/Archive")
-		 (mu4e-sent-folder . "/skeleten/Sent")
-		 ))
-	 ,(make-mu4e-context
-	   :name "VKM"
-	   :match-func (lambda (msg)
-			 (when msg
-			   (string-prefix-p "/VKM" (mu4e-message-field msg :maildir))))
-	   :vars '(
-		   (mu4e-trash-folder . "/VKM/Deleted Items")
-		   (mu4e-refile-folder . "/VKM/Archive")
-		   (mu4e-sent-func . "/VKM/Sent Items")
-		   ))
-	 ))
-;; Bookmarks for mu4e; They go to searches
-;; b <key> to jump to them
-(setq user-full-name "Jan Pelle Thomson"
-      user-mail-address "me@skeleten.me")
+#+begin_src emacs-lisp  :results silent
+  (setq mu4e-contexts
+        `( ,(make-mu4e-context
+             :name "skeleten"
+             :match-func (lambda (msg)
+                           (when msg
+                             (string-prefix-p "/skeleten" (mu4e-message-field msg :maildir))))
+           :vars '(
+                   (mu4e-trash-folder . "/skeleten/Trash")
+                   (mu4e-refile-folder . "/skeleten/Archive")
+                   (mu4e-sent-folder . "/skeleten/Sent")
+                   ))
+           ,(make-mu4e-context
+             :name "VKM"
+             :match-func (lambda (msg)
+                           (when msg
+                             (string-prefix-p "/VKM" (mu4e-message-field msg :maildir))))
+             :vars '(
+                     (mu4e-trash-folder . "/VKM/Deleted Items")
+                     (mu4e-refile-folder . "/VKM/Archive")
+                     (mu4e-sent-folder . "/VKM/Sent Items")
+                     ))
+           ))
+  ;; Bookmarks for mu4e; They go to searches
+  ;; b <key> to jump to them
+  (setq user-full-name "Jan Pelle Thomson"
+        user-mail-address "me@skeleten.me")
 
-(setq smtpmail-default-smtp-server "mail.skeleten.me"
-      smtpmail-smtp-server "mail.skeleten.me"
-      smtpmail-smtp-service 587
-      smtpmail-smtp-user "me@skeleten.me"
-      smtpmail-local-domain "skeleten.me")
+  (setq smtpmail-default-smtp-server "mail.skeleten.me"
+        smtpmail-smtp-server "mail.skeleten.me"
+        smtpmail-smtp-service 587
+        smtpmail-smtp-user "me@skeleten.me"
+        smtpmail-local-domain "skeleten.me")
 
-(setq mu4e-get-mail-command "offlineimap")
+  (setq mu4e-get-mail-command "offlineimap")
 
-(defvar my-mu4e-account-alist
-  '(("skeleten"
-     (mu4e-sent-folder "/skeleten/Sent")
-     (user-mail-address "me@skeleten.me")
-     (smtpmail-smtp-user "me@skeleten.me")
-     (smtpmail-local-domain "skeleten.me")
-     (smtpmail-default-smtp-server "mail.skeleten.me")
-     (smtpmail-smtp-server "mail.skeleten.me")
-     (smtpmail-smtp-service 587))
-    ("VKM"
-     (mu4e-sent-folder "/VKM/Sent")
-     (user-mail-address "thomson@vkm.tu-darmstadt.de")
-     (smtpmail-smtp-user "thomson")
-     (smtpmail-local-domain "vkm.tu-darmstadt.de")
-     (smtpmail-default-smtp-server "mail.vkm.tu-darmstadt.de")
-     (smtpmail-smtp-server "mail.vkm.tu-darmstadt.de")
-     (smtpmail-smtp-service 587))))
+  (defvar my-mu4e-account-alist
+    '(("skeleten"
+       (mu4e-sent-folder "/skeleten/Sent")
+       (user-mail-address "me@skeleten.me")
+       (smtpmail-smtp-user "me@skeleten.me")
+       (smtpmail-local-domain "skeleten.me")
+       (smtpmail-default-smtp-server "mail.skeleten.me")
+       (smtpmail-smtp-server "mail.skeleten.me")
+       (smtpmail-smtp-service 587))
+      ("VKM"
+       (mu4e-sent-folder "/VKM/Sent")
+       (user-mail-address "thomson@vkm.tu-darmstadt.de")
+       (smtpmail-smtp-user "thomson")
+       (smtpmail-local-domain "vkm.tu-darmstadt.de")
+       (smtpmail-default-smtp-server "mail.vkm.tu-darmstadt.de")
+       (smtpmail-smtp-server "mail.vkm.tu-darmstadt.de")
+       (smtpmail-smtp-service 587))))
 
-(defun my-mu4e-set-account ()
-  "Set the account for composing a message.
-   This function is taken from: 
-     https://www.djcbsoftware.nl/code/mu/mu4e/Multiple-accounts.html"
-  (let* ((account
-    (if mu4e-compose-parent-message
-        (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
-    (string-match "/\\(.*?\\)/" maildir)
-    (match-string 1 maildir))
-      (mu4e-context-name (mu4e-context-current))))
-   (account-vars (cdr (assoc account my-mu4e-account-alist))))
-    (if account-vars
-  (mapc #'(lambda (var)
-      (set (car var) (cadr var)))
-        account-vars)
-  (error "No email account found"))))
+  (defun my-mu4e-set-account ()
+    "Set the account for composing a message.
+     This function is taken from: 
+       https://www.djcbsoftware.nl/code/mu/mu4e/Multiple-accounts.html"
+    (let* ((account
+      (if mu4e-compose-parent-message
+          (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+      (string-match "/\\(.*?\\)/" maildir)
+      (match-string 1 maildir))
+        (mu4e-context-name (mu4e-context-current))))
+     (account-vars (cdr (assoc account my-mu4e-account-alist))))
+      (if account-vars
+    (mapc #'(lambda (var)
+        (set (car var) (cadr var)))
+          account-vars)
+    (error "No email account found"))))
 
-(add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+  (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 #+end_src
 ** Bookmarks
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (setq mu4e-bookmarks
       `(,(make-mu4e-bookmark
 	   :name "VKM"
@@ -310,7 +321,7 @@ point reaches the beginning or end of the buffer, stop there."
 #+end_src
 ** Customization
 *** Marks
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (setq mu4e-marks
     '((refile
 	:char ("r" . "▶")
@@ -378,7 +389,7 @@ point reaches the beginning or end of the buffer, stop there."
 	 :action (mu4e-error "No action for deferred mark"))))
 #+end_src
 *** Headers
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (setq mu4e-headers-date-format "%Y-%m-%d"
       mu4e-use-fancy-chars t
       mu4e-view-show-images t
@@ -388,28 +399,28 @@ point reaches the beginning or end of the buffer, stop there."
 			    (:subject)))
 #+end_src
 * Dashboard
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
   (require 'dashboard)
   (dashboard-setup-startup-hook)
   (setq initial-buffer-choice "*dashboard*")
 #+end_src
 * Modes
 ** css-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (add-hook 'css-mode-hook 'rainbow-mode)
 #+end_src
 ** dired-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 #+end_src
 ** emacs-lisp-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (add-to-list 'auto-mode-alist	     
 	     '("\\.el\\'" . emacs-lisp-mode))
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 #+end_src
 ** html-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (add-hook 'html-mode-hook
 	  'linum-mode)
 (add-hook 'html-mode-hook
@@ -418,7 +429,7 @@ point reaches the beginning or end of the buffer, stop there."
 	  'smartparens-mode)
 #+end_src
 ** latex-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 
@@ -435,11 +446,11 @@ point reaches the beginning or end of the buffer, stop there."
 ; (setq TeX-PDF-mode t)
 #+end_src
 ** markdown-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (add-hook 'markdown-mode-hook 'linum-mode)
 #+end_src
 ** org-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
   (add-hook 'org-mode-hook
             'smartparens-mode)
   (add-hook 'org-mode-hook
@@ -460,7 +471,7 @@ point reaches the beginning or end of the buffer, stop there."
 #+end_src
 
 ** prog-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (add-hook 'prog-mode-hook 'company-mode)
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'prog-mode-hook 'prettify-symbols-mode)
@@ -468,11 +479,11 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 #+end_src
 ** restclient-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (add-hook 'restclient-mode 'company-mode)
 #+end_src
 ** rust-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (autoload 'rust-mode "rust-mode" nil t)
 (require 'lsp-mode)
 (require 'lsp-rust)
@@ -495,7 +506,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 #+end_src
 ** toml-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (add-to-list 'auto-mode-alist
 	     '("\\.toml\\'" . toml-mode))
 (add-hook 'toml-mode-hook
@@ -505,7 +516,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 #+end_src
 p** yaml-mode
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (add-to-list 'auto-mode-alist
 	     '("\\.yml\\'" . yaml-mode))
 (add-hook 'yaml-mode-hook
@@ -515,7 +526,7 @@ p** yaml-mode
 
 #+end_src
 * TODO Sort
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp  :results silent
 (require 'helm-config)
 
 (setq enable-recursive-minibuffers t)
