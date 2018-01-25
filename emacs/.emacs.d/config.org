@@ -203,11 +203,12 @@ point reaches the beginning or end of the buffer, stop there."
 * Mail
 ** init stuff
 #+begin_src emacs-lisp
-(add-to-list 'load-path
-	     "/usr/share/emacs/site-lisp/mu4e")
-(require 'mu4e)
-(when (fboundp 'imagemagick-register-types)
-  (imagemagick-register-types))
+  (require 'org-mu4e)
+  (add-to-list 'load-path
+               "/usr/share/emacs/site-lisp/mu4e")
+  (require 'mu4e)
+  (when (fboundp 'imagemagick-register-types)
+    (imagemagick-register-types))
 #+end_src
 ** Accounts, etc
 #+begin_src emacs-lisp
@@ -439,25 +440,25 @@ point reaches the beginning or end of the buffer, stop there."
 #+end_src
 ** org-mode
 #+begin_src emacs-lisp
-(add-hook 'org-mode-hook
-	  'smartparens-mode)
-(add-hook 'org-mode-hook
-	  'linum-mode)
-(add-hook 'org-mode-hook
-	  'org-bullets-mode)
+  (add-hook 'org-mode-hook
+            'smartparens-mode)
+  (add-hook 'org-mode-hook
+            'linum-mode)
+  (add-hook 'org-mode-hook
+            'org-bullets-mode)
 
-(defun skeleten/org/get-org-files ()
-  (mapcar (lambda (f)
-	    (concat
-	     (file-name-as-directory skeleten/org-files-base-dir) f))
-	  (directory-files skeleten/org-files-base-dir nil "\\.org$")))
+  (defun skeleten/org/get-org-files ()
+    (mapcar (lambda (f)
+              (concat
+               (file-name-as-directory skeleten/org-files-base-dir) f))
+            (directory-files skeleten/org-files-base-dir nil "\\.org$")))
 
-(setq org-default-notes-file "~/org/Main.org"
-      org-agenda-files (skeleten/org/get-org-files)
-      org-log-done 'time)
-
-
+  (setq org-default-notes-file "~/org/Main.org"
+        org-agenda-files (skeleten/org/get-org-files)
+        org-log-done 'time)
+  (setq org-src-fontify-natively t)
 #+end_src
+
 ** prog-mode
 #+begin_src emacs-lisp
 (add-hook 'prog-mode-hook 'company-mode)
