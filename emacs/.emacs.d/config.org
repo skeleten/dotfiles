@@ -525,6 +525,20 @@ p** yaml-mode
 	  'smartparens-mode)
 
 #+end_src
+** yasnippet
+#+begin_src emacs-lisp :results silent
+  (require 'yasnippet)
+  (yas-global-mode)
+#+end_src
+** which-key
+#+BEGIN_SRC emacs-lisp :results silent
+  (which-key-mode)
+#+END_SRC
+** undo-tree
+#+BEGIN_SRC emacs-lisp :results silent
+  (require 'undo-tree)
+  (global-undo-tree-mode)
+#+END_SRC
 * TODO Sort
 #+begin_src emacs-lisp  :results silent
 (require 'helm-config)
