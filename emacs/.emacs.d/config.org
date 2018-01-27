@@ -119,8 +119,8 @@ point reaches the beginning or end of the buffer, stop there."
 * Keybindings
 ** Use `smarter-move-beginning-of-line`
 #+begin_src emacs-lisp  :results silent
-(global-set-key [remap move-beginning-of-line]
-                'smarter-move-beginning-of-line)
+  (global-set-key [remap move-beginning-of-line]
+                  'smarter-move-beginning-of-line)
 #+end_src
 ** Helper functions
 #+begin_src emacs-lisp  :results silent
@@ -404,7 +404,7 @@ point reaches the beginning or end of the buffer, stop there."
   (dashboard-setup-startup-hook)
   (setq initial-buffer-choice "*dashboard*")
 #+end_src
-* Modes
+* Package/Mode-Specific
 ** css-mode
 #+begin_src emacs-lisp  :results silent
 (add-hook 'css-mode-hook 'rainbow-mode)
@@ -539,16 +539,22 @@ p** yaml-mode
   (require 'undo-tree)
   (global-undo-tree-mode)
 #+END_SRC
+** helm
+#+begin_src emacs-lisp :results silent
+  (require 'helm-config)
+  (setq enable-recursive-minibuffers)
+#+end_src
+** multiple-cursors
+#+BEGIN_SRC emacs-lisp :results silent
+  (require 'multiple-cursors)
+#+END_SRC
+** neotree
+#+BEGIN_SRC emacs-lisp :reusults silent
+  (setq neo-theme
+        (if (display-graphic-p) 'icons 'arrow))
+#+END_SRC
 * TODO Sort
 #+begin_src emacs-lisp  :results silent
-(require 'helm-config)
-
-(setq enable-recursive-minibuffers t)
-
-(require 'multiple-cursors)
-
 (ace-popup-menu-mode 1)
 
-(setq neo-theme
-      (if (display-graphic-p) 'icons 'arrow))
 #+end_src
