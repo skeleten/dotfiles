@@ -8,8 +8,6 @@
   (add-to-list 'package-archives (cons "melpa" url) t))
 
 (package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
 
 (org-babel-load-file "~/.emacs.d/config.org")
 
