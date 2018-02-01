@@ -16,6 +16,9 @@ abbr -a crr    "cargo run --release"
 abbr -a pminst "pacaur -S --noedit --noconfirm"
 abbr -a pmsrch "pacaur -Ss"
 
+alias ee="emacs"
+alias eec="emacsclient"
+
 function fish_title
 
 end
