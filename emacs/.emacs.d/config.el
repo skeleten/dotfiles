@@ -7,7 +7,7 @@
   "Base directory of org files")
 
 (setq skeleten/font "Source Code Pro 12")
-(setq skeleten/theme 'moe-dark)         ; Possible  values currently are:
+(setq skeleten/theme 'cyberpunk)        ; Possible  values currently are:
                                         ;  'doom - for the Doom
                                         ;  'moe-dark or 'moe-light for the moe
                                         ; themes
@@ -136,13 +136,19 @@ point reaches the beginning or end of the buffer, stop there."
 
 (global-set-key (kbd "C-x g") 'magit-status)
 
-(global-set-key (kbd "M-n") 'er/expand-region)
-(skeleten/define-global-key "M-m c" "Compile" 'compile)
 (skeleten/define-global-prefix "M-m m" "Mail")
 (skeleten/define-global-keys
+ '("M-m m o"    "Open Email interface"          mu4e
+   "M-m m u"    "Update email and index"        mu4e-update-mail-and-index))
+
+(skeleten/define-global-prefix "M-m o" "Org mode")
+(skeleten/define-global-keys
+ '("M-m o a"    "Open Org Agenda"       org-agenda))
+
+(global-set-key (kbd "M-n") 'er/expand-region)
+(skeleten/define-global-key "M-m c" "Compile" 'compile)
+(skeleten/define-global-keys
  '("M-m s"      "Jump to char on screen"        ace-jump-char-mode
-   "M-m m o"    "Open Email interface"          mu4e
-   "M-m m u"    "Update Email and index"        mu4e-update-mail-and-index
    "C-."        "Toggle folding"                origami-toggle-node))
 
 (require 'smartparens-config)
@@ -151,6 +157,7 @@ point reaches the beginning or end of the buffer, stop there."
 (setq company-tooltip-align-annotations t)
 (setq company-minimum-prefix-length 0)
 
+(require 'org-mu4e)
 (add-to-list 'load-path
              "/usr/share/emacs/site-lisp/mu4e")
 (require 'mu4e)
@@ -176,7 +183,7 @@ point reaches the beginning or end of the buffer, stop there."
            :vars '(
                    (mu4e-trash-folder . "/VKM/Deleted Items")
                    (mu4e-refile-folder . "/VKM/Archive")
-                   (mu4e-sent-func . "/VKM/Sent Items")
+                   (mu4e-sent-folder . "/VKM/Sent Items")
                    ))
          ))
 ;; Bookmarks for mu4e; They go to searches
@@ -377,6 +384,7 @@ point reaches the beginning or end of the buffer, stop there."
 (setq org-default-notes-file "~/org/Main.org"
       org-agenda-files (skeleten/org/get-org-files)
       org-log-done 'time)
+(setq org-src-fontify-natively t)
 
 (add-hook 'prog-mode-hook 'company-mode)
 (add-hook 'prog-mode-hook 'linum-mode)
@@ -420,13 +428,20 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'yaml-mode-hook
           'smartparens-mode)
 
-(require 'helm-config)
+(require 'yasnippet)
+(yas-global-mode)
 
+(which-key-mode)
+
+(require 'undo-tree)
+(global-undo-tree-mode)
+
+(require 'helm-config)
 (setq enable-recursive-minibuffers t)
 
 (require 'multiple-cursors)
 
-(ace-popup-menu-mode 1)
-
 (setq neo-theme
       (if (display-graphic-p) 'icons 'arrow))
+
+(ace-popup-menu-mode 1)

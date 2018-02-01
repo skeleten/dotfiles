@@ -9,7 +9,11 @@
 
 (package-initialize)
 
-(org-babel-load-file "~/.emacs.d/config.org")
+(defun skeleten/load-init ()
+  (interactive)
+  (org-babel-load-file "~/.emacs.d/config.org"))
+
+(skeleten/load-init)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -19,7 +23,7 @@
  '(auth-source-save-behavior nil)
  '(package-selected-packages
    (quote
-    (undo-tree yasnippet-snippets yasnippet ob-rust org-mime org-bullets zencoding-mode yaml-mode window-number which-key toml-mode swiper-helm smartparens rainbow-mode rainbow-delimiters racer powershell powerline paredit origami offlineimap neotree multiple-cursors monokai-theme moe-theme mediawiki markdown-mode magit lsp-rust ht flycheck-rust flatland-theme fish-mode expand-region doom-themes dashboard counsel company-restclient company-lsp all-the-icons-gnus all-the-icons-dired ace-popup-menu ace-jump-mode)))
+    (cyberpunk-theme undo-tree yasnippet-snippets yasnippet ob-rust org-mime org-bullets zencoding-mode yaml-mode window-number which-key toml-mode swiper-helm smartparens rainbow-mode rainbow-delimiters racer powershell powerline paredit origami offlineimap neotree multiple-cursors monokai-theme moe-theme mediawiki markdown-mode magit lsp-rust ht flycheck-rust flatland-theme fish-mode expand-region doom-themes dashboard counsel company-restclient company-lsp all-the-icons-gnus all-the-icons-dired ace-popup-menu ace-jump-mode)))
  '(send-mail-function (quote smtpmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

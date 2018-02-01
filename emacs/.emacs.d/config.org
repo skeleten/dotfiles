@@ -13,16 +13,16 @@
 
 * Genral settings
 #+begin_src emacs-lisp  :results silent
-(setq skeleten/font "Source Code Pro 12")
-(setq skeleten/theme 'moe-dark)		; Possible  values currently are:
-					;  'doom - for the Doom
-					;  'moe-dark or 'moe-light for the moe
-					; themes
-					;  'none - for no theme
-					;  everything else will be interpretet as
-					; a theme name and trying to get loaded
-					; via `load-theme'
-(setq skeleten/org-files-base-dir "~/org")
+  (setq skeleten/font "Source Code Pro 12")
+  (setq skeleten/theme 'cyberpunk)        ; Possible  values currently are:
+                                          ;  'doom - for the Doom
+                                          ;  'moe-dark or 'moe-light for the moe
+                                          ; themes
+                                          ;  'none - for no theme
+                                          ;  everything else will be interpretet as
+                                          ; a theme name and trying to get loaded
+                                          ; via `load-theme'
+  (setq skeleten/org-files-base-dir "~/org")
 #+end_src
 
 * Functions
