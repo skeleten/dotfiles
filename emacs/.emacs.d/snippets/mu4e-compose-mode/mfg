@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: mfg
+# key: mfg_
+# --
+Mit freundlichen Grüßen,
+    $0

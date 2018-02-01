@@ -332,6 +332,9 @@ point reaches the beginning or end of the buffer, stop there."
                             (:from . 22)
                             (:subject)))
 
+(add-to-list 'mu4e-view-actions
+             '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+
 (require 'dashboard)
 (dashboard-setup-startup-hook)
 (setq initial-buffer-choice "*dashboard*")
