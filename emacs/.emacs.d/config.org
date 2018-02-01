@@ -11,7 +11,7 @@
   "Base directory of org files")
 #+end_src 
 
-* Genral settings
+* General settings
 #+begin_src emacs-lisp  :results silent
   (setq skeleten/font "Source Code Pro 12")
   (setq skeleten/theme 'cyberpunk)        ; Possible  values currently are:
