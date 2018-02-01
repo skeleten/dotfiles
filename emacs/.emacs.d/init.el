@@ -21,6 +21,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auth-source-save-behavior nil)
+ '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
     (cyberpunk-theme undo-tree yasnippet-snippets yasnippet ob-rust org-mime org-bullets zencoding-mode yaml-mode window-number which-key toml-mode swiper-helm smartparens rainbow-mode rainbow-delimiters racer powershell powerline paredit origami offlineimap neotree multiple-cursors monokai-theme moe-theme mediawiki markdown-mode magit lsp-rust ht flycheck-rust flatland-theme fish-mode expand-region doom-themes dashboard counsel company-restclient company-lsp all-the-icons-gnus all-the-icons-dired ace-popup-menu ace-jump-mode)))

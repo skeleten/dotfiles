@@ -83,7 +83,10 @@ point reaches the beginning or end of the buffer, stop there."
   "Load and set up the font"
   (interactive)
   (set-face-attribute 'default nil :font skeleten/font)
-  (set-frame-font skeleten/font nil t))
+  (set-frame-font skeleten/font nil t)
+  (set-default-font skeleten/font)
+  (add-to-list 'default-frame-alist
+             `(font . ,skeleten/font)))
 ;; run it
 (skeleten/load-theme)
 (skeleten/load-font)
@@ -337,7 +340,6 @@ point reaches the beginning or end of the buffer, stop there."
 
 (require 'dashboard)
 (dashboard-setup-startup-hook)
-(setq initial-buffer-choice "*dashboard*")
 
 (add-hook 'css-mode-hook 'rainbow-mode)
 
