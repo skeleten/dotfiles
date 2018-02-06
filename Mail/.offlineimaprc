@@ -23,7 +23,7 @@ type = IMAP
 remotehost = mail.skeleten.me
 remoteuser = me@skeleten.me
 remotepasseval = get_pass("skeleten")
-sslcacertfile = OS-DEFAULT
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
 [Repository VKM-local]
 type = Maildir
@@ -34,5 +34,6 @@ type = IMAP
 remotehost = mail.vkm.tu-darmstadt.de
 remoteuser = thomson
 remotepasseval = get_pass("VKM")
-sslcacertfile = OS-DEFAULT
 folderfilter = filter_folder_exchange
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
