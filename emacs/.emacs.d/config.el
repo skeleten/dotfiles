@@ -407,7 +407,9 @@ point reaches the beginning or end of the buffer, stop there."
              '("\\.rs\\'" . rust-mode))
 
 (setq company-lsp-async t)
-(with-eval-after-load 'rust-mode
+(with-eval-after-load 'lsp-mode
+  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+  (require 'lsp-rust)
   (add-hook 'rust-mode-hook #'lsp-rust-enable)
   (add-hook 'rust-mode-hook #'flycheck-mode)
   (add-hook 'rust-mode-hook
