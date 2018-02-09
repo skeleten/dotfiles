@@ -491,25 +491,26 @@ point reaches the beginning or end of the buffer, stop there."
 #+end_src
 ** rust-mode
 #+begin_src emacs-lisp  :results silent
-(autoload 'rust-mode "rust-mode" nil t)
-(require 'lsp-mode)
-(require 'lsp-rust)
-(require 'company-lsp)
-(add-to-list 'auto-mode-alist
-	     '("\\.rs\\'" . rust-mode))
+  (autoload 'rust-mode "rust-mode" nil t)
+  (require 'lsp-mode)
+  (require 'lsp-rust)
+  (require 'company-lsp)
+  (add-to-list 'auto-mode-alist
+               '("\\.rs\\'" . rust-mode))
 
-(setq company-lsp-async t)
-(with-eval-after-load 'rust-mode
+  (setq company-lsp-async t
+        lsp-rust-rls-command
+        '("rustup" "run" "nightly" "rls"))
   (add-hook 'rust-mode-hook #'lsp-rust-enable)
   (add-hook 'rust-mode-hook #'flycheck-mode)
   (add-hook 'rust-mode-hook
-	    (lambda ()
-	      (setq company-backends
-		    '((company-lsp
-		       :with company-yasnippet)))))
-  (add-hook 'rust-mode-hook 'origami-mode))
+            (lambda ()
+              (setq company-backends
+                    '((company-lsp
+                       :with company-yasnippet)))))
+  (add-hook 'rust-mode-hook 'origami-mode)
 
-(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 #+end_src
 ** toml-mode
@@ -563,5 +564,4 @@ point reaches the beginning or end of the buffer, stop there."
 * TODO Sort
 #+begin_src emacs-lisp  :results silent
 (ace-popup-menu-mode 1)
-
 #+end_src

@@ -406,16 +406,17 @@ point reaches the beginning or end of the buffer, stop there."
 (add-to-list 'auto-mode-alist
              '("\\.rs\\'" . rust-mode))
 
-(setq company-lsp-async t)
-(with-eval-after-load 'rust-mode
-  (add-hook 'rust-mode-hook #'lsp-rust-enable)
-  (add-hook 'rust-mode-hook #'flycheck-mode)
-  (add-hook 'rust-mode-hook
-            (lambda ()
-              (setq company-backends
-                    '((company-lsp
-                       :with company-yasnippet)))))
-  (add-hook 'rust-mode-hook 'origami-mode))
+(setq company-lsp-async t
+      lsp-rust-rls-command
+      '("rustup" "run" "nightly" "rls"))
+(add-hook 'rust-mode-hook #'lsp-rust-enable)
+(add-hook 'rust-mode-hook #'flycheck-mode)
+(add-hook 'rust-mode-hook
+          (lambda ()
+            (setq company-backends
+                  '((company-lsp
+                     :with company-yasnippet)))))
+(add-hook 'rust-mode-hook 'origami-mode)
 
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
