@@ -450,13 +450,13 @@ point reaches the beginning or end of the buffer, stop there."
 (setq neo-theme
       (if (display-graphic-p) 'icons 'arrow))
 
-(require 'slack)
-
-(slack-register-team
- :name "VKM"
- :client-id skeleten/slack/client-id
- :client-secret skeleten/slack/client-secret
- :token skeleten/slack/token
- :subscribed-channels '(allgemein it-interna))
+(use-package slack
+  :config 
+  (slack-register-team
+   :name "Verbrennungskraftmaschinen und Fahrzeugantriebe"
+   :client-id skeleten/slack/client-id
+   :client-secret skeleten/slack/client-secret
+   :token skeleten/slack/token
+   :subscribed-channels '(allgemein it-interna)))
 
 (ace-popup-menu-mode 1)
