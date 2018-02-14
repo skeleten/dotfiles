@@ -451,6 +451,10 @@ point reaches the beginning or end of the buffer, stop there."
       (if (display-graphic-p) 'icons 'arrow))
 
 (use-package slack
+  :commands (slack-start)
+  :init
+  (setq slack-buffer-emojify t)
+  (setq slack-prefer-current-team t)
   :config 
   (slack-register-team
    :name "Verbrennungskraftmaschinen und Fahrzeugantriebe"
