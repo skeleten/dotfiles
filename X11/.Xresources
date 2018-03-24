@@ -1,45 +1,54 @@
-#define base00 #070d0f
-#define base01 #0b161a
-#define base02 #000000
-#define base03 #323232
-#define base04 #858585
-#define base05 #d0cbaf
-#define base06 #b6bdca
-#define base07 #fffdff
-#define base08 #ea5c39
-#define base09 #ea5c39
-#define base0A #ee863e
-#define base0B #ee863e
-#define base0C #ef8e6d
-#define base0D #ef8e6d
-#define base0E #fefbb0
-#define base0F #fefbb0
+! +----------------------------------------------+
+! |----->     Xresources color scheme      <-----|
+! +----------------------------------------------+
+! special
+*.foreground:   #d7dde8
+*.background:   #2f343f
+*.cursorColor:  #d7dde8
+! black
+*.color0:       #4e5b79
+*.color8:       #4a5265
+! red
+*.color1:       #c6878f
+*.color9:       #c6878f
+! green
+*.color2:       #8eb897
+*.color10:      #70ad7d
+! yellow
+*.color3:       #f3dfa2
+*.color11:      #dfca88
+! blue
+*.color4:       #6daedb
+*.color12:      #5a9dcc
+! magenta
+*.color5:       #ddbdd5
+*.color13:      #c3a3bb
+! cyan
+*.color6:       #ddfff7
+*.color14:      #a9dede
+! white
+*.color7:       #f8f4e3
+*.color15:      #d5d0be
 
-*.foreground : base05
-#ifdef background_opacity
-*.background:   [background_opacity]base00
-#else
-*.background : base00
-#endif
-*.cursorColor : base05
+! +----------------------------------------------+
+! |----->         Font configs             <-----|
+! +----------------------------------------------+
+Xft.hinting: 1
+Xft.rgba: rgb
+Xft.hintStyle: "hintsmedium"
+Xft.antialias: 1
 
-*.color0 : base00
-*.color1 : base08
-*.color2 : base0B
-*.color3 : base0A
-*.color4 : base0D
-*.color5 : base0E
-*.color6 : base0C
-*.color7 : base05
-
-*.color8  : base03
-*.color9  : base09
-*.color10 : base04
-*.color11 : base06
-*.color12 : base04
-*.color13 : base06
-*.color14 : base0F
-*.color15 : base07
+! +----------------------------------------------+
+! |----->           Rofi setup             <-----|
+! +----------------------------------------------+
+rofi.font:             Monaco 13
+rofi.scrollbar-width:  0
+rofi.padding:          28
+rofi.lines:            5
+rofi.color-window:     #2f343f, #2f343f, #6daedb
+rofi.color-normal:     #2f343f, #88c0d0, #2f343f, #6daedb, #4b5262
+rofi.color-active:     #2f343f, #76aebe, #2f343f, #6daedb, #76aebe
+rofi.color-urgent: #2f343f, #bf616a, #2f343f, #6daedb, #bf616a
 
 URxvt.cursorBlink  :0
 URxvt.url-launcher :usr/bin/firefox-nightly
@@ -61,33 +70,3 @@ URxvt.keysym.Control-Shift-t  : perl:tabbedex:new_tab
 URxvt.keysym.Shifft-Right     : perl:tabbedex:next_tab
 URxvt.keysym.Shift-Left       : perl:tabbedex:prev_tab
 URxvt.tabbed.no-tabbedex-keys : true
-
-
-! ------------------------------------------------------------------------------
-! ROFI Color theme
-! ------------------------------------------------------------------------------
-rofi.color-enabled: true
-
-rofi.color-window:    base00, base00 , base00 , base00 , base07
-rofi.color-normal:    base00 , #ffffff, base00 , base00 ,  base0A
-rofi.color-active:    base00 , base0B  , base00 , base00 , base07
-rofi.color-urgent:    base00 , base03  , base00 , base00 , base07
-
-rofi.fake-transparency : true
-rofi.font              : RobotoMono 12
-rofi.columns           : 1
-rofi.separator-style   : none
-rofi.hide-scrollbar    : true
-rofi.location          : 0
-rofi.padding           : 12
-rofi.fullscreen        : false
-rofi.width             : 350
-rofi.lines             : 6
-
-Xft.dpi       : 96
-Xft.antialias : true
-! Xft.rgba      : rgb
-Xft.hinting   : true
-Xft.hintstyle : hintslight
-Xft.autohint  : false
-Xft.lcdfilter : lcddefault

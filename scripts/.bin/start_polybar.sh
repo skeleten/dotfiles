@@ -11,5 +11,5 @@ killall polybar
 for m in $DISPLAYS; do
     export pb_disp=$m
     echo "Starting polybar for $m" >> $LOGFILE
-    polybar top 2>&1 >> $LOGFILE &
+    polybar bar 2>&1 >> $LOGFILE &
 done
