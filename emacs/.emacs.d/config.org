@@ -210,16 +210,16 @@ point reaches the beginning or end of the buffer, stop there."
 #+end_src
 ** Company
 #+begin_src emacs-lisp  :results silent
-(setq company-idle-delay 2)
+(setq company-idle-delay 0.2)
 (setq company-tooltip-align-annotations t)
 (setq company-minimum-prefix-length 0)
 #+end_src
 * Mail
 ** init stuff
 #+begin_src emacs-lisp  :results silent
-  (require 'org-mu4e)
   (add-to-list 'load-path
-               "/usr/share/emacs/site-lisp/mu4e")
+	       "/usr/share/emacs/site-lisp/mu4e")
+  (require 'org-mu4e)
   (require 'mu4e)
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
@@ -437,20 +437,22 @@ point reaches the beginning or end of the buffer, stop there."
 #+end_src
 ** latex-mode
 #+begin_src emacs-lisp  :results silent
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
+  (add-to-list 'load-path
+		 "/usr/share/emacs/site-lisp")
+  (load "auctex.el" nil t t)
+  (load "preview-latex.el" nil t t)
 
-(add-hook 'latex-mode-hook 'linum-mode)
-(add-hook 'latex-mode-hook 'company-mode)
-(add-hook 'latex-mode-hook 'smartparens-mode)
-(add-hook 'LaTeX-mode-hook 'linum-mode)
-(add-hook 'LaTeX-mode-hook 'company-mode)
-(add-hook 'LaTeX-mode-hook 'smartparens-mode)
+  (add-hook 'latex-mode-hook 'linum-mode)
+  (add-hook 'latex-mode-hook 'company-mode)
+  (add-hook 'latex-mode-hook 'smartparens-mode)
+  (add-hook 'LaTeX-mode-hook 'linum-mode)
+  (add-hook 'LaTeX-mode-hook 'company-mode)
+  (add-hook 'LaTeX-mode-hook 'smartparens-mode)
 
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq TeX-save-query nil)
-; (setq TeX-PDF-mode t)
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq TeX-save-query nil)
+  ; (setq TeX-PDF-mode t)
 #+end_src
 ** markdown-mode
 #+begin_src emacs-lisp  :results silent
