@@ -210,7 +210,7 @@ point reaches the beginning or end of the buffer, stop there."
 #+end_src
 ** Company
 #+begin_src emacs-lisp  :results silent
-(setq company-idle-delay 2)
+(setq company-idle-delay 0.2)
 (setq company-tooltip-align-annotations t)
 (setq company-minimum-prefix-length 0)
 #+end_src
