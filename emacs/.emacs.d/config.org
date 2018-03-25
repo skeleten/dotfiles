@@ -14,7 +14,7 @@
 * General settings
 #+begin_src emacs-lisp  :results silent
   (setq skeleten/font "Source Code Pro 12")
-  (setq skeleten/theme 'cyberpunk)        ; Possible  values currently are:
+  (setq skeleten/theme 'doom)        ; Possible  values currently are:
                                           ;  'doom - for the Doom
                                           ;  'moe-dark or 'moe-light for the moe
                                           ; themes
@@ -78,7 +78,7 @@ point reaches the beginning or end of the buffer, stop there."
                    (require 'doom-themes)
                    (setq doom-themes-enable-bold t
                          doom-themes-enable-italic t)
-                   (load-theme 'doom-molokai t)
+                   (load-theme 'doom-one t)
                    (doom-themes-visual-bell-config)
                    (doom-themes-neotree-config)))
           ('doom-safe (progn
@@ -196,12 +196,12 @@ point reaches the beginning or end of the buffer, stop there."
    
 ** TODO Sort / Misc
 #+begin_src emacs-lisp  :results silent
-(global-set-key (kbd "M-n") 'er/expand-region)
-(skeleten/define-global-key "M-m c" "Compile" 'compile)
-(skeleten/define-global-keys
- '("M-m s"	"Jump to char on screen"	ace-jump-char-mode
-   "C-."	"Toggle folding"		origami-toggle-node))
-
+  (global-set-key (kbd "M-n") 'er/expand-region)
+  (skeleten/define-global-key "M-m c" "Compile" 'compile) 
+  (skeleten/define-global-keys
+   '("M-m s"      "Jump to char on screen"        ace-jump-char-mode
+     "C-."        "Toggle folding"                origami-toggle-node))
+  (skeleten/define-global-key "M-m f f" "Find file in Project" 'fiplr-find-file)
 #+end_src
 * Coding
 ** Smartparens
@@ -217,9 +217,9 @@ point reaches the beginning or end of the buffer, stop there."
 * Mail
 ** init stuff
 #+begin_src emacs-lisp  :results silent
-  (require 'org-mu4e)
   (add-to-list 'load-path
-               "/usr/share/emacs/site-lisp/mu4e")
+	       "/usr/share/emacs/site-lisp/mu4e")
+  (require 'org-mu4e)
   (require 'mu4e)
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
@@ -437,20 +437,22 @@ point reaches the beginning or end of the buffer, stop there."
 #+end_src
 ** latex-mode
 #+begin_src emacs-lisp  :results silent
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
+  (add-to-list 'load-path
+		 "/usr/share/emacs/site-lisp")
+  (load "auctex.el" nil t t)
+  (load "preview-latex.el" nil t t)
 
-(add-hook 'latex-mode-hook 'linum-mode)
-(add-hook 'latex-mode-hook 'company-mode)
-(add-hook 'latex-mode-hook 'smartparens-mode)
-(add-hook 'LaTeX-mode-hook 'linum-mode)
-(add-hook 'LaTeX-mode-hook 'company-mode)
-(add-hook 'LaTeX-mode-hook 'smartparens-mode)
+  (add-hook 'latex-mode-hook 'linum-mode)
+  (add-hook 'latex-mode-hook 'company-mode)
+  (add-hook 'latex-mode-hook 'smartparens-mode)
+  (add-hook 'LaTeX-mode-hook 'linum-mode)
+  (add-hook 'LaTeX-mode-hook 'company-mode)
+  (add-hook 'LaTeX-mode-hook 'smartparens-mode)
 
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq TeX-save-query nil)
-; (setq TeX-PDF-mode t)
+  (setq TeX-auto-save t)
+  (setq TeX-parse-self t)
+  (setq TeX-save-query nil)
+  ; (setq TeX-PDF-mode t)
 #+end_src
 ** markdown-mode
 #+begin_src emacs-lisp  :results silent
