@@ -214,6 +214,10 @@ point reaches the beginning or end of the buffer, stop there."
 (setq company-tooltip-align-annotations t)
 (setq company-minimum-prefix-length 0)
 #+end_src
+** JDEE
+#+BEGIN_SRC emacs-lisp :results silent
+  (setq jdee-server-dir "~/.jars")
+#+END_SRC
 * Mail
 ** init stuff
 #+begin_src emacs-lisp  :results silent
@@ -226,101 +230,123 @@ point reaches the beginning or end of the buffer, stop there."
 #+end_src
 ** Accounts, etc
 #+begin_src emacs-lisp  :results silent
-  (setq mu4e-contexts
-        `( ,(make-mu4e-context
-             :name "skeleten"
-             :match-func (lambda (msg)
-                           (when msg
-                             (string-prefix-p "/skeleten" (mu4e-message-field msg :maildir))))
-           :vars '(
-                   (mu4e-trash-folder . "/skeleten/Trash")
-                   (mu4e-refile-folder . "/skeleten/Archive")
-                   (mu4e-sent-folder . "/skeleten/Sent")
-                   ))
-           ,(make-mu4e-context
-             :name "VKM"
-             :match-func (lambda (msg)
-                           (when msg
-                             (string-prefix-p "/VKM" (mu4e-message-field msg :maildir))))
-             :vars '(
-                     (mu4e-trash-folder . "/VKM/Deleted Items")
-                     (mu4e-refile-folder . "/VKM/Archive")
-                     (mu4e-sent-folder . "/VKM/Sent Items")
-                     ))
-           ))
-  ;; Bookmarks for mu4e; They go to searches
-  ;; b <key> to jump to them
-  (setq user-full-name "Jan Pelle Thomson"
-        user-mail-address "me@skeleten.me")
+    (setq mu4e-contexts
+	  `( ,(make-mu4e-context
+	       :name "skeleten"
+	       :match-func (lambda (msg)
+			     (when msg
+			       (string-prefix-p "/skeleten" (mu4e-message-field msg :maildir))))
+	     :vars '(
+		     (mu4e-trash-folder . "/skeleten/Trash")
+		     (mu4e-refile-folder . "/skeleten/Archive")
+		     (mu4e-sent-folder . "/skeleten/Sent")
+		     ))
+	     ,(make-mu4e-context
+	       :name "VKM"
+	       :match-func (lambda (msg)
+			     (when msg
+			       (string-prefix-p "/VKM" (mu4e-message-field msg :maildir))))
+	       :vars '(
+		       (mu4e-trash-folder . "/VKM/Deleted Items")
+		       (mu4e-refile-folder . "/VKM/Archive")
+		       (mu4e-sent-folder . "/VKM/Sent Items")
+		       ))
+	     ,(make-mu4e-context
+	       :name "O365"
+	       :match-func (lambda (msg)
+			     (when msg
+			       (string-prefix-p "/O365" (mu4e-message-field msg :maildir))))
+	       :vars '(
+		       (mu4e-trash-folder . "/O365/Deleted Items")
+		       (mu4e-refile-folder . "/O365/Archive")
+		       (mu4e-sent-folder . "/O365/Sent Items")
+		       ))
+	     ))
+    ;; Bookmarks for mu4e; They go to searches
+    ;; b <key> to jump to them
+    (setq user-full-name "Jan Pelle Thomson"
+	  user-mail-address "me@skeleten.me")
 
-  (setq smtpmail-default-smtp-server "mail.skeleten.me"
-        smtpmail-smtp-server "mail.skeleten.me"
-        smtpmail-smtp-service 587
-        smtpmail-smtp-user "me@skeleten.me"
-        smtpmail-local-domain "skeleten.me")
+    (setq smtpmail-default-smtp-server "mail.skeleten.me"
+	  smtpmail-smtp-server "mail.skeleten.me"
+	  smtpmail-smtp-service 587
+	  smtpmail-smtp-user "me@skeleten.me"
+	  smtpmail-local-domain "skeleten.me")
 
-  (setq mu4e-get-mail-command "offlineimap")
+  ;;  (setq mu4e-get-mail-command "offlineimap")
 
-  (defvar my-mu4e-account-alist
-    '(("skeleten"
-       (mu4e-sent-folder "/skeleten/Sent")
-       (user-mail-address "me@skeleten.me")
-       (smtpmail-smtp-user "me@skeleten.me")
-       (smtpmail-local-domain "skeleten.me")
-       (smtpmail-default-smtp-server "mail.skeleten.me")
-       (smtpmail-smtp-server "mail.skeleten.me")
-       (smtpmail-smtp-service 587))
-      ("VKM"
-       (mu4e-sent-folder "/VKM/Sent")
-       (user-mail-address "thomson@vkm.tu-darmstadt.de")
-       (smtpmail-smtp-user "thomson")
-       (smtpmail-local-domain "vkm.tu-darmstadt.de")
-       (smtpmail-default-smtp-server "mail.vkm.tu-darmstadt.de")
-       (smtpmail-smtp-server "mail.vkm.tu-darmstadt.de")
-       (smtpmail-smtp-service 587))))
+    (defvar my-mu4e-account-alist
+      '(("skeleten"
+	 (mu4e-sent-folder "/skeleten/Sent")
+	 (user-mail-address "me@skeleten.me")
+	 (smtpmail-smtp-user "me@skeleten.me")
+	 (smtpmail-local-domain "skeleten.me")
+	 (smtpmail-default-smtp-server "mail.skeleten.me")
+	 (smtpmail-smtp-server "mail.skeleten.me")
+	 (smtpmail-smtp-service 587))
+	("VKM"
+	 (mu4e-sent-folder "/VKM/Sent")
+	 (user-mail-address "thomson@vkm.tu-darmstadt.de")
+	 (smtpmail-smtp-user "thomson")
+	 (smtpmail-local-domain "vkm.tu-darmstadt.de")
+	 (smtpmail-default-smtp-server "mail.vkm.tu-darmstadt.de")
+	 (smtpmail-smtp-server "mail.vkm.tu-darmstadt.de")
+	 (smtpmail-smtp-service 587))
+	("O365"
+	 (mu4e-sent-folder "/O365/Sent Items")
+	 (user-mail-address "thomson@vkm.maschinenbau.tu-darmstadt.de")
+	 (smtpmail-smtp-user "thomson@vkm.maschinenbau.tu-darmstadt.de")
+	 (smptmail-local-domain "vkm.maschinenbau.tu-darmstadt.de")
+	 (smtpmail-default-smtp-server "outlook.office.de")
+	 (smptmail-smtp-server "outlook.office.de")
+	 (smtpmail-smtp-service 587))))
 
-  (defun my-mu4e-set-account ()
-    "Set the account for composing a message.
-     This function is taken from: 
-       https://www.djcbsoftware.nl/code/mu/mu4e/Multiple-accounts.html"
-    (let* ((account
-      (if mu4e-compose-parent-message
-          (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
-      (string-match "/\\(.*?\\)/" maildir)
-      (match-string 1 maildir))
-        (mu4e-context-name (mu4e-context-current))))
-     (account-vars (cdr (assoc account my-mu4e-account-alist))))
-      (if account-vars
-    (mapc #'(lambda (var)
-        (set (car var) (cadr var)))
-          account-vars)
-    (error "No email account found"))))
+    (defun my-mu4e-set-account ()
+      "Set the account for composing a message.
+       This function is taken from: 
+	 https://www.djcbsoftware.nl/code/mu/mu4e/Multiple-accounts.html"
+      (let* ((account
+	(if mu4e-compose-parent-message
+	    (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+	(string-match "/\\(.*?\\)/" maildir)
+	(match-string 1 maildir))
+	  (mu4e-context-name (mu4e-context-current))))
+       (account-vars (cdr (assoc account my-mu4e-account-alist))))
+	(if account-vars
+      (mapc #'(lambda (var)
+	  (set (car var) (cadr var)))
+	    account-vars)
+      (error "No email account found"))))
 
-  (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+    (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 #+end_src
 ** Bookmarks
 #+begin_src emacs-lisp  :results silent
-(setq mu4e-bookmarks
-      `(,(make-mu4e-bookmark
-	   :name "VKM"
-	   :query "maildir:\"/VKM/INBOX*\" AND NOT flag:trashed"
-	   :key ?v)
-	,(make-mu4e-bookmark
-	  :name "Privat"
-	  :query "maildir:\"/skeleten/INBOX*\" AND NOT flag:trashed"
-	  :key ?p)
-	,(make-mu4e-bookmark
-	   :name  "Unread messages"
-	   :query "flag:unread AND NOT flag:trashed"
-	   :key ?u)
-	 ,(make-mu4e-bookmark
-	   :name "Today's messages"
-	   :query "date:today..now AND NOT flag:trashed"
-	   :key ?t)
-	 ,(make-mu4e-bookmark
-	   :name "Last 7 days"
-	   :query "date:7d..now AND NOT flag:trashed"
-	   :key ?w)))
+  (setq mu4e-bookmarks
+	`(,(make-mu4e-bookmark
+	     :name "VKM"
+	     :query "maildir:\"/VKM/INBOX*\" AND NOT flag:trashed"
+	     :key ?v)
+	  ,(make-mu4e-bookmark
+	    :name "O365"
+	    :query "maildir:\"/O365/Inbox*\" AND NOT flag:trashed"
+	    :key ?o)
+	  ,(make-mu4e-bookmark
+	    :name "Privat"
+	    :query "maildir:\"/skeleten/INBOX*\" AND NOT flag:trashed"
+	    :key ?p)
+	  ,(make-mu4e-bookmark
+	     :name  "Unread messages"
+	     :query "flag:unread AND NOT flag:trashed"
+	     :key ?u)
+	   ,(make-mu4e-bookmark
+	     :name "Today's messages"
+	     :query "date:today..now AND NOT flag:trashed"
+	     :key ?t)
+	   ,(make-mu4e-bookmark
+	     :name "Last 7 days"
+	     :query "date:7d..now AND NOT flag:trashed"
+	     :key ?w)))
 #+end_src
 ** Customization
 *** Marks

@@ -1,0 +1,1 @@
+alias eec (find-file-other-window $1)
