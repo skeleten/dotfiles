@@ -109,8 +109,14 @@ point reaches the beginning or end of the buffer, stop there."
     (add-to-list 'default-frame-alist
                `(font . ,skeleten/font)))
   ;; run it
-  (skeleten/load-theme)
-  (skeleten/load-font)
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions
+                (lambda (frm)
+                  (with-selected-frame frm
+                    (skeleten/load-theme)
+                    (skeleten/load-font))))
+   (skeleten/load-theme)
+   (skeleten/load-font))
 #+end_src
 ** Window Number
 #+begin_src emacs-lisp  :results silent
