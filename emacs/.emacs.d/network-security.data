@@ -1,3 +1,5 @@
 (
- (:id "sha1:c3eb2ca0e13ce8829e525a69262b665ee7ba0d5b" :fingerprint "sha1:63:23:0c:97:7b:84:07:03:14:56:b4:3a:e4:0f:13:cc:24:8c:9a:8f" :host "mail.vkm.tu-darmstadt.de:587" :conditions (:self-signed :no-host-match :unknown-ca :invalid))
+ (:id "sha1:902d87a47da224be05d188e40ee048bcf0a194a8" :fingerprint "sha1:7d:9b:f9:9a:f0:23:43:78:03:46:b6:fc:de:05:c5:e3:30:98:8f:d2")
+ (:id "sha1:e56e34b465e44b51515282f592fd29c4ea39d437" :fingerprint "sha1:82:0c:01:26:fd:63:c8:28:cb:69:26:07:5e:a6:f1:1b:91:d1:72:69")
+ (:id "sha1:c3eb2ca0e13ce8829e525a69262b665ee7ba0d5b" :fingerprint "sha1:ff:5d:23:9c:26:c3:e7:aa:d2:b9:e3:d9:c3:83:35:f0:69:74:e3:4a" :host "mail.vkm.tu-darmstadt.de:587" :conditions (:self-signed :no-host-match :unknown-ca :invalid))
 )
