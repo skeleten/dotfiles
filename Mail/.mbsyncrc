@@ -1,0 +1,79 @@
+################################################################################
+# VKM									       #
+################################################################################
+IMAPAccount VKM
+Host mail.vkm.tu-darmstadt.de
+User thomson
+PassCmd "pass Mail/VKM"
+SSLType IMAPS
+
+IMAPStore VKM-remote
+Account VKM
+
+MaildirStore VKM-local
+SubFolders Verbatim
+Path ~/Maildir/VKM/
+Inbox ~/Maildir/VKM/Inbox
+
+Channel VKM
+Master :VKM-remote:
+Slave :VKM-local:
+Pattern "*"
+Create Slave
+Expunge Both
+Sync All
+SyncState *
+
+################################################################################
+# Privat								       #
+################################################################################
+
+IMAPAccount skeleten
+Host mail.skeleten.me
+User me@skeleten.me
+PassCmd "pass Mail/skeleten"
+SSLType IMAPS
+
+IMAPStore skeleten-remote
+Account skeleten
+
+MaildirStore skeleten-local
+SubFolders Verbatim
+Path ~/Maildir/skeleten/
+Inbox ~/Maildir/skeleten/Inbox
+
+Channel skeleten
+Master :skeleten-remote:
+Slave :skeleten-local:
+Patterns "*"
+Create Slave
+Expunge Both
+Sync All
+SyncState *
+
+################################################################################
+# O365									       #
+################################################################################
+IMAPAccount O365
+Host outlook.office.de
+User thomson@vkm.maschinenbau.tu-darmstadt.de
+PassCmd "pass Mail/O365"
+SSLType IMAPS
+AuthMechs LOGIN
+
+IMAPStore O365-remote
+Account O365
+
+MaildirStore O365-local
+SubFolders Verbatim
+Path ~/Maildir/O365/
+Inbox ~/Maildir/O365/Inbox
+
+Channel O365
+Master :O365-remote:
+Slave :O365-local:
+Patterns "*"
+Create Slave
+Expunge Both
+Sync All
+SyncState *
