@@ -1,4 +1,3 @@
-
 (defvar skeleten/font nil
   "Font to use in buffers")
 (defvar skeleten/theme 'none
@@ -116,21 +115,21 @@ point reaches the beginning or end of the buffer, stop there."
   "Define a list of Key description and commands to the global keymap."
   (if (consp list)
       (let ((key (car list))
-            (desc (car (cdr list)))
-            (command (car (cdr (cdr list))))
-            (rest (cdr (cdr (cdr list)))))
-        (skeleten/define-global-key key desc command)
-        (skeleten/define-global-keys rest))))
+	    (desc (car (cdr list)))
+	    (command (car (cdr (cdr list))))
+	    (rest (cdr (cdr (cdr list)))))
+	(skeleten/define-global-key key desc command)
+	(skeleten/define-global-keys rest))))
 
 (global-unset-key (kbd "M-m"))
 
 (skeleten/define-global-keys
- '("C-s"        "Search"                        swiper
-   "M-x"        "M-x"                           helm-M-x
-   "C-x C-f"    "Find file"                     helm-find-files
-   "C-h f"      "Describe function"             helm-describe-function
-   "C-h k"      "Describe key"                  describe-key
-   "C-x b"      "Switch buffer"                 helm-buffers-list
+ '("C-s"	"Search"			swiper
+   "M-x"	"M-x"				helm-M-x
+   "C-x C-f"	"Find file"			helm-find-files
+   "C-h f"	"Describe function"		helm-describe-function
+   "C-h k"	"Describe key"			describe-key
+   "C-x b"	"Switch buffer"			helm-buffers-list
    ))
 
 (skeleten/define-global-key "M-m f t" "Toggle Neotree" 'neotree-toggle)
@@ -170,11 +169,16 @@ point reaches the beginning or end of the buffer, stop there."
 (setq jdee-server-dir "~/.jars")
 
 (add-to-list 'load-path
-             "/usr/share/emacs/site-lisp/mu4e")
+	     "/usr/share/emacs/site-lisp/mu4e")
 (require 'org-mu4e)
 (require 'mu4e)
 (when (fboundp 'imagemagick-register-types)
   (imagemagick-register-types))
+
+(setq mu4e-update-interval 60)
+
+(mu4e-alert-set-default-style 'libnotify)
+(add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
 
 (setq mu4e-contexts
       `( ,(make-mu4e-context
@@ -263,103 +267,103 @@ point reaches the beginning or end of the buffer, stop there."
 
 (setq mu4e-bookmarks
       `(,(make-mu4e-bookmark
-           :name "VKM"
-           :query "maildir:\"/VKM/INBOX*\" AND NOT flag:trashed"
-           :key ?v)
-        ,(make-mu4e-bookmark
-          :name "O365"
-          :query "maildir:\"/O365/Inbox*\" AND NOT flag:trashed"
-          :key ?o)
-        ,(make-mu4e-bookmark
-          :name "Privat"
-          :query "maildir:\"/skeleten/INBOX*\" AND NOT flag:trashed"
-          :key ?p)
-        ,(make-mu4e-bookmark
-           :name  "Unread messages"
-           :query "flag:unread AND NOT flag:trashed"
-           :key ?u)
-         ,(make-mu4e-bookmark
-           :name "Today's messages"
-           :query "date:today..now AND NOT flag:trashed"
-           :key ?t)
-         ,(make-mu4e-bookmark
-           :name "Last 7 days"
-           :query "date:7d..now AND NOT flag:trashed"
-           :key ?w)))
+	   :name "VKM"
+	   :query "maildir:\"/VKM/INBOX*\" AND NOT flag:trashed"
+	   :key ?v)
+	,(make-mu4e-bookmark
+	  :name "O365"
+	  :query "maildir:\"/O365/Inbox*\" AND NOT flag:trashed"
+	  :key ?o)
+	,(make-mu4e-bookmark
+	  :name "Privat"
+	  :query "maildir:\"/skeleten/INBOX*\" AND NOT flag:trashed"
+	  :key ?p)
+	,(make-mu4e-bookmark
+	   :name  "Unread messages"
+	   :query "flag:unread AND NOT flag:trashed"
+	   :key ?u)
+	 ,(make-mu4e-bookmark
+	   :name "Today's messages"
+	   :query "date:today..now AND NOT flag:trashed"
+	   :key ?t)
+	 ,(make-mu4e-bookmark
+	   :name "Last 7 days"
+	   :query "date:7d..now AND NOT flag:trashed"
+	   :key ?w)))
 
 (setq mu4e-marks
     '((refile
-        :char ("r" . "▶")
-        :prompt "refile"
-        :dyn-target (lambda (target msg) (mu4e-get-refile-folder msg))
-        :action (lambda (docid msg target) (mu4e~proc-move docid
-                                                  (mu4e~mark-check-target target) "-N")))
+	:char ("r" . "▶")
+	:prompt "refile"
+	:dyn-target (lambda (target msg) (mu4e-get-refile-folder msg))
+	:action (lambda (docid msg target) (mu4e~proc-move docid
+						  (mu4e~mark-check-target target) "-N")))
        (delete
-         :char ("D" . "⊠")
-         :prompt "Delete"
-         :show-target (lambda (target) "delete")
-         :action (lambda (docid msg target) (mu4e~proc-remove docid)))
+	 :char ("D" . "⊠")
+	 :prompt "Delete"
+	 :show-target (lambda (target) "delete")
+	 :action (lambda (docid msg target) (mu4e~proc-remove docid)))
        (flag
-         :char ("+" . "✚")
-         :prompt "+flag"
-         :show-target (lambda (target) "flag")
-         :action (lambda (docid msg target) (mu4e~proc-move docid nil "+F-u-N")))
+	 :char ("+" . "✚")
+	 :prompt "+flag"
+	 :show-target (lambda (target) "flag")
+	 :action (lambda (docid msg target) (mu4e~proc-move docid nil "+F-u-N")))
        (move
-         :char ("m" . "▷")
-         :prompt "move"
-         :ask-target  mu4e~mark-get-move-target
-         :action (lambda (docid msg target) (mu4e~proc-move docid
-                                              (mu4e~mark-check-target target) "-N")))
+	 :char ("m" . "▷")
+	 :prompt "move"
+	 :ask-target  mu4e~mark-get-move-target
+	 :action (lambda (docid msg target) (mu4e~proc-move docid
+					      (mu4e~mark-check-target target) "-N")))
        (read
-         :char    ("!" . "◼")
-         :prompt "!read"
-         :show-target (lambda (target) "read")
-         :action (lambda (docid msg target) (mu4e~proc-move docid nil "+S-u-N")))
+	 :char    ("!" . "◼")
+	 :prompt "!read"
+	 :show-target (lambda (target) "read")
+	 :action (lambda (docid msg target) (mu4e~proc-move docid nil "+S-u-N")))
        (trash
-         :char ("d" . "▼")
-         :prompt "dtrash"
-         :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
-         :action (lambda (docid msg target) (mu4e~proc-move docid
-                                              (mu4e~mark-check-target target) "+T-N")))
+	 :char ("d" . "▼")
+	 :prompt "dtrash"
+	 :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
+	 :action (lambda (docid msg target) (mu4e~proc-move docid
+					      (mu4e~mark-check-target target) "+T-N")))
        (unflag
-         :char    ("-" . "∷")
-         :prompt "-unflag"
-         :show-target (lambda (target) "unflag")
-         :action (lambda (docid msg target) (mu4e~proc-move docid nil "-F-N")))
+	 :char    ("-" . "∷")
+	 :prompt "-unflag"
+	 :show-target (lambda (target) "unflag")
+	 :action (lambda (docid msg target) (mu4e~proc-move docid nil "-F-N")))
        (untrash
-         :char   ("=" . "▲")
-         :prompt "=untrash"
-         :show-target (lambda (target) "untrash")
-         :action (lambda (docid msg target) (mu4e~proc-move docid nil "-T")))
+	 :char   ("=" . "▲")
+	 :prompt "=untrash"
+	 :show-target (lambda (target) "untrash")
+	 :action (lambda (docid msg target) (mu4e~proc-move docid nil "-T")))
        (unread
-         :char    ("?" . "◻")
-         :prompt "?unread"
-         :show-target (lambda (target) "unread")
-         :action (lambda (docid msg target) (mu4e~proc-move docid nil "-S+u-N")))
+	 :char    ("?" . "◻")
+	 :prompt "?unread"
+	 :show-target (lambda (target) "unread")
+	 :action (lambda (docid msg target) (mu4e~proc-move docid nil "-S+u-N")))
        (unmark
-         :char  " "
-         :prompt "unmark"
-         :action (mu4e-error "No action for unmarking"))
+	 :char  " "
+	 :prompt "unmark"
+	 :action (mu4e-error "No action for unmarking"))
        (action
-         :char ( "a" . "◯")
-         :prompt "action"
-         :ask-target  (lambda () (mu4e-read-option "Action: " mu4e-headers-actions))
-         :action  (lambda (docid msg actionfunc)
-                    (save-excursion
-                      (when (mu4e~headers-goto-docid docid)
-                        (mu4e-headers-action actionfunc)))))
+	 :char ( "a" . "◯")
+	 :prompt "action"
+	 :ask-target  (lambda () (mu4e-read-option "Action: " mu4e-headers-actions))
+	 :action  (lambda (docid msg actionfunc)
+		    (save-excursion
+		      (when (mu4e~headers-goto-docid docid)
+			(mu4e-headers-action actionfunc)))))
        (something
-         :char  ("*" . "✱")
-         :prompt "*something"
-         :action (mu4e-error "No action for deferred mark"))))
+	 :char  ("*" . "✱")
+	 :prompt "*something"
+	 :action (mu4e-error "No action for deferred mark"))))
 
 (setq mu4e-headers-date-format "%Y-%m-%d"
       mu4e-use-fancy-chars t
       mu4e-view-show-images t
       mu4e-headers-fields '((:human-date . 12)
-                            (:flags . 6)
-                            (:from . 22)
-                            (:subject)))
+			    (:flags . 6)
+			    (:from . 22)
+			    (:subject)))
 
 (add-to-list 'mu4e-view-actions
              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
@@ -371,19 +375,19 @@ point reaches the beginning or end of the buffer, stop there."
 
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
-(add-to-list 'auto-mode-alist        
-             '("\\.el\\'" . emacs-lisp-mode))
+(add-to-list 'auto-mode-alist	     
+	     '("\\.el\\'" . emacs-lisp-mode))
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
 (add-hook 'html-mode-hook
-          'linum-mode)
+	  'linum-mode)
 (add-hook 'html-mode-hook
-          'zencoding-mode)
+	  'zencoding-mode)
 (add-hook 'html-mode-hook
-          'smartparens-mode)
+	  'smartparens-mode)
 
 (add-to-list 'load-path
-               "/usr/share/emacs/site-lisp")
+	       "/usr/share/emacs/site-lisp")
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 
@@ -449,18 +453,18 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 (add-to-list 'auto-mode-alist
-             '("\\.toml\\'" . toml-mode))
+	     '("\\.toml\\'" . toml-mode))
 (add-hook 'toml-mode-hook
-          'linum-mode)
+	  'linum-mode)
 (add-hook 'toml-mode-hook
-          'smartparens-mode)
+	  'smartparens-mode)
 
 (add-to-list 'auto-mode-alist
-             '("\\.yml\\'" . yaml-mode))
+	     '("\\.yml\\'" . yaml-mode))
 (add-hook 'yaml-mode-hook
-          'linum-mode)
+	  'linum-mode)
 (add-hook 'yaml-mode-hook
-          'smartparens-mode)
+	  'smartparens-mode)
 
 (require 'yasnippet)
 (yas-global-mode)

@@ -233,6 +233,11 @@ point reaches the beginning or end of the buffer, stop there."
   (require 'mu4e)
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
+
+  (setq mu4e-update-interval 60)
+
+  (mu4e-alert-set-default-style 'libnotify)
+  (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
 #+end_src
 ** Accounts, etc
 #+begin_src emacs-lisp  :results silent
