@@ -13,8 +13,8 @@ abbr -a cbr    "cargo build --release"
 abbr -a cr     "cargo run"
 abbr -a crr    "cargo run --release"
 
-abbr -a pminst "pacaur -S --noedit --noconfirm"
-abbr -a pmsrch "pacaur -Ss"
+abbr -a pminst "trizen -S --noconfirm"
+abbr -a pmsrch "trizen -Ss"
 
 alias ee="emacs"
 alias eec="emacsclient"
