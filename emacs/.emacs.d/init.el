@@ -27,7 +27,7 @@
  '(auth-source-save-behavior nil)
  '(custom-safe-themes
    (quote
-    ("2af26301bded15f5f9111d3a161b6bfb3f4b93ec34ffa95e42815396da9cb560" default)))
+    ("a4df5d4a4c343b2712a8ed16bc1488807cd71b25e3108e648d4a26b02bc990b3" "2af26301bded15f5f9111d3a161b6bfb3f4b93ec34ffa95e42815396da9cb560" default)))
  '(fci-rule-color "#5B6268")
  '(inhibit-startup-screen t)
  '(jdee-db-active-breakpoint-face-colors (cons "#1B2229" "#51afef"))
@@ -35,7 +35,7 @@
  '(jdee-db-spec-breakpoint-face-colors (cons "#1B2229" "#3f444a"))
  '(package-selected-packages
    (quote
-    (mu4e-alert jdee fiplr "htmlize" dockerfile-mode use-package slack cargo cyberpunk-theme undo-tree yasnippet-snippets yasnippet ob-rust org-mime org-bullets zencoding-mode yaml-mode window-number which-key toml-mode swiper-helm smartparens rainbow-mode rainbow-delimiters racer powershell powerline paredit origami offlineimap neotree multiple-cursors monokai-theme moe-theme mediawiki markdown-mode magit lsp-rust ht flycheck-rust flatland-theme fish-mode expand-region doom-themes dashboard counsel company-restclient company-lsp all-the-icons-gnus all-the-icons-dired ace-popup-menu ace-jump-mode)))
+    (dracula-theme mu4e-alert jdee fiplr "htmlize" dockerfile-mode use-package slack cargo cyberpunk-theme undo-tree yasnippet-snippets yasnippet ob-rust org-mime org-bullets zencoding-mode yaml-mode window-number which-key toml-mode swiper-helm smartparens rainbow-mode rainbow-delimiters racer powershell powerline paredit origami offlineimap neotree multiple-cursors monokai-theme moe-theme mediawiki markdown-mode magit lsp-rust ht flycheck-rust flatland-theme fish-mode expand-region doom-themes dashboard counsel company-restclient company-lsp all-the-icons-gnus all-the-icons-dired ace-popup-menu ace-jump-mode)))
  '(send-mail-function (quote smtpmail-send-it))
  '(vc-annotate-background "#1B2229")
  '(vc-annotate-color-map
