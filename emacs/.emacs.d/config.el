@@ -178,6 +178,7 @@ point reaches the beginning or end of the buffer, stop there."
 (setq mu4e-update-interval 60)
 
 (mu4e-alert-set-default-style 'libnotify)
+(mu4e-alert-enable-mode-line-display)
 (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
 
 (setq mu4e-contexts

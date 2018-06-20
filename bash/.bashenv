@@ -6,7 +6,7 @@ export PATH="$PATH:$HOME/.bin:$HOME/.cargo/bin"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-export EDITOR="emacsclient -nw"
-export ALTERNATE_EDITOR="emacs -nw"
+export EDITOR="e"
+export ALTERNATE_EDITOR="emacs"
 
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src/"
