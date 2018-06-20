@@ -14,7 +14,7 @@
 * General settings
 #+begin_src emacs-lisp  :results silent
   (setq skeleten/font "Source Code Pro 12")
-  (setq skeleten/theme 'doom)        ; Possible  values currently are:
+  (setq skeleten/theme 'sourcerer)        ; Possible  values currently are:
                                           ;  'doom - for the Doom
                                           ;  'moe-dark or 'moe-light for the moe
                                           ; themes
@@ -228,11 +228,17 @@ point reaches the beginning or end of the buffer, stop there."
 ** init stuff
 #+begin_src emacs-lisp  :results silent
   (add-to-list 'load-path
-	       "/usr/share/emacs/site-lisp/mu4e")
+               "/usr/share/emacs/site-lisp/mu4e")
   (require 'org-mu4e)
   (require 'mu4e)
   (when (fboundp 'imagemagick-register-types)
     (imagemagick-register-types))
+  (setq mu4e-view-show-images t
+        mu4e-view-image-max-width 800
+        mu4e-confirm-quit nil
+        mu4e-update-interval 60)
+  (mu4e-alert-set-default-style 'libnotify)
+  (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
 #+end_src
 ** Accounts, etc
 #+begin_src emacs-lisp  :results silent
@@ -607,5 +613,6 @@ point reaches the beginning or end of the buffer, stop there."
 #+END_SRC
 * TODO Sort
 #+begin_src emacs-lisp  :results silent
-(ace-popup-menu-mode 1)
+  (ace-popup-menu-mode 1)
+
 #+end_src

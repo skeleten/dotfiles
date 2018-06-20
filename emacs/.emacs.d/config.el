@@ -7,7 +7,7 @@
   "Base directory of org files")
 
 (setq skeleten/font "Source Code Pro 12")
-(setq skeleten/theme 'doom)        ; Possible  values currently are:
+(setq skeleten/theme 'sourcerer)        ; Possible  values currently are:
                                         ;  'doom - for the Doom
                                         ;  'moe-dark or 'moe-light for the moe
                                         ; themes
@@ -175,6 +175,12 @@ point reaches the beginning or end of the buffer, stop there."
 (require 'mu4e)
 (when (fboundp 'imagemagick-register-types)
   (imagemagick-register-types))
+(setq mu4e-view-show-images t
+      mu4e-view-image-max-width 800
+      mu4e-confirm-quit nil
+      mu4e-update-interval 60)
+(mu4e-alert-set-default-style 'libnotify)
+(add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
 
 (setq mu4e-contexts
       `( ,(make-mu4e-context

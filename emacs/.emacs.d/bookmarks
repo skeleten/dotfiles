@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("config.org"
+(("VKM.org"
+ (filename . "~/org/VKM.org")
+ (front-context-string . "\n* TODOS\n** TODO")
+ (rear-context-string . "PTIONS: toc:nil\n")
+ (position . 231))
+("config.org"
  (filename . "~/dotfiles/emacs/.emacs.d/config.org")
  (front-context-string . "#+STARTUP: conte")
  (rear-context-string)

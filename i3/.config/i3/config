@@ -91,6 +91,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec rofi -show run
 bindsym $mod+Tab exec rofi -show window
 bindsym $mod+Shift+s exec rofi -show ssh
+bindsym $mod+Shift+w exec emacsclient -c
 # bindsym $mod+s exec rofi -show ssh
 # bindsym $mod+tab exec rofi -show window
 # There also is the (new) i3-dmenu-desktop which only displays applications
