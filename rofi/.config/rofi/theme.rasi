@@ -7,10 +7,10 @@
 #window {
     anchor:     center;
     location:   center;
-    width:      60%;
+    width:      35%;
     padding:    10px;
-    border: 1px;
-    border-color: #4C566A;
+    border: 	4px;
+    border-color: #009090;
 }
 
 #inputbar {
@@ -18,11 +18,11 @@
 }
 
 #prompt {
-    text-color: #5E81AC;
+    text-color: #009090;
 }
 
 #entry {
-    text-color: #ECEFF4;
+    text-color: #FCEFFF;
 }
 
 #listview {
@@ -36,5 +36,5 @@
 
 #element.selected {
     background-color: #4C566A;
-    text-color: #ECEFF4;
+    text-color: #FCEFFF;    
 }

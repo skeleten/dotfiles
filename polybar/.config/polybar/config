@@ -8,7 +8,7 @@ margin-top = 0
 background = #2f343f
 foreground = #d7dde8
 cyan = #ddfff7
-blue = #6daedb
+blue = #00B0B0
 green = #8eb897
 red = #c6878f
 yellow = #f3dfa2
@@ -24,7 +24,7 @@ foreground = ${colors.foreground}
 height = 30
 module-margin-left = 0
 module-margin-right = 0
-modules-left = i3
+modules-left =n i3
 modules-center = date
 modules-right = cpu memory xkeyboard volume xbacklight battery powermenu
 monitor = ${env:pb_disp}
@@ -169,7 +169,7 @@ date = %d/%m/%y
 interval = 5
 format-foreground = ${colors.foreground}
 format-padding = 1
-label =  %{F#6daedb} %{F-} %date%  %{F#6daedb}%{F-} %time%
+label =  %{F#00B0B0} %{F-} %date%  %{F#00B0B0}%{F-} %time%
 time = %H:%M
 type = internal/date
 
@@ -187,6 +187,8 @@ menu-0-0 =  reboot
 menu-0-0-exec = systemctl reboot
 menu-0-1 =  power off
 menu-0-1-exec = systemctl poweroff
+menu-0-2 =  lock
+menu-0-2-exec = i3lock -c 006060
 
 [settings]
 screenchange-reload = true

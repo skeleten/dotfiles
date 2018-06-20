@@ -1,14 +1,14 @@
 configuration {
     width: 50;
-    lines: 12;
-    columns: 2;
+    lines: 7;
+    columns: 1;
     font: "Overpass 14";
     bw: 0;
-    padding: 10;
+    padding: 15;
     yoffset: 0;
     xoffset: 0;
     fixed-num-lines: true;
-    terminal: "termite -e";
+    terminal: "urxvt";
     case-sensitive: false;
     matching: "fuzzy";
     m: "-4";
@@ -22,10 +22,10 @@ configuration {
     click-to-exit: true;
     show-match: true;
     theme: "~/.config/rofi/theme.rasi";
-    kb-secondary-paste: "Control+v";
+    kb-secondary-paste: "Control+y";
     kb-remove-to-eol: "";
     kb-accept-entry: "Return";
     kb-accept-custom: "Control+Return";
-    kb-row-down: "Down,Control+j";
-    kb-row-up: "Up,Control+k";
+    kb-row-down: "Down,Control+n";
+    kb-row-up: "Up,Control+p";
 }

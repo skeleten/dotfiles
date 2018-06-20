@@ -38,22 +38,19 @@ bindsym XF86AudioNext	exec playerctl next
 bindsym XF86AudioPrev	exec playerctl previous
 
 # Gaps stuff
-smart_gaps on
 gaps inner 10
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 4
 
 # Colors
 
 # Colors
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
-set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
-# set $border-color        #2182d1
-# set $indicator-color     #21c5d1
-set $border-color #4e5b79
-set $indicator-color #5a9dcc
+set $bg-color			#2f343f
+set $inactive-bg-color		#007070
+set $text-color			#f3f4f5
+set $inactive-text-color	#676E7D
+set $urgent-bg-color		#E53935
+set $border-color		#00A0A0
+set $indicator-color		#00C0D0
 # window colors
 #                       border              background         text                 indicator
 client.focused          $border-color       $border-color      $text-color          $indicator-color
@@ -88,8 +85,8 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec rofi -show run
-bindsym $mod+Tab exec rofi -show window
+bindsym $mod+d exec rofi -p "λ" -show run
+bindsym $mod+Tab exec rofi -show window 
 bindsym $mod+Shift+s exec rofi -show ssh
 # bindsym $mod+s exec rofi -show ssh
 # bindsym $mod+tab exec rofi -show window
