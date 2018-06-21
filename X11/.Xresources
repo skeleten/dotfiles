@@ -46,7 +46,7 @@ URxvt.font         :xft:RobotoMono:size=12
 URxvt.boldFont     :xft:RobotoMono:bold:size=12
 
 URxvt.lineSpace               : 0
-URxvt.letterSpace             : 1
+URxvt.letterSpace             : -1
 URxvt.scrollBar               : false
 URxvt.internalBorder          : 12
 URxvt.cursorUnderline         : true
