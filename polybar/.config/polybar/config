@@ -1,17 +1,15 @@
-; vim:ft=dosini
-
 [global/wm]
 margin-bottom = 0
 margin-top = 0
 
 [colors]
-background = #2f343f
-foreground = #d7dde8
-cyan = #ddfff7
-blue = #00B0B0
-green = #8eb897
-red = #c6878f
-yellow = #f3dfa2
+background	= #2f343f
+foreground	= #d7dde8
+cyan		= #ddfff7
+blue		= #00B0B0
+green		= #8eb897
+red		= #c6878f
+yellow		= #f3dfa2
 
 [bar/bar]
 background = ${colors.background}
@@ -25,8 +23,8 @@ height = 30
 module-margin-left = 0
 module-margin-right = 0
 modules-left =n i3
-modules-center = date
-modules-right = cpu memory xkeyboard volume xbacklight battery powermenu
+modules-center = currently_playing
+modules-right = date xkeyboard volume battery powermenu
 monitor = ${env:pb_disp}
 padding-left = 1
 padding-right = 3
@@ -41,59 +39,58 @@ tray-position = right
 tray-scale = 1.0
 tray-transparent = false
 
+[module/currently_playing]
+type = custom/script
+exec = currently_playing.sh
+interval = 5
+
 [module/i3]
-format = <label-state> <label-mode>
+type = internal/i3
+format = <label-state>
 index-sort = true
+
 label-mode = %mode%
+label-mode-padding = 3
+label-mode-background = ${colors.background}
+
 label-focused = %icon%
-label-focused-background = ${colors.blue}
-label-focused-foreground = ${colors.background}
-label-focused-margin-left = 1
-label-focused-padding = 1
-label-separator = |
-label-separator-padding = 1
-label-separator-foreground = ${colors.yellow}
-label-unfoxued = %icon%
+label-focused-underline = ${colors.blue}
+label-focused-foreground = ${colors.blue}
+label-focused-background = ${colors.background}
+label-focused-padding = 3
+
+label-unfocused = %icon%
 label-unfocused-foreground = ${colors.foreground}
-label-unfocused-padding = 1
+label-unfocused-background = ${colors.background}
+label-unfocused-padding = 3
+
 label-urgent = %icon%!
-label-urgent-background = ${colors.red}
-label-urgent-padding = 1
+label-urgent-underline = ${colors.red}
+label-urgent-background = ${colors.background}
+label-urgent-padding = 3
+
 label-empty = %icon%
 label-empty-foreground = ${colors.foreground}
-label-empty-padding = 1
+label-empty-background = ${colors.background}
+label-empty-padding = 3
+
 label-visible = %icon%
-lable-visible-padding = 1
+label-visible-padding = 3
+label-visible-background = ${colors.background}
+
 strip-wsnumbers = true
-type = internal/i3
 wrapping-scroll = true
 
-ws-icon-0 = 1; DEV
-ws-icon-1 = 2; GIT
-ws-icon-2 = 3; WEB
-ws-icon-3 = 4; TTY
-ws-icon-4 = 5; SYS
-ws-icon-5 = 6; MED
-ws-icon-6 = 9; BKG
-ws-icon-default =  TMP
-
-[module/cpu]
-interval = 2
-format-padding = 1
-format-prefix = " "
-format-prefix-foreground = ${colors.blue}
-label = %percentage%%
-label-foreground = ${colors.foreground}
-type = internal/cpu
-
-[module/memory]
-interval = 2
-format-padding = 1
-format-prefix = " "
-format-prefix-foreground = ${colors.blue}
-label = %percentage_used%%
-label-foreground = ${colors.foreground}
-type = internal/memory
+ws-icon-0 = 1;01
+ws-icon-1 = 2;02
+ws-icon-2 = 3;03
+ws-icon-3 = 4;04
+ws-icon-4 = 5;05
+ws-icon-5 = 6;06
+ws-icon-6 = 7;07
+ws-icon-7 = 8;08
+ws-icon-8 = 9;09
+ws-icon-9 = 10;10
 
 [module/xkeyboard]
 format-prefix = "  "
@@ -121,22 +118,6 @@ master-soundcard = default
 speaker-soundcard = default
 headphone-soundcard = default
 type = internal/volume
-
-[module/xbacklight]
-;Arch
-;type = internal/xbacklight
-;Ubuntu
-type = internal/backlight
-card = intel_backlight
-format = <ramp> <label>
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = 
-ramp-4 = 
-ramp-foreground = ${colors.blue}
-label-foreground = ${colors.foreground}
-format-padding = 1
 
 [module/battery]
 animation-charging-0 =  
@@ -172,7 +153,6 @@ format-padding = 1
 label =  %{F#00B0B0} %{F-} %date%  %{F#00B0B0}%{F-} %time%
 time = %H:%M
 type = internal/date
-
 
 [module/powermenu]
 type = custom/menu
