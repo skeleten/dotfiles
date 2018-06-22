@@ -16,7 +16,6 @@ set $mod Mod4
 font pango:Source Code Pro 0
 
 # Startups
-exec --no-startup-id compton -f
 exec --no-startup-id feh --bg-scale ~/.wallpaper	# Set background
 exec --no-startup-id dunst	    			# Display Notifications
 exec --no-startup-id nm-applet				# Network-Manager
