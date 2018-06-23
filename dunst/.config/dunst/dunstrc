@@ -1,6 +1,5 @@
 # -*- mode: conf -*-
 [global]
-    # font = xft:Ubuntu:bold:size=8
     font = Dejavu Sans Mono 10
 
     # allow a small subset of html markup:
@@ -11,7 +10,7 @@
     #
     # for a complete reference see http://developer.gnome.org/pango/stable/PangoMarkupFormat.html
     # If markup is not allowed, those tags will be stripped out of the message.
-    allow_markup = yes
+    markup = yes
 
     # The format of the message. Possible variables are:
     #   %a  appname
@@ -22,10 +21,10 @@
     #   %p  progress value if set ([  0%] to [100%]) or nothing
     # Markup is allowed
     # format = "☼ %a ☼\n\n%s\n%b"
-    format = "<b> %a </b>\n\n%s\n%b"
+    format = "<b>%a</b>\n%s\n%b"
 
     # Sort messages by urgency
-    sort = yes
+    sort = no
 
     # Show how many messages are currently hidden (because of geometry)
     indicate_hidden = yes
@@ -62,11 +61,11 @@
     # right side of the screen.  Y is measured from the top and down respectevly.
     # The width can be negative. In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "0x4-20+20"
+    geometry = "0x4-10+40"
 
     # The transparency of the window. range: [0; 100]
     # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
-    transparency = 20
+    transparency = 0
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -86,7 +85,7 @@
     #
     # If this option is set to mouse or keyboard, the monitor option will be
     # ignored.
-    follow = none
+    follow = mouse
 
     # should a notification popped up from history be sticky or
     # timeout as if it would normally do.
@@ -105,7 +104,7 @@
     padding = 8
 
     # horizontal padding
-    horizontal_padding = 20
+    horizontal_padding = 10
 
     # Define a color for the separator.
     # possible values are:
@@ -120,102 +119,35 @@
     # automatically after a crash.
     startup_notification = false
 
-    # dmenu path
     dmenu = /usr/bin/rofi -dmenu -p dunst:
-
-
-    # browser for opening urls in context menu
     browser = /usr/bin/firefox -new-tab
 
-[frame]
-    width = 0
-    color = "#000000"
+    icon_position = left
+    max_icon_size = 80
+    shrink = yes
+    
+    frame_width = 4
+    frame_color = "#00c0c0"
 
 [shortcuts]
-    # shortcuts are specified as [modifier+][modifier+]...key
-    # available modifiers are 'ctrl', 'mod1' (the alt-key), 'mod2', 'mod3'
-    # and 'mod4' (windows-key)
-    # xev might be helpful to find names for keys
-
-    # close notification
     close = ctrl+space
-
-    # close all notifications
     close_all = ctrl+shift+space
-
-    # redisplay last message(s)
-    # On the US keyboard layout 'grave' is normally above TAB and left of '1'.
     history = ctrl+shift+comma
-
-    # context menu
     context = ctrl+shift+period
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
-    background = "#0b151a"
-    foreground = "#b6bdca"
+    background = "#2f343f"
+    foreground = "#d7dde8"
     timeout = 10
 
 [urgency_normal]
-    background = "#323232"
-    foreground = "#fefbb0"
+    background = "#2f343f"
+    foreground = "#d7dde8"
     timeout = 10
 
 [urgency_critical]
-    background = "#ea5c39"
-    foreground = "#ffffff"
+    background = "#2f343f"
+    foreground = "#d7dde8"
     timeout = 0
-
-
-# Every section that isn't one of the above is interpreted as a rules
-# to override settings for certain messages.
-# Messages can be matched by 'appname', 'summary', 'body' or 'icon'
-# and you can override the 'timeout', 'urgency', 'foreground', 'background'
-# and 'format'.
-# Shell-like globbing will get expanded.
-#
-# SCRIPTING
-# you can specify a script that gets run when the rule matches by setting
-# the 'script' option.
-# The script will be called as follows:
-# script appname summary body icon urgency
-# where urgency can be "LOW", "NORMAL" or "CRITICAL".
-#
-# NOTE: if you don't want a notification to be displayed, set the format to ""
-# NOTE: It might be helpful to run dunst -print in a terminal in order to find
-# fitting options for rules.
-
-#[espeak]
-#    summary = "*"
-#    script = dunst_espeak.sh
-
-#[script-test]
-#    summary = "*script*"
-#    script = dunst_test.sh
-
-#[ignore]
-## This notification will not be displayed
-#    summary = "foobar"
-#    format = ""
-
-#[signed_on]
-#    appname = Pidgin
-#    summary = "*signed on*"
-#    urgency = low
-#
-#[signed_off]
-#    appname = Pidgin
-#    summary = *signed off*
-#    urgency = low
-#
-#[says]
-#    appname = Pidgin
-#    summary = *says*
-#    urgency = critical
-#
-#[twitter]
-#    appname = Pidgin
-#    summary = *twitter.com*
-#    urgency = normal
-#
