@@ -12,3 +12,4 @@ emacs/.emacs.d/.#recentf
 \#*\#
 .offlineimaprc
 emacs/.emacs.d/secrets.el
+*.elc
