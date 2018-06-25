@@ -382,7 +382,7 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
 (add-hook 'html-mode-hook
-	  'linum-mode)
+	  'display-line-numbers-mode)
 (add-hook 'html-mode-hook
 	  'zencoding-mode)
 (add-hook 'html-mode-hook
@@ -393,10 +393,10 @@ point reaches the beginning or end of the buffer, stop there."
 (load "auctex.el" nil t t)
 (load "preview-latex.el" nil t t)
 
-(add-hook 'latex-mode-hook 'linum-mode)
+(add-hook 'latex-mode-hook 'display-line-numbers-mode)
 (add-hook 'latex-mode-hook 'company-mode)
 (add-hook 'latex-mode-hook 'smartparens-mode)
-(add-hook 'LaTeX-mode-hook 'linum-mode)
+(add-hook 'LaTeX-mode-hook 'display-line-numbers-mode)
 (add-hook 'LaTeX-mode-hook 'company-mode)
 (add-hook 'LaTeX-mode-hook 'smartparens-mode)
 
@@ -405,12 +405,12 @@ point reaches the beginning or end of the buffer, stop there."
 (setq TeX-save-query nil)
 ; (setq TeX-PDF-mode t)
 
-(add-hook 'markdown-mode-hook 'linum-mode)
+(add-hook 'markdown-mode-hook 'display-line-numbers-mode)
 
 (add-hook 'org-mode-hook
           'smartparens-mode)
 (add-hook 'org-mode-hook
-          'linum-mode)
+          'display-line-numbers-mode)
 (add-hook 'org-mode-hook
           'org-bullets-mode)
 
@@ -426,7 +426,7 @@ point reaches the beginning or end of the buffer, stop there."
 (setq org-src-fontify-natively t)
 
 (add-hook 'prog-mode-hook 'company-mode)
-(add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'prog-mode-hook 'prettify-symbols-mode)
 (add-hook 'prog-mode-hook 'smartparens-mode)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
@@ -458,14 +458,14 @@ point reaches the beginning or end of the buffer, stop there."
 (add-to-list 'auto-mode-alist
 	     '("\\.toml\\'" . toml-mode))
 (add-hook 'toml-mode-hook
-	  'linum-mode)
+	  'display-line-numbers-mode)
 (add-hook 'toml-mode-hook
 	  'smartparens-mode)
 
 (add-to-list 'auto-mode-alist
 	     '("\\.yml\\'" . yaml-mode))
 (add-hook 'yaml-mode-hook
-	  'linum-mode)
+	  'display-line-numbers-mode)
 (add-hook 'yaml-mode-hook
 	  'smartparens-mode)
 
