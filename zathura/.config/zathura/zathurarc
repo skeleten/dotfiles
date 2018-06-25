@@ -1,0 +1,15 @@
+set default-bg		"#2F343F"
+set default-fg		"#F8F8F8"
+
+set statusbar-fg	"#F8F8F8"
+set statusbar-bg	"#2F343F"
+
+set inputbar-fg		"#F8F8F8"
+set inputbar-bg		"#2F343F"
+
+set completion-bg	"#2F343F"
+set completion-fg	"#00A0A0"
+
+set recolor-darkcolor	"#F8F8F8"
+set recolor-lightcolor	"#2F343F"
+set recolor
