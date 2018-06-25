@@ -42,6 +42,7 @@ point reaches the beginning or end of the buffer, stop there."
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+(setq-default mode-line-format nil)
 
 (column-number-mode +1)
 (require 'powerline)
@@ -437,20 +438,21 @@ point reaches the beginning or end of the buffer, stop there."
 (require 'lsp-rust)
 (require 'company-lsp)
 (add-to-list 'auto-mode-alist
-             '("\\.rs\\'" . rust-mode))
+	     '("\\.rs\\'" . rust-mode))
 
 (setq company-lsp-async t
       lsp-rust-rls-command
       '("rustup" "run" "nightly" "rls"))
+
 (add-hook 'rust-mode-hook #'lsp-rust-enable)
 (add-hook 'rust-mode-hook #'flycheck-mode)
 (add-hook 'rust-mode-hook
-          (lambda ()
-            (setq company-backends
-                  '((company-lsp
-                     :with company-yasnippet)))))
-(add-hook 'rust-mode-hook 'origami-mode)
+	  (lambda ()
+	    (setq company-backends
+		  '((company-lsp
+		     :with company-yasnippet)))))
 
+(add-hook 'rust-mode-hook 'origami-mode)
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 (add-to-list 'auto-mode-alist
