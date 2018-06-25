@@ -62,12 +62,6 @@ point reaches the beginning or end of the buffer, stop there."
   (scroll-bar-mode -1)
   (setq-default mode-line-format nil)
 #+end_src
-** Mode line
-#+begin_src emacs-lisp  :results silent
-  (column-number-mode +1)
-  (require 'powerline)
-  (powerline-default-theme)
-#+end_src
 ** Visuals
 #+begin_src emacs-lisp  :results silent
   (defun skeleten/load-theme ()
