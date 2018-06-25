@@ -32,14 +32,6 @@ padding-right = 3
 underline-size = 2
 width = 100%
 
-tray-background = ${colors.background}
-tray-detached = false
-tray-offset-x = 0
-tray-offset-y = 0
-tray-position = right
-tray-scale = 1.0
-tray-transparent = false
-
 [module/currently_playing]
 type = custom/script
 exec = currently_playing.sh
