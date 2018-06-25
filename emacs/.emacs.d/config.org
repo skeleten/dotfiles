@@ -68,32 +68,32 @@ point reaches the beginning or end of the buffer, stop there."
     "Load and set up the theme"
     (interactive)
     (if (boundp 'skeleten/theme)
-        (pcase skeleten/theme
-          ('doom (progn
-                   (require 'doom-themes)
-                   (setq doom-themes-enable-bold t
-                         doom-themes-enable-italic t)
-                   (load-theme 'doom-one t)
-                   (doom-themes-visual-bell-config)
-                   (doom-themes-neotree-config)))
-          ('doom-safe (progn
-                        (require 'doom-themes)
-                        (setq doom-themes-enable-bold t
-                              doom-themes-enable-italic t)
-                        (load-theme 'doom-molokai t)
-                        (doom-themes-visual-bell-config)))
-          ('moe-dark (progn
-                       (require 'moe-theme)
-                       (setq custom-safe-themes 't)
-                       (load-theme 'moe-dark)))
-          ('moe-light (progn
-                       (require 'moe-theme)
-                       (setq custom-safe-themes 't)
-                       (load-theme 'moe-dark)))
-          ('none nil)
-          (other (progn
-                   (setq custom-safe-themes 't)
-                   (load-theme other))))
+	(pcase skeleten/theme
+	  ('doom (progn
+		   (require 'doom-themes)
+		   (setq doom-themes-enable-bold t
+			 doom-themes-enable-italic t)
+		   (load-theme 'doom-one t)
+		   (doom-themes-visual-bell-config)
+		   (doom-themes-neotree-config)))
+	  ('doom-safe (progn
+			(require 'doom-themes)
+			(setq doom-themes-enable-bold t
+			      doom-themes-enable-italic t)
+			(load-theme 'doom-molokai t)
+			(doom-themes-visual-bell-config)))
+	  ('moe-dark (progn
+		       (require 'moe-theme)
+		       (setq custom-safe-themes 't)
+		       (load-theme 'moe-dark)))
+	  ('moe-light (progn
+		       (require 'moe-theme)
+		       (setq custom-safe-themes 't)
+		       (load-theme 'moe-dark)))
+	  ('none nil)
+	  (other (progn
+		   (setq custom-safe-themes 't)
+		   (load-theme other))))
       (error "skeleten/theme unbound")))
   (defun skeleten/load-font ()
     "Load and set up the font"
@@ -102,16 +102,16 @@ point reaches the beginning or end of the buffer, stop there."
     (set-frame-font skeleten/font nil t)
     (set-default-font skeleten/font)
     (add-to-list 'default-frame-alist
-               `(font . ,skeleten/font)))
+	       `(font . ,skeleten/font)))
   ;; run it
   (if (daemonp)
       (add-hook 'after-make-frame-functions
-                (lambda (frm)
-                  (with-selected-frame frm
-                    (skeleten/load-theme)
-                    (skeleten/load-font))))
-   (skeleten/load-theme)
-   (skeleten/load-font))
+		(lambda (frm)
+		  (with-selected-frame frm
+		    (skeleten/load-theme)
+		    (skeleten/load-font))))
+    (skeleten/load-theme)
+    (skeleten/load-font))
 #+end_src
 ** Window Number
 #+begin_src emacs-lisp  :results silent
