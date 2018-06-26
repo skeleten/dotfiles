@@ -5,6 +5,7 @@ margin-top = 0
 [colors]
 background	= #2f343f
 foreground	= #d7dde8
+gray		= #6D7078
 cyan		= #ddfff7
 blue		= #00B0B0
 green		= #8eb897
@@ -48,35 +49,36 @@ interval = 5
 type = internal/i3
 format = <label-state>
 index-sort = true
+ws-num = 10
+show-all = true
 
 label-mode = %mode%
-label-mode-padding = 3
 label-mode-background = ${colors.background}
 
-label-focused = %icon%
-label-focused-underline = ${colors.blue}
+label-focused = "◆"
 label-focused-foreground = ${colors.blue}
 label-focused-background = ${colors.background}
-label-focused-padding = 3
+label-focused-padding = 2
 
-label-unfocused = %icon%
-label-unfocused-foreground = ${colors.foreground}
+label-unfocused = "◆"
+label-unfocused-foreground = ${colors.gray}
 label-unfocused-background = ${colors.background}
-label-unfocused-padding = 3
+label-unfocused-padding = 2
 
-label-urgent = %icon%!
-label-urgent-underline = ${colors.red}
+label-urgent = "◆"
 label-urgent-background = ${colors.background}
-label-urgent-padding = 3
+label-urgent-foreground = ${colors.red}
+label-urgent-padding = 2
 
-label-empty = %icon%
-label-empty-foreground = ${colors.foreground}
+label-empty = "◇"
+label-empty-foreground = ${colors.gray}
 label-empty-background = ${colors.background}
-label-empty-padding = 3
+label-empty-padding = 2
 
-label-visible = %icon%
-label-visible-padding = 3
+label-visible = "◆"
 label-visible-background = ${colors.background}
+label-visible-foreground = ${colors.green}
+label-visible-padding = 2
 
 strip-wsnumbers = true
 wrapping-scroll = true
