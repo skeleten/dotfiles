@@ -1,24 +1,40 @@
-! +----------------------------------------------+
-! |----->     Xresources color scheme      <-----|
-! +----------------------------------------------+
-*.foreground: #F8F8F2
-*.background: #2f343f
-*.color0:     #000000
-*.color8:     #4D4D4D
-*.color1:     #FF5555
-*.color9:     #FF6E67
-*.color2:     #50FA7B
-*.color10:    #5AF78E
-*.color3:     #F1FA8C
-*.color11:    #F4F99D
-*.color4:     #008080
-*.color12:    #00A0A0
-*.color5:     #FF79C6
-*.color13:    #FF92D0
-*.color6:     #8BE9FD
-*.color14:    #9AEDFE
-*.color7:     #BFBFBF
-*.color15:    #E6E6E6
+! special
+*.foreground:   #edede7
+*.background:   #1b1e24
+*.cursorColor:  #edede7
+
+! black
+*.color0:       #000000
+*.color8:       #4d4d4d
+
+! red
+*.color1:       #ec2c2c
+*.color9:       #ff6e67
+
+! green
+*.color2:       #36bf59
+*.color10:      #5af78e
+
+! yellow
+*.color3:       #fa8638
+*.color11:      #f9ae42
+
+! blue
+*.color4:       #008080
+*.color12:      #00a0a0
+
+! magenta
+*.color5:       #b079ff
+*.color13:      #d492ff
+
+! cyan
+*.color6:       #28b6fd
+*.color14:      #69cafe
+
+! white
+*.color7:       #bfbfbf
+*.color15:      #e6e6e6
+
 
 ! +----------------------------------------------+
 ! |----->         Font configs             <-----|
