@@ -27,10 +27,10 @@ exec_always --no-startup-id ~/.bin/start_polybar.sh	# the status bar
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 # Media player
-bindsym XF86AudioPlay	exec playerctl play-pause
-bindsym XF86AudioPause	exec playerctl pause-pause
-bindsym XF86AudioNext	exec playerctl next
-bindsym XF86AudioPrev	exec playerctl previous
+bindsym XF86AudioPlay	exec playerctl play-pause || mpc toggle
+bindsym XF86AudioPause	exec playerctl pause-pause || mpc toggle
+bindsym XF86AudioNext	exec playerctl next || mpc next
+bindsym XF86AudioPrev	exec playerctl previous || mpc prev
 
 # Gaps stuff
 gaps inner 10
