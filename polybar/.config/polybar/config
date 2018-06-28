@@ -140,7 +140,7 @@ time-format = %H:%M
 type = internal/battery
 
 [module/date]
-date = %d/%m/%y
+date = %Y-%m-%d
 interval = 5
 format-foreground = ${colors.foreground}
 format-padding = 1
