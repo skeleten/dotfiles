@@ -44,40 +44,36 @@ point reaches the beginning or end of the buffer, stop there."
 (scroll-bar-mode -1)
 (setq-default mode-line-format nil)
 
-(column-number-mode +1)
-(require 'powerline)
-(powerline-default-theme)
-
 (defun skeleten/load-theme ()
   "Load and set up the theme"
   (interactive)
   (if (boundp 'skeleten/theme)
       (pcase skeleten/theme
-        ('doom (progn
-                 (require 'doom-themes)
-                 (setq doom-themes-enable-bold t
-                       doom-themes-enable-italic t)
-                 (load-theme 'doom-one t)
-                 (doom-themes-visual-bell-config)
-                 (doom-themes-neotree-config)))
-        ('doom-safe (progn
-                      (require 'doom-themes)
-                      (setq doom-themes-enable-bold t
-                            doom-themes-enable-italic t)
-                      (load-theme 'doom-molokai t)
-                      (doom-themes-visual-bell-config)))
-        ('moe-dark (progn
-                     (require 'moe-theme)
-                     (setq custom-safe-themes 't)
-                     (load-theme 'moe-dark)))
-        ('moe-light (progn
-                     (require 'moe-theme)
-                     (setq custom-safe-themes 't)
-                     (load-theme 'moe-dark)))
-        ('none nil)
-        (other (progn
-                 (setq custom-safe-themes 't)
-                 (load-theme other))))
+	('doom (progn
+		 (require 'doom-themes)
+		 (setq doom-themes-enable-bold t
+		       doom-themes-enable-italic t)
+		 (load-theme 'doom-one t)
+		 (doom-themes-visual-bell-config)
+		 (doom-themes-neotree-config)))
+	('doom-safe (progn
+		      (require 'doom-themes)
+		      (setq doom-themes-enable-bold t
+			    doom-themes-enable-italic t)
+		      (load-theme 'doom-molokai t)
+		      (doom-themes-visual-bell-config)))
+	('moe-dark (progn
+		     (require 'moe-theme)
+		     (setq custom-safe-themes 't)
+		     (load-theme 'moe-dark)))
+	('moe-light (progn
+		     (require 'moe-theme)
+		     (setq custom-safe-themes 't)
+		     (load-theme 'moe-dark)))
+	('none nil)
+	(other (progn
+		 (setq custom-safe-themes 't)
+		 (load-theme other))))
     (error "skeleten/theme unbound")))
 (defun skeleten/load-font ()
   "Load and set up the font"
@@ -86,16 +82,16 @@ point reaches the beginning or end of the buffer, stop there."
   (set-frame-font skeleten/font nil t)
   (set-default-font skeleten/font)
   (add-to-list 'default-frame-alist
-             `(font . ,skeleten/font)))
+	     `(font . ,skeleten/font)))
 ;; run it
 (if (daemonp)
     (add-hook 'after-make-frame-functions
-              (lambda (frm)
-                (with-selected-frame frm
-                  (skeleten/load-theme)
-                  (skeleten/load-font))))
- (skeleten/load-theme)
- (skeleten/load-font))
+	      (lambda (frm)
+		(with-selected-frame frm
+		  (skeleten/load-theme)
+		  (skeleten/load-font))))
+  (skeleten/load-theme)
+  (skeleten/load-font))
 
 (require 'window-number)
 (window-number-mode)
@@ -433,26 +429,15 @@ point reaches the beginning or end of the buffer, stop there."
 
 (add-hook 'restclient-mode 'company-mode)
 
+(require 'eglot)
+
 (autoload 'rust-mode "rust-mode" nil t)
-(require 'lsp-mode)
-(require 'lsp-rust)
-(require 'company-lsp)
 (add-to-list 'auto-mode-alist
-	     '("\\.rs\\'" . rust-mode))
+     '("\\.rs\\'" . rust-mode))
 
-(setq company-lsp-async t
-      lsp-rust-rls-command
-      '("rustup" "run" "nightly" "rls"))
-
-(add-hook 'rust-mode-hook #'lsp-rust-enable)
 (add-hook 'rust-mode-hook #'flycheck-mode)
-(add-hook 'rust-mode-hook
-	  (lambda ()
-	    (setq company-backends
-		  '((company-lsp
-		     :with company-yasnippet)))))
-
 (add-hook 'rust-mode-hook 'origami-mode)
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 (add-to-list 'auto-mode-alist
