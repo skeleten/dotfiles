@@ -25,7 +25,7 @@ module-margin-left = 0
 module-margin-right = 0
 modules-left =n i3
 modules-center = currently_playing
-modules-right = date xkeyboard volume battery powermenu
+modules-right = date xkeyboard volume battery 
 monitor = ${env:pb_disp}
 padding-left = 1
 padding-right = 3
@@ -147,22 +147,6 @@ format-padding = 1
 label =  %{F#00B0B0} %{F-} %date%  %{F#00B0B0}%{F-} %time%
 time = %H:%M
 type = internal/date
-
-[module/powermenu]
-type = custom/menu
-format-spacing = 1
-label-open = |  |
-label-open-foreground = ${colors.blue}
-label-close = X CANCEL
-label-close-foreground = ${colors.red}
-label-separator = |
-label-separator-foreground = ${colors.blue}
-menu-0-0 =  reboot
-menu-0-0-exec = systemctl reboot
-menu-0-1 =  power off
-menu-0-1-exec = systemctl poweroff
-menu-0-2 =  lock
-menu-0-2-exec = i3lock -c 006060
 
 [settings]
 screenchange-reload = true
