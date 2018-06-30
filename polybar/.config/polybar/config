@@ -18,19 +18,44 @@ enable-ipc = true
 fixed-center = true
 font-0 = "DejaVu Sans:size=10;2"
 font-1 = "FontAwesome:size=10;2"
-font-2 = "Wuncon Siji:size=10;2"
+font-2 = "DejaVu Sasn:size=11;2"
 foreground = ${colors.foreground}
 height = 30
 module-margin-left = 0
 module-margin-right = 0
-modules-left =n i3
-modules-center = currently_playing
-modules-right = date xkeyboard volume battery 
+modules-left =i3
+modules-center = title
+modules-right = date battery volume
 monitor = ${env:pb_disp}
 padding-left = 1
 padding-right = 3
 underline-size = 2
 width = 100%
+
+[module/title]
+type = internal/xwindow
+
+format = <label>
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+format-padding = 4
+
+label = %title%
+label-maxlen = 250
+
+[module/volume]
+type = internal/volume
+
+format-muted-foreground = ${colors.red}
+format-volume = <label-volume>
+
+label-muted = Muted
+label-volume = %percentage%%
+label-volume-foreground = ${colors.foreground}
+
+master-soundcard = default
+speaker-soundcard = default
+headphone-soundcard = default
 
 [module/currently_playing]
 type = custom/script
@@ -47,27 +72,27 @@ show-all = true
 label-mode = %mode%
 label-mode-background = ${colors.background}
 
-label-focused = "◆"
+label-focused = %{T3}◆
 label-focused-foreground = ${colors.blue}
 label-focused-background = ${colors.background}
 label-focused-padding = 2
 
-label-unfocused = "◆"
+label-unfocused = %{T3}◆
 label-unfocused-foreground = ${colors.gray}
 label-unfocused-background = ${colors.background}
 label-unfocused-padding = 2
 
-label-urgent = "◆"
+label-urgent = %{T3}◆
 label-urgent-background = ${colors.background}
 label-urgent-foreground = ${colors.red}
 label-urgent-padding = 2
 
-label-empty = "◇"
+label-empty = %{T3}◇
 label-empty-foreground = ${colors.gray}
 label-empty-background = ${colors.background}
 label-empty-padding = 2
 
-label-visible = "◆"
+label-visible = %{T3}◆
 label-visible-background = ${colors.background}
 label-visible-foreground = ${colors.green}
 label-visible-padding = 2
@@ -85,33 +110,6 @@ ws-icon-6 = 7;07
 ws-icon-7 = 8;08
 ws-icon-8 = 9;09
 ws-icon-9 = 10;10
-
-[module/xkeyboard]
-format-prefix = "  "
-format-prefix-foreground = ${colors.blue}
-label-layout = %layout%
-label-indicator-background = ${colors.red}
-label-indicator-padding = 1
-label-indicator-foreground = ${colors.foreground}
-type = internal/xkeyboard
-
-[module/volume]
-format-muted-foreground = ${colors.red}
-format-muted-padding = 1
-format-muted-prefix = " "
-format-volume = " "<ramp-volume> <label-volume>
-format-volume-padding = 1
-label-muted = Muted
-label-volume = %percentage%%
-label-volume-foreground = ${colors.foreground}
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-foreground = ${colors.blue}
-master-soundcard = default
-speaker-soundcard = default
-headphone-soundcard = default
-type = internal/volume
 
 [module/battery]
 animation-charging-0 =  
@@ -143,8 +141,8 @@ type = internal/battery
 date = %Y-%m-%d
 interval = 5
 format-foreground = ${colors.foreground}
-format-padding = 1
-label =  %{F#00B0B0} %{F-} %date%  %{F#00B0B0}%{F-} %time%
+format-margin = 2
+label = %date% %time%
 time = %H:%M
 type = internal/date
 
