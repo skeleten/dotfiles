@@ -17,4 +17,4 @@ xrdb "$HOME/.Xresources"
 if [ -z "$WM" ]; then
     WM=i3
 fi
-$WM 2>/tmp/xinit_stderr >/tmp/xinit_stdout
+exec $WM 2>/tmp/xinit_stderr >/tmp/xinit_stdout
