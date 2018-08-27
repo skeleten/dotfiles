@@ -50,30 +50,3 @@ Create Slave
 Expunge Both
 Sync All
 SyncState *
-
-################################################################################
-# O365									       #
-################################################################################
-IMAPAccount O365
-Host outlook.office.de
-User thomson@vkm.maschinenbau.tu-darmstadt.de
-PassCmd "pass Mail/O365"
-SSLType IMAPS
-AuthMechs LOGIN
-
-IMAPStore O365-remote
-Account O365
-
-MaildirStore O365-local
-SubFolders Verbatim
-Path ~/Maildir/O365/
-Inbox ~/Maildir/O365/Inbox
-
-Channel O365
-Master :O365-remote:
-Slave :O365-local:
-Patterns "*"
-Create Slave
-Expunge Both
-Sync All
-SyncState *
