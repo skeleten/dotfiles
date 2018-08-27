@@ -25,13 +25,16 @@ exec_always --no-startup-id ~/.bin/start_polybar.sh	# the status bar
 # media controls							       #
 ################################################################################
 # Pulse Audio
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume	exec --no-startup-id pactl set-sink-volume	@DEFAULT_SINK@		+5%
+bindsym XF86AudioLowerVolume	exec --no-startup-id pactl set-sink-volume	@DEFAULT_SINK@		-5%
+bindsym XF86AudioMute		exec --no-startup-id pactl set-sink-mute	@DEFAULT_SINK@		toggle
+bindsym XF86AudioMicMute	exec --no-startup-id pactl set-source-mute	@DEFAULT_SOURCE@	toggle
+
 # Media player
-bindsym XF86AudioPlay	exec playerctl play-pause || mpc toggle
-bindsym XF86AudioPause	exec playerctl pause-pause || mpc toggle
-bindsym XF86AudioNext	exec playerctl next || mpc next
-bindsym XF86AudioPrev	exec playerctl previous || mpc prev
+bindsym XF86AudioPlay	exec playerctl play-pause	|| mpc toggle
+bindsym XF86AudioPause	exec playerctl pause-pause	|| mpc toggle
+bindsym XF86AudioNext	exec playerctl next		|| mpc next
+bindsym XF86AudioPrev	exec playerctl previous		|| mpc prev
 
 
 ################################################################################
@@ -39,7 +42,7 @@ bindsym XF86AudioPrev	exec playerctl previous || mpc prev
 ################################################################################
 
 bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -inc -10 -time 100 -steps 10
-bindsym XF86MonBrightnessUp  	exec --no-startup-id xbacklight -inc 10  -time 100 -steps 10
+bindsym XF86MonBrightnessUp  	exec --no-startup-id xbacklight -inc  10 -time 100 -steps 10
 
 
 # Gaps stuff
