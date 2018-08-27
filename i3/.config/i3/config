@@ -1,3 +1,4 @@
+# -*- mode: conf; eval: (rainbow-mode 1); -*-
 
 # $mod is Super ("Windows" Key)
 set $mod Mod4
