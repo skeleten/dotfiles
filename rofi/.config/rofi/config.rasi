@@ -10,7 +10,7 @@ configuration {
     fixed-num-lines: true;
     terminal: "urxvt";
     case-sensitive: false;
-    matching: "fuzzy";
+    matching: "regex";
     m: "-4";
     line-margin: 0;
     line-padding: 5;
@@ -23,7 +23,7 @@ configuration {
     show-match: true;
     theme: "~/.config/rofi/theme.rasi";
     kb-secondary-paste: "Control+y";
-    kb-remove-to-eol: "";
+    kb-remove-to-eol: "Control+k";
     kb-accept-entry: "Return";
     kb-accept-custom: "Control+Return";
     kb-row-down: "Down,Control+n";

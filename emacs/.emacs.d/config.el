@@ -6,14 +6,14 @@
   "Base directory of org files")
 
 (setq skeleten/font "Source Code Pro 12")
-(setq skeleten/theme 'dracula)        ; Possible  values currently are:
-					;  'doom - for the Doom
-					;  'moe-dark or 'moe-light for the moe
-					; themes
-					;  'none - for no theme
-					;  everything else will be interpretet as
-					; a theme name and trying to get loaded
-					; via `load-theme'
+(setq skeleten/theme 'gruvbox-dark-soft)	; Possible  values currently are:
+						;  'doom - for the Doom
+						;  'moe-dark or 'moe-light for the moe
+						; themes
+						;  'none - for no theme
+						;  everything else will be interpretet as
+						; a theme name and trying to get loaded
+						; via `load-theme'
 (setq skeleten/org-files-base-dir "~/org")
 
 (defun smarter-move-beginning-of-line (arg)
