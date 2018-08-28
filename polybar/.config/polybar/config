@@ -3,14 +3,14 @@ margin-bottom = 0
 margin-top = 0
 
 [colors]
-background	= #2f343f
-foreground	= #d7dde8
-gray		= #6D7078
-cyan		= #ddfff7
-blue		= #00B0B0
-green		= #8eb897
-red		= #c6878f
-yellow		= #f3dfa2
+background	= #32302f
+foreground	= #fbf1c7
+gray		= #928374
+cyan		= #689d6a
+blue		= #458588
+green		= #98971a
+red		= #cc241d
+yellow		= #d79921
 
 [bar/bar]
 background = ${colors.background}
@@ -18,6 +18,7 @@ enable-ipc = true
 fixed-center = true
 font-0 = "DejaVu Sans:size=10;2"
 font-1 = "FontAwesome:size=10;2"
+font-2 = "Material Icons:size=12;4"
 foreground = ${colors.foreground}
 height = 30
 module-margin-left = 0
@@ -48,8 +49,8 @@ type = internal/volume
 format-muted-foreground = ${colors.red}
 format-volume = <label-volume>
 
-label-muted = Muted
-label-volume = %percentage%%
+label-muted  =  %percentage%%
+label-volume =  %percentage%%
 label-volume-foreground = ${colors.foreground}
 
 master-soundcard = default
@@ -71,28 +72,28 @@ show-all = true
 label-mode = %mode%
 label-mode-background = ${colors.background}
 
-label-focused = %{T3}◆
-label-focused-foreground = ${colors.blue}
+label-focused = ◆
+label-focused-foreground = ${colors.yellow}
 label-focused-background = ${colors.background}
 label-focused-padding = 2
 
-label-unfocused = %{T3}◆
+label-unfocused = ◆
 label-unfocused-foreground = ${colors.gray}
 label-unfocused-background = ${colors.background}
 label-unfocused-padding = 2
 
-label-urgent = %{T3}◆
+label-urgent = ◆
 label-urgent-background = ${colors.background}
 label-urgent-foreground = ${colors.red}
 label-urgent-padding = 2
 
-label-empty = %{T3}◇
+label-empty = ◇
 label-empty-foreground = ${colors.gray}
 label-empty-background = ${colors.background}
 label-empty-padding = 2
 
-label-visible = %{T3}◆
-label-visible-background = ${colors.background}
+label-visible = ◆
+label-visible-background = ${colors.foreground}
 label-visible-foreground = ${colors.green}
 label-visible-padding = 2
 
@@ -111,28 +112,24 @@ ws-icon-8 = 9;09
 ws-icon-9 = 10;10
 
 [module/battery]
-animation-charging-0 =  
-animation-charging-1 =  
-animation-charging-2 =  
-animation-charging-foreground = ${colors.blue}
-animation-charging-framerate = 750
-label-charging = %percentage%%
+label-charging =  %percentage%%
 label-discharging = %percentage%%
-format-charging = <animation-charging> <label-charging>
+format-charging = <label-charging>
 format-charging-padding = 1
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-padding = 1
 format-full = <label-full>
 format-full-padding = 1
-format-full-prefix = 
+format-full-prefix = 
 format-full-prefix-foreground = ${colors.green}
 full-at = 100
-ramp-capacity-0 =  
-ramp-capacity-1 =  
-ramp-capacity-2 =  
 ramp-capacity-0-foreground = ${colors.red}
 ramp-capacity-1-foreground = ${colors.yellow}
 ramp-capacity-2-foreground = ${colors.green}
+ramp-capacity-0 =  
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
 time-format = %H:%M
 type = internal/battery
 
