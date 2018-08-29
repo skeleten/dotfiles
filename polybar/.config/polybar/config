@@ -103,38 +103,36 @@ label-visible-padding = 2
 strip-wsnumbers = true
 wrapping-scroll = true
 
-ws-icon-0 = 1;01
-ws-icon-1 = 2;02
-ws-icon-2 = 3;03
-ws-icon-3 = 4;04
-ws-icon-4 = 5;05
-ws-icon-5 = 6;06
-ws-icon-6 = 7;07
-ws-icon-7 = 8;08
-ws-icon-8 = 9;09
-ws-icon-9 = 10;10
-
 [module/battery]
-label-charging =  %percentage%%
-label-discharging = %percentage%%
+type = internal/battery
+
+battery = BAT0
+adapter = AC
+full-at = 99
+time-format = %H:%M
+
 format-charging = <label-charging>
 format-charging-padding = 1
+label-charging =  %percentage%% (%time%)
+
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-padding = 1
+label-discharging = %percentage%% (%time%)
+
 format-full = <label-full>
 format-full-padding = 1
 format-full-prefix = 
 format-full-prefix-foreground = ${colors.green}
-full-at = 100
+label-full = %percentage%%
+
 ramp-capacity-0-foreground = ${colors.red}
 ramp-capacity-1-foreground = ${colors.yellow}
 ramp-capacity-2-foreground = ${colors.green}
+ramp-capacity-3-foreground = ${colors.green}
 ramp-capacity-0 =  
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
-time-format = %H:%M
-type = internal/battery
 
 [module/date]
 date = %Y-%m-%d
