@@ -1,3 +1,5 @@
+!! -*- mode: conf; eval: (rainbow-mode 1); -*-
+
 ! special
 *.foreground:   #fbf1c7
 *.background:   #32302f
@@ -46,13 +48,13 @@ Xft.antialias: 1
 
 URxvt.cursorBlink  :0
 URxvt.url-launcher :usr/bin/firefox-nightly
-URxvt.font         :xft:RobotoMono:size=12,xft:Symboloa:size=12
-URxvt.boldFont     :xft:RobotoMono:bold:size=12,xft:Symbola:size=12
+URxvt.font         :xft:FiraCode:size=12,xft:Symboloa:size=12
+URxvt.boldFont     :xft:FiraCode:bold:size=12,xft:Symbola:size=12
 !URxvt.font	     :xft:scientifica:size=11
 !URxvt.boldFont	     :xft:scientifica:size=11
 
 URxvt.lineSpace               : 0
-URxvt.letterSpace             : -1
+URxvt.letterSpace             : 0
 URxvt.scrollBar               : false
 URxvt.internalBorder          : 12
 URxvt.cursorUnderline         : true
