@@ -36,7 +36,7 @@
  '(mode-line-format nil)
  '(package-selected-packages
    (quote
-    (gruvbox-theme eglot dracula-theme mu4e-alert jdee fiplr "htmlize" dockerfile-mode use-package slack cargo cyberpunk-theme undo-tree yasnippet-snippets yasnippet ob-rust org-mime org-bullets zencoding-mode yaml-mode window-number which-key toml-mode swiper-helm smartparens rainbow-mode rainbow-delimiters racer powershell powerline paredit origami offlineimap neotree multiple-cursors monokai-theme moe-theme mediawiki markdown-mode magit ht flycheck-rust flatland-theme fish-mode expand-region doom-themes dashboard counsel company-restclient all-the-icons-gnus all-the-icons-dired ace-popup-menu ace-jump-mode)))
+    (counsel-tramp ivy ivy-bibtex ivy-dired-history ivy-pass ivy-yasnippet all-the-icons-ivy gruvbox-theme eglot dracula-theme mu4e-alert jdee fiplr "htmlize" dockerfile-mode use-package slack cargo cyberpunk-theme undo-tree yasnippet-snippets yasnippet ob-rust org-mime org-bullets zencoding-mode yaml-mode window-number which-key toml-mode swiper-helm smartparens rainbow-mode rainbow-delimiters racer powershell powerline paredit origami offlineimap neotree multiple-cursors monokai-theme moe-theme mediawiki markdown-mode magit ht flycheck-rust flatland-theme fish-mode expand-region doom-themes dashboard counsel company-restclient all-the-icons-gnus all-the-icons-dired ace-popup-menu ace-jump-mode)))
  '(send-mail-function (quote smtpmail-send-it))
  '(vc-annotate-background "#1B2229")
  '(vc-annotate-color-map

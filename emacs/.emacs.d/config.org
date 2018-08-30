@@ -290,11 +290,11 @@ point reaches the beginning or end of the buffer, stop there."
 #+begin_src emacs-lisp  :results silent
 (skeleten/define-global-keys
  '("C-s"	"Search"			swiper
-   "M-x"	"M-x"				helm-M-x
-   "C-x C-f"	"Find file"			helm-find-files
-   "C-h f"	"Describe function"		helm-describe-function
+   "M-x"	"M-x"				counsel-M-x
+   "C-x C-f"	"Find file"			counsel-find-file
+   "C-h f"	"Describe function"		counsel-describe-function
    "C-h k"	"Describe key"			describe-key
-   "C-x b"	"Switch buffer"			helm-buffers-list
+   "C-x b"	"Switch buffer"			switch-to-buffer
    ))
 #+end_src
 ** Neotree
@@ -727,11 +727,6 @@ point reaches the beginning or end of the buffer, stop there."
   (require 'undo-tree)
   (global-undo-tree-mode)
 #+END_SRC
-** helm
-#+begin_src emacs-lisp :results silent
-  (require 'helm-config)
-  (setq enable-recursive-minibuffers t)
-#+end_src
 ** multiple-cursors
 #+BEGIN_SRC emacs-lisp :results silent
   (require 'multiple-cursors)
@@ -755,6 +750,14 @@ point reaches the beginning or end of the buffer, stop there."
      :client-secret skeleten/slack/client-secret
      :token skeleten/slack/token
      :subscribed-channels '(allgemein it-interna)))
+#+END_SRC
+** ivy-mode
+#+BEGIN_SRC emacs-lisp :results silent
+  (ivy-mode 1)
+#+END_SRC
+** gitlab
+#+BEGIN_SRC emacs-lisp :results silent
+
 #+END_SRC
 * TODO Sort
 #+begin_src emacs-lisp  :results silent

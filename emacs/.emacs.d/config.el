@@ -256,11 +256,11 @@ point reaches the beginning or end of the buffer, stop there."
 
 (skeleten/define-global-keys
  '("C-s"	"Search"			swiper
-   "M-x"	"M-x"				helm-M-x
-   "C-x C-f"	"Find file"			helm-find-files
-   "C-h f"	"Describe function"		helm-describe-function
+   "M-x"	"M-x"				counsel-M-x
+   "C-x C-f"	"Find file"			counsel-find-file
+   "C-h f"	"Describe function"		counsel-describe-function
    "C-h k"	"Describe key"			describe-key
-   "C-x b"	"Switch buffer"			helm-buffers-list
+   "C-x b"	"Switch buffer"			switch-to-buffer
    ))
 
 (skeleten/define-global-key "M-m f t" "Toggle Neotree" 'neotree-toggle)
@@ -614,9 +614,6 @@ point reaches the beginning or end of the buffer, stop there."
 (require 'undo-tree)
 (global-undo-tree-mode)
 
-(require 'helm-config)
-(setq enable-recursive-minibuffers t)
-
 (require 'multiple-cursors)
 
 (setq neo-theme
@@ -634,5 +631,9 @@ point reaches the beginning or end of the buffer, stop there."
    :client-secret skeleten/slack/client-secret
    :token skeleten/slack/token
    :subscribed-channels '(allgemein it-interna)))
+
+(ivy-mode 1)
+
+
 
 (ace-popup-menu-mode 1)
