@@ -226,7 +226,8 @@ point reaches the beginning or end of the buffer, stop there."
 	    ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
 
 (defun add-fira-code-symbol-keywords ()
-  (font-lock-add-keywords nil fira-code-font-lock-keywords-alist))
+  (when window-system
+    (font-lock-add-keywords nil fira-code-font-lock-keywords-alist)))
 
 (add-hook 'prog-mode-hook
 	  #'add-fira-code-symbol-keywords)
@@ -314,30 +315,22 @@ point reaches the beginning or end of the buffer, stop there."
 
 (setq mu4e-contexts
       `( ,(make-mu4e-context
-           :name "skeleten"
-           :match-func (lambda (msg)
-                         (when msg
-                           (string-prefix-p "/skeleten" (mu4e-message-field msg :maildir))))
-           :vars '((mu4e-trash-folder . "/skeleten/Trash")
-                   (mu4e-refile-folder . "/skeleten/Archive")
-                   (mu4e-sent-folder . "/skeleten/Sent")))
-         ,(make-mu4e-context
-           :name "VKM"
-           :match-func (lambda (msg)
-                         (when msg
-                           (string-prefix-p "/VKM" (mu4e-message-field msg :maildir))))
-           :vars '((mu4e-trash-folder . "/VKM/Deleted Items")
-                   (mu4e-refile-folder . "/VKM/Archive")
-                   (mu4e-sent-folder . "/VKM/Sent Items")))
-         ,(make-mu4e-context
-           :name "O365"
-           :match-func (lambda (msg)
-                         (when msg
-                           (string-prefix-p "/O365" (mu4e-message-field msg :maildir))))
-           :vars '((mu4e-trash-folder . "/O365/Deleted Items")
-                   (mu4e-refile-folder . "/O365/Archive")
-                   (mu4e-sent-folder . "/O365/Sent Items")))
-         ))
+	   :name "skeleten"
+	   :match-func (lambda (msg)
+			 (when msg
+			   (string-prefix-p "/skeleten" (mu4e-message-field msg :maildir))))
+	   :vars '((mu4e-trash-folder . "/skeleten/Trash")
+		   (mu4e-refile-folder . "/skeleten/Archive")
+		   (mu4e-sent-folder . "/skeleten/Sent")))
+	 ,(make-mu4e-context
+	   :name "VKM"
+	   :match-func (lambda (msg)
+			 (when msg
+			   (string-prefix-p "/VKM" (mu4e-message-field msg :maildir))))
+	   :vars '((mu4e-trash-folder . "/VKM/Deleted Items")
+		   (mu4e-refile-folder . "/VKM/Archive")
+		   (mu4e-sent-folder . "/VKM/Sent Items")))         
+	 ))
 ;; Bookmarks for mu4e; They go to searches
 ;; b <key> to jump to them
 (setq user-full-name "Jan Pelle Thomson"
@@ -368,31 +361,24 @@ point reaches the beginning or end of the buffer, stop there."
      (smtpmail-default-smtp-server "mail.vkm.tu-darmstadt.de")
      (smtpmail-smtp-server "mail.vkm.tu-darmstadt.de")
      (smtpmail-smtp-service 587))
-    ("O365"
-     (mu4e-sent-folder "/O365/Sent Items")
-     (user-mail-address "thomson@vkm.maschinenbau.tu-darmstadt.de")
-     (smtpmail-smtp-user  "thomson@vkm.maschinenbau.tu-darmstadt.de")
-     (smptmail-local-domain "vkm.maschinenbau.tu-darmstadt.de")
-     (smtpmail-default-smtp-server "smtp.office.de")
-     (smtpmail-smtp-server "smtp.office.de")
-     (smtpmail-smtp-service 587))))
+    ))
 
 (defun my-mu4e-set-account ()
   "Set the account for composing a message.
      This function is taken from: 
        https://www.djcbsoftware.nl/code/mu/mu4e/Multiple-accounts.html"
   (let* ((account
-          (if mu4e-compose-parent-message
-              (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
-                (string-match "/\\(.*?\\)/" maildir)
-                (match-string 1 maildir))
-            (mu4e-context-name (mu4e-context-current))))
-         (account-vars (cdr (assoc account my-mu4e-account-alist))))
+	  (if mu4e-compose-parent-message
+	      (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+		(string-match "/\\(.*?\\)/" maildir)
+		(match-string 1 maildir))
+	    (mu4e-context-name (mu4e-context-current))))
+	 (account-vars (cdr (assoc account my-mu4e-account-alist))))
     (if account-vars
-        (mapc #'(lambda (var)
-                  (message "set " (car var) " to " (cadr var))
-                  (set (car var) (cadr var)))
-              account-vars)
+	(mapc #'(lambda (var)
+		  (message "set " (car var) " to " (cadr var))
+		  (set (car var) (cadr var)))
+	      account-vars)
       (error "No email account found"))))
 
 (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
@@ -401,11 +387,7 @@ point reaches the beginning or end of the buffer, stop there."
       `(,(make-mu4e-bookmark
 	   :name "VKM"
 	   :query "maildir:\"/VKM/INBOX*\" AND NOT flag:trashed"
-	   :key ?v)
-	,(make-mu4e-bookmark
-	  :name "O365"
-	  :query "maildir:\"/O365/Inbox*\" AND NOT flag:trashed"
-	  :key ?o)
+	   :key ?v)      
 	,(make-mu4e-bookmark
 	  :name "Privat"
 	  :query "maildir:\"/skeleten/INBOX*\" AND NOT flag:trashed"
