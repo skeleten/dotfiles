@@ -405,79 +405,18 @@ point reaches the beginning or end of the buffer, stop there."
 	   :query "date:7d..now AND NOT flag:trashed"
 	   :key ?w)))
 
-(setq mu4e-marks
-    '((refile
-	:char ("r" . "▶")
-	:prompt "refile"
-	:dyn-target (lambda (target msg) (mu4e-get-refile-folder msg))
-	:action (lambda (docid msg target) (mu4e~proc-move docid
-						  (mu4e~mark-check-target target) "-N")))
-       (delete
-	 :char ("D" . "⊠")
-	 :prompt "Delete"
-	 :show-target (lambda (target) "delete")
-	 :action (lambda (docid msg target) (mu4e~proc-remove docid)))
-       (flag
-	 :char ("+" . "✚")
-	 :prompt "+flag"
-	 :show-target (lambda (target) "flag")
-	 :action (lambda (docid msg target) (mu4e~proc-move docid nil "+F-u-N")))
-       (move
-	 :char ("m" . "▷")
-	 :prompt "move"
-	 :ask-target  mu4e~mark-get-move-target
-	 :action (lambda (docid msg target) (mu4e~proc-move docid
-					      (mu4e~mark-check-target target) "-N")))
-       (read
-	 :char    ("!" . "◼")
-	 :prompt "!read"
-	 :show-target (lambda (target) "read")
-	 :action (lambda (docid msg target) (mu4e~proc-move docid nil "+S-u-N")))
-       (trash
-	 :char ("d" . "▼")
-	 :prompt "dtrash"
-	 :dyn-target (lambda (target msg) (mu4e-get-trash-folder msg))
-	 :action (lambda (docid msg target) (mu4e~proc-move docid
-					      (mu4e~mark-check-target target) "+T-N")))
-       (unflag
-	 :char    ("-" . "∷")
-	 :prompt "-unflag"
-	 :show-target (lambda (target) "unflag")
-	 :action (lambda (docid msg target) (mu4e~proc-move docid nil "-F-N")))
-       (untrash
-	 :char   ("=" . "▲")
-	 :prompt "=untrash"
-	 :show-target (lambda (target) "untrash")
-	 :action (lambda (docid msg target) (mu4e~proc-move docid nil "-T")))
-       (unread
-	 :char    ("?" . "◻")
-	 :prompt "?unread"
-	 :show-target (lambda (target) "unread")
-	 :action (lambda (docid msg target) (mu4e~proc-move docid nil "-S+u-N")))
-       (unmark
-	 :char  " "
-	 :prompt "unmark"
-	 :action (mu4e-error "No action for unmarking"))
-       (action
-	 :char ( "a" . "◯")
-	 :prompt "action"
-	 :ask-target  (lambda () (mu4e-read-option "Action: " mu4e-headers-actions))
-	 :action  (lambda (docid msg actionfunc)
-		    (save-excursion
-		      (when (mu4e~headers-goto-docid docid)
-			(mu4e-headers-action actionfunc)))))
-       (something
-	 :char  ("*" . "✱")
-	 :prompt "*something"
-	 :action (mu4e-error "No action for deferred mark"))))
-
 (setq mu4e-headers-date-format "%Y-%m-%d"
-      mu4e-use-fancy-chars t
+      mu4e-use-fancy-chars nil
       mu4e-view-show-images t
       mu4e-headers-fields '((:human-date . 12)
 			    (:flags . 6)
 			    (:from . 22)
 			    (:subject)))
+;; Dont bold highlighted line as to preseve alignment
+(set-face-attribute 'mu4e-header-highlight-face nil
+		    :bold nil)
+(set-face-attribute 'mu4e-unread-face nil
+		    :bold nil)
 
 (add-to-list 'mu4e-view-actions
              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
