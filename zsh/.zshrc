@@ -105,3 +105,6 @@ PATH+=":$HOME/.bin"
 
 alias e="emacsclient"
 export EDITOR=emacsclient
+
+alias pminst="trizen -S --noconfirm"
+alias pmsrch="trizen -Ss"
