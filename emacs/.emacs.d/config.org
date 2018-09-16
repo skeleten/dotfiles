@@ -61,7 +61,7 @@ point reaches the beginning or end of the buffer, stop there."
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
-  (setq-default mode-line-format nil)
+
 #+end_src
 ** Visuals
 #+begin_src emacs-lisp  :results silent
@@ -200,7 +200,7 @@ point reaches the beginning or end of the buffer, stop there."
 	      ("[^!/]\\(==\\)[^>]"           #Xe13c)
 	      ("\\(===\\)"                   #Xe13d)
 	      ("\\(==>\\)"                   #Xe13e)
-	      ("[^=]\\(=>\\)"                #Xe13f)
+	      ("[^=n]\\(=>\\)"                #Xe13f)
 	      ("\\(=>>\\)"                   #Xe140)
 	      ("\\(<=\\)"                    #Xe141)
 	      ("\\(=<<\\)"                   #Xe142)
@@ -478,11 +478,14 @@ point reaches the beginning or end of the buffer, stop there."
 			      (:flags . 6)
 			      (:from . 22)
 			      (:subject)))
-  ;; Dont bold highlighted line as to preseve alignment
-  (set-face-attribute 'mu4e-header-highlight-face nil
-		      :bold nil)
-  (set-face-attribute 'mu4e-unread-face nil
-		      :bold nil)
+  (defun skeleten/mu4e/unbold-fonts ()
+    (interactive)
+    (set-face-attribute 'mu4e-header-highlight-face nil
+			:bold nil)
+    (set-face-attribute 'mu4e-unread-face nil
+			:bold nil))
+  (add-hook 'mu4e-headers-mode-hook
+	    'skeleten/mu4e/unbold-fonts)
 #+end_src
 *** Actions
 #+BEGIN_SRC emacs-lisp :results silent
@@ -675,10 +678,20 @@ point reaches the beginning or end of the buffer, stop there."
 #+BEGIN_SRC emacs-lisp :results silent
   (ivy-mode 1)
 #+END_SRC
-** gitlab
+** telephone-line
 #+BEGIN_SRC emacs-lisp :results silent
-
+  (setq telephone-line-lhs
+	'((accent . (telephone-line-vc-segment
+		     telephone-line-erc-modified-channels-segment
+		     telephone-line-process-segment))
+	  (nil	. (telephone-line-buffer-segment))))
+  (setq telephone-line-rhs
+	'((nil	. (telephone-line-misc-info-segment))
+	  (accent . (telephone-line-major-mode-segment))
+	  (evil	. (telephone-line-airline-position-segment))))
+  (telephone-line-mode t)
 #+END_SRC
+
 * TODO Sort
 #+begin_src emacs-lisp  :results silent
 (ace-popup-menu-mode 1)

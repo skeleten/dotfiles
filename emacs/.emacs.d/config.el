@@ -43,7 +43,6 @@ point reaches the beginning or end of the buffer, stop there."
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
-(setq-default mode-line-format nil)
 
 (defun skeleten/load-theme ()
   "Load and set up the theme"
@@ -176,7 +175,7 @@ point reaches the beginning or end of the buffer, stop there."
 	    ("[^!/]\\(==\\)[^>]"           #Xe13c)
 	    ("\\(===\\)"                   #Xe13d)
 	    ("\\(==>\\)"                   #Xe13e)
-	    ("[^=]\\(=>\\)"                #Xe13f)
+	    ("[^=n]\\(=>\\)"                #Xe13f)
 	    ("\\(=>>\\)"                   #Xe140)
 	    ("\\(<=\\)"                    #Xe141)
 	    ("\\(=<<\\)"                   #Xe142)
@@ -412,11 +411,14 @@ point reaches the beginning or end of the buffer, stop there."
 			    (:flags . 6)
 			    (:from . 22)
 			    (:subject)))
-;; Dont bold highlighted line as to preseve alignment
-(set-face-attribute 'mu4e-header-highlight-face nil
-		    :bold nil)
-(set-face-attribute 'mu4e-unread-face nil
-		    :bold nil)
+(defun skeleten/mu4e/unbold-fonts ()
+  (interactive)
+  (set-face-attribute 'mu4e-header-highlight-face nil
+		      :bold nil)
+  (set-face-attribute 'mu4e-unread-face nil
+		      :bold nil))
+(add-hook 'mu4e-headers-mode-hook
+	  'skeleten/mu4e/unbold-fonts)
 
 (add-to-list 'mu4e-view-actions
              '("ViewInBrowser" . mu4e-action-view-in-browser) t)
@@ -556,6 +558,15 @@ point reaches the beginning or end of the buffer, stop there."
 
 (ivy-mode 1)
 
-
+(setq telephone-line-lhs
+      '((accent . (telephone-line-vc-segment
+		   telephone-line-erc-modified-channels-segment
+		   telephone-line-process-segment))
+	(nil	. (telephone-line-buffer-segment))))
+(setq telephone-line-rhs
+      '((nil	. (telephone-line-misc-info-segment))
+	(accent . (telephone-line-major-mode-segment))
+	(evil	. (telephone-line-airline-position-segment))))
+(telephone-line-mode t)
 
 (ace-popup-menu-mode 1)

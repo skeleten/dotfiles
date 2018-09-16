@@ -3,3 +3,7 @@ cargo build
 cargo run
 exi
 exit
+ls
+l
+ll
+cls
