@@ -137,9 +137,15 @@ bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
-
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+Shift+a focus child
+
+# dropdown terminal
+exec --no-startup-id urxvt -name dropdown
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] move scratchpad
+for_window [instance="dropdown"] resize set 1920px 540px
+bindsym $mod+u [instance="dropdown"] scratchpad show; move absolute position 0 0
 
 # switch to workspace
 bindsym $mod+1 workspace 1
