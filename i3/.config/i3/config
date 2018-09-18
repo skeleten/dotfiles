@@ -12,12 +12,6 @@ font pango:Source Code Pro 0
 exec --no-startup-id feh --bg-scale ~/.wallpaper
 # Display Notifications
 exec --no-startup-id dunst
-# Network-Manager
-exec --no-startup-id nm-applet
-# Disable Touchpad while typing
-exec --no-startup-id syndaemon -d -i 1 -k
-# Hide pointer while typing
-exec --no-startup-id unclutter
 # tint the screen orange-y while dark
 exec --no-startup-id redshift
 exec_always --no-startup-id ~/.bin/start_polybar.sh	# the status bar
@@ -36,6 +30,10 @@ bindsym XF86AudioPlay	exec playerctl play-pause	|| mpc toggle
 bindsym XF86AudioPause	exec playerctl pause-pause	|| mpc toggle
 bindsym XF86AudioNext	exec playerctl next		|| mpc next
 bindsym XF86AudioPrev	exec playerctl previous		|| mpc prev
+# the same, but for thinkpad
+bindsym XF86Tools	exec playerctl previous		|| mpc prev
+bindsym XF86Search	exec playerctl play-pause	|| mpc toggle
+bindsym XF86LaunchA	exec playerctl next		|| mpc next
 
 
 ################################################################################
