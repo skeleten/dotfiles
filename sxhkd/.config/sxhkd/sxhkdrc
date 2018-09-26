@@ -23,15 +23,8 @@ XF86Audio{Play,Pause}
 XF86Audio{Next,Prev}
 	playerctl {next,previous}		|| mpc {next,prev}
 
-XF86Tools
-	playerctl previous			|| mpc prev
-
-XF86Search
-	playerctl play-pause			|| mpc toggle
-
-XF86LaunchA
-	playerctl next				|| mpc next
-
+XF86{Tools,Search,LaunchA}
+	playerctl {previous,play-pause,next}	|| mpc {prev,toggle,next}
 
 ################################################################################
 # Brightness and ohter ACPI controls                                           #
@@ -112,9 +105,8 @@ super+shift+e
 # Scratchpad
 
 super+u
-	i3-msg '[instance="dropdown"]' scratchpad show && \
-	i3-msg '[instance="dropdown"]' move absolute position 0 0
-
+	i3-msg '[instance="dropdown"]' scratchpad show\; move absolute position 0 0 
+	
 ################################################################################
 # Programs / misc                                                              #
 ################################################################################
