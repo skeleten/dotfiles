@@ -15,7 +15,7 @@
 #+begin_src emacs-lisp  :results silent
   (setq skeleten/font "Fira Code 12"
 	skeleten/setup-fira-code-ligatures t)
-  (setq skeleten/theme 'gruvbox-dark-soft)	; Possible  values currently are:
+  (setq skeleten/theme 'ayu)			; Possible  values currently are:
 						  ;  'doom - for the Doom
 						  ;  'moe-dark or 'moe-light for the moe
 						  ; themes
@@ -24,6 +24,9 @@
 						  ; a theme name and trying to get loaded
 						  ; via `load-theme'
   (setq skeleten/org-files-base-dir "~/org")
+
+  ;; add our custom themes to to be loaded
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 #+end_src
 
 * Functions
@@ -340,6 +343,9 @@ point reaches the beginning or end of the buffer, stop there."
    '("M-m s"      "Jump to char on screen"        ace-jump-char-mode
      "C-."        "Toggle folding"                origami-toggle-node))
   (skeleten/define-global-key "M-m f f" "Find file in Project" 'fiplr-find-file)
+  (skeleten/define-global-key
+   "C-S-i" "Open iMenu"
+   'imenu)
 #+end_src
 * Coding
 ** Smartparens
@@ -348,7 +354,7 @@ point reaches the beginning or end of the buffer, stop there."
 #+end_src
 ** Company
 #+begin_src emacs-lisp  :results silent
-(setq company-idle-delay 0.2)
+(setq company-idle-delay 2)
 (setq company-tooltip-align-annotations t)
 (setq company-minimum-prefix-length 0)
 #+end_src
@@ -493,7 +499,7 @@ point reaches the beginning or end of the buffer, stop there."
                '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 #+END_SRC
 * IRC
-** server
+** Server
 #+BEGIN_SRC emacs-lisp :results silent
   (setq rcirc-server-alist
 	'(("irc.freenode.net" :port 6697 :encryption tls
@@ -573,8 +579,6 @@ point reaches the beginning or end of the buffer, stop there."
 	    'smartparens-mode)
   (add-hook 'org-mode-hook
 	    'display-line-numbers-mode)
-  (add-hook 'org-mode-hook
-	    'org-bullets-mode)
 
   (defun skeleten/org/get-org-files ()
     (mapcar (lambda (f)
@@ -587,7 +591,27 @@ point reaches the beginning or end of the buffer, stop there."
 	org-log-done 'time)
   (setq org-src-fontify-natively t
 	org-return-follows-link t)
+
+  (add-to-list 'org-latex-packages-alist
+	       "\\usepackage{minted}")
+  ;; TODO add to headers
+  ;; \usemintedstyle{emacs}
+
+  (setq org-latex-listings 'minted)
+  (setq org-latex-custom-lang-environments
+	'((emacs-lisp "common-lispcode")))
+  (setq org-latex-minted-options
+	'(("breaklines" "")))
+  (setq org-latex-to-pdf-process
+	'("pdflatex -shell-escape -interaction nonstopmode %f"
+	  "pdflatex -shell-escape -interaction nonstopmode %f"
+	  "pdflatex -shell-escape -interaction nonstopmode %f" ))
 #+end_src
+** org-babel
+#+BEGIN_SRC emacs-lisp :results silent
+  (org-babel-do-load-languages 'org-babel-load-languages
+			       '((shell . t)))
+#+END_SRC
 
 ** prog-mode
 #+begin_src emacs-lisp  :results silent
@@ -692,7 +716,3 @@ point reaches the beginning or end of the buffer, stop there."
   (telephone-line-mode t)
 #+END_SRC
 
-* TODO Sort
-#+begin_src emacs-lisp  :results silent
-(ace-popup-menu-mode 1)
-#+end_src

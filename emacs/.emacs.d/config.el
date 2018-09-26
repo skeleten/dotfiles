@@ -7,7 +7,7 @@
 
 (setq skeleten/font "Fira Code 12"
       skeleten/setup-fira-code-ligatures t)
-(setq skeleten/theme 'gruvbox-dark-soft)	; Possible  values currently are:
+(setq skeleten/theme 'ayu)			; Possible  values currently are:
 						;  'doom - for the Doom
 						;  'moe-dark or 'moe-light for the moe
 						; themes
@@ -16,6 +16,9 @@
 						; a theme name and trying to get loaded
 						; via `load-theme'
 (setq skeleten/org-files-base-dir "~/org")
+
+;; add our custom themes to to be loaded
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 (defun smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
@@ -290,10 +293,13 @@ point reaches the beginning or end of the buffer, stop there."
  '("M-m s"      "Jump to char on screen"        ace-jump-char-mode
    "C-."        "Toggle folding"                origami-toggle-node))
 (skeleten/define-global-key "M-m f f" "Find file in Project" 'fiplr-find-file)
+(skeleten/define-global-key
+ "C-S-i" "Open iMenu"
+ 'imenu)
 
 (require 'smartparens-config)
 
-(setq company-idle-delay 0.2)
+(setq company-idle-delay 2)
 (setq company-tooltip-align-annotations t)
 (setq company-minimum-prefix-length 0)
 
@@ -482,8 +488,6 @@ point reaches the beginning or end of the buffer, stop there."
 	  'smartparens-mode)
 (add-hook 'org-mode-hook
 	  'display-line-numbers-mode)
-(add-hook 'org-mode-hook
-	  'org-bullets-mode)
 
 (defun skeleten/org/get-org-files ()
   (mapcar (lambda (f)
@@ -496,6 +500,24 @@ point reaches the beginning or end of the buffer, stop there."
       org-log-done 'time)
 (setq org-src-fontify-natively t
       org-return-follows-link t)
+
+(add-to-list 'org-latex-packages-alist
+	     "\\usepackage{minted}")
+;; TODO add to headers
+;; \usemintedstyle{emacs}
+
+(setq org-latex-listings 'minted)
+(setq org-latex-custom-lang-environments
+      '((emacs-lisp "common-lispcode")))
+(setq org-latex-minted-options
+      '(("breaklines" "")))
+(setq org-latex-to-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode %f"
+	"pdflatex -shell-escape -interaction nonstopmode %f"
+	"pdflatex -shell-escape -interaction nonstopmode %f" ))
+
+(org-babel-do-load-languages 'org-babel-load-languages
+			     '((shell . t)))
 
 (add-hook 'prog-mode-hook 'company-mode)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
@@ -568,5 +590,3 @@ point reaches the beginning or end of the buffer, stop there."
 	(accent . (telephone-line-major-mode-segment))
 	(evil	. (telephone-line-airline-position-segment))))
 (telephone-line-mode t)
-
-(ace-popup-menu-mode 1)
