@@ -1,5 +1,5 @@
 # -*- mode: conf; eval: (rainbow-mode 1); -*-
-
+# no_autoconvert
 # $mod is Super ("Windows" Key)
 set $mod Mod4
 
@@ -36,7 +36,7 @@ client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color      
 font pango:Source Code Pro 0
 
 # Borders, etc
-for_window [class=".*"] border 1px
+for_window [class=".*"] border pixel 2
 
 # Gaps stuff
 gaps inner 5
@@ -47,5 +47,6 @@ floating_modifier $mod
 # dropdown terminal
 exec --no-startup-id urxvt -name dropdown
 for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] move scratchpad
 for_window [instance="dropdown"] resize set 1920px 540px
+for_window [instance="dropdown"] move qabsolute position 0 0
+for_window [instance="dropdown"] move scratchpad
