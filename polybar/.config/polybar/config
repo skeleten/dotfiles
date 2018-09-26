@@ -28,7 +28,7 @@ module-margin-left = 0
 module-margin-right = 0
 modules-left =i3
 modules-center = title
-modules-right = date battery volume
+modules-right = network-wired network-wireless date battery volume
 monitor = ${env:pb_disp}
 padding-left = 1
 padding-right = 3
@@ -142,6 +142,20 @@ format-margin = 2
 label = %date% %time%
 time = %H:%M
 type = internal/date
+
+[module/network-wired]
+type = internal/network
+interface = enp0s25
+interval = 3.0
+
+
+[module/network-wireless]
+type = internal/network
+interface = wlp4s0
+interval = 3.0
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+label-connected = %essid% ↓%downspeed:9% ↑%upspeed:9%
 
 [settings]
 screenchange-reload = true
