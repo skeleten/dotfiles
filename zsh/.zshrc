@@ -14,10 +14,28 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# setting shell options
+#
+# see zshoptions(1) for more details on the individual options
+
+setopt -o nomatch
+
 PATH+=":$HOME/.bin"
+export EDITOR=emacsclient
+
+################################################################################
+# Custom aliases
+################################################################################
+
+# general / misc
 
 alias e="emacsclient"
-export EDITOR=emacsclient
+
+# pacman
 
 alias pminst="trizen -S --noconfirm"
 alias pmsrch="trizen -Ss"
+
+# systemd
+alias scu="systemctl --user"
+
