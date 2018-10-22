@@ -19,4 +19,3 @@ My current setup mostly uses:
  * `Urxvt` as terminal emulator
  * `dunst` to display notifications
  * `emacs` as text editor
-

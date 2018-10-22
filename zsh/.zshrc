@@ -3,10 +3,10 @@ export ZSH="/home/skeleten/.oh-my-zsh"
 ZSH_THEME="theunraveler"
 
 plugins=(
-    archlinux    
+    archlinux
     common-aliases
     dotenv
-    git    
+    git
     systemd
     vagrant
     zsh-syntax-highlighting
@@ -39,3 +39,13 @@ alias pmsrch="trizen -Ss"
 # systemd
 alias scu="systemctl --user"
 
+alias ls="exa"
+alias ll="exa -lF"
+
+################################################################################
+# Functions
+################################################################################
+
+function mkcd() {
+    mkdir -p $1 && cd $1
+}

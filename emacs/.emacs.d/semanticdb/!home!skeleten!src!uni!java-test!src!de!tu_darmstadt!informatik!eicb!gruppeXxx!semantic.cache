@@ -1,0 +1,31 @@
+;; Object semanticdb-project-database-file
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "semanticdb-project-database-file"
+  :tables
+  (list
+    (semanticdb-table "semanticdb-table"
+      :major-mode jdee-mode
+      :tags 
+        '( ("de.tu_darmstadt.informatik.eicb.gruppeXxx" package nil nil [1 51])
+            ("Main" type
+               (:typemodifiers ("public")
+                :members 
+                  ( ("main" function
+                       (:typemodifiers ("public" "static")
+                        :arguments 
+                          ( ("args" variable
+                               (:dereference 1
+                                :type "String")
+                                (reparse-symbol formal_parameters) [102 115]))                          
+                        :type "void")
+                        (reparse-symbol class_member_declaration) [78 185]))                  
+                :type "class")
+                nil [53 187]))          
+      :file "Main.java"
+      :pointmax 188
+      :fsize 187
+      :lastmodtime '(23500 56485 115018 512000)
+      :unmatched-syntax nil))
+  :file "!home!skeleten!src!uni!java-test!src!de!tu_darmstadt!informatik!eicb!gruppeXxx!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

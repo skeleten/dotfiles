@@ -1,13 +1,16 @@
 (defvar skeleten/font nil
   "Font to use in buffers")
-(defvar skeleten/theme 'nil
+(defvar skeleten/theme nil
   "Theme to load or 'none to skip")
 (defvar skeleten/org-files-base-dir ""
   "Base directory of org files")
 
+(defvar skeleten/java/backend nil
+  "Completion backend for java. One of: `eclipse', `intellij'")
+
 (setq skeleten/font "Fira Code 12"
       skeleten/setup-fira-code-ligatures t)
-(setq skeleten/theme 'ayu)			; Possible  values currently are:
+(setq skeleten/theme 'gruvbox-dark-hard)	; Possible  values currently are:
 						;  'doom - for the Doom
 						;  'moe-dark or 'moe-light for the moe
 						; themes
@@ -18,7 +21,10 @@
 (setq skeleten/org-files-base-dir "~/org")
 
 ;; add our custom themes to to be loaded
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(add-to-list 'custom-theme-load-path
+	     "~/.emacs.d/themes")
+(add-to-list 'load-path
+	     "~/.emacs.d/modes")
 
 (defun smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
@@ -266,8 +272,6 @@ point reaches the beginning or end of the buffer, stop there."
    "C-x b"	"Switch buffer"			switch-to-buffer
    ))
 
-(skeleten/define-global-key "M-m f t" "Toggle Neotree" 'neotree-toggle)
-
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C-<") 'mc/mark-next-like-this)
 (global-set-key (kbd "C->") 'mc/mark-previous-like-this)
@@ -288,14 +292,31 @@ point reaches the beginning or end of the buffer, stop there."
  '("M-m o a"    "Open Org Agenda"       org-agenda))
 
 (global-set-key (kbd "M-n") 'er/expand-region)
-(skeleten/define-global-key "M-m c" "Compile" 'compile) 
+(skeleten/define-global-key "M-m c" "Compile" 'compile)
 (skeleten/define-global-keys
  '("M-m s"      "Jump to char on screen"        ace-jump-char-mode
    "C-."        "Toggle folding"                origami-toggle-node))
-(skeleten/define-global-key "M-m f f" "Find file in Project" 'fiplr-find-file)
-(skeleten/define-global-key
- "C-S-i" "Open iMenu"
- 'imenu)
+(skeleten/define-global-key "M-m f f" "Find file in Project"
+			    'fiplr-find-file)
+(skeleten/define-global-key "C-S-i" "Open iMenu"
+			    'imenu)
+
+(skeleten/define-global-key "M-m f t" "Toggle Treemacs"
+			    'treemacs)
+
+(eval-after-load 'java
+  '(define-key java-mode-map (kbd "C-s-i") 'lsp-ui-imenu))
+
+(eval-after-load 'lsp-ui
+  '(progn (define-key lsp-ui-mode-map
+	    [remap xref-find-definitions]
+	    #'lsp-ui-peek-find-definitions)
+	  (define-key lsp-ui-mode-map
+	    [remap xref-find-references]
+	    #'lsp-ui-peek-find-references)
+	  (define-key lsp-ui-mode-map
+	    [remap imenu]
+	    #'lsp-ui-imenu)))
 
 (require 'smartparens-config)
 
@@ -334,7 +355,7 @@ point reaches the beginning or end of the buffer, stop there."
 			   (string-prefix-p "/VKM" (mu4e-message-field msg :maildir))))
 	   :vars '((mu4e-trash-folder . "/VKM/Deleted Items")
 		   (mu4e-refile-folder . "/VKM/Archive")
-		   (mu4e-sent-folder . "/VKM/Sent Items")))         
+		   (mu4e-sent-folder . "/VKM/Sent Items")))
 	 ))
 ;; Bookmarks for mu4e; They go to searches
 ;; b <key> to jump to them
@@ -370,7 +391,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (defun my-mu4e-set-account ()
   "Set the account for composing a message.
-     This function is taken from: 
+     This function is taken from:
        https://www.djcbsoftware.nl/code/mu/mu4e/Multiple-accounts.html"
   (let* ((account
 	  (if mu4e-compose-parent-message
@@ -392,7 +413,7 @@ point reaches the beginning or end of the buffer, stop there."
       `(,(make-mu4e-bookmark
 	   :name "VKM"
 	   :query "maildir:\"/VKM/INBOX*\" AND NOT flag:trashed"
-	   :key ?v)      
+	   :key ?v)
 	,(make-mu4e-bookmark
 	  :name "Privat"
 	  :query "maildir:\"/skeleten/INBOX*\" AND NOT flag:trashed"
@@ -422,6 +443,10 @@ point reaches the beginning or end of the buffer, stop there."
   (set-face-attribute 'mu4e-header-highlight-face nil
 		      :bold nil)
   (set-face-attribute 'mu4e-unread-face nil
+		      :bold nil)
+  (set-face-attribute 'mu4e-flagged-face nil
+		      :bold nil)
+  (set-face-attribute 'mu4e-context-face nil
 		      :bold nil))
 (add-hook 'mu4e-headers-mode-hook
 	  'skeleten/mu4e/unbold-fonts)
@@ -454,7 +479,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (add-hook 'dired-mode-hook 'dired-hide-details-mode)
 
-(add-to-list 'auto-mode-alist	     
+(add-to-list 'auto-mode-alist
 	     '("\\.el\\'" . emacs-lisp-mode))
 (add-hook 'emacs-lisp-mode-hook 'paredit-mode)
 
@@ -516,8 +541,12 @@ point reaches the beginning or end of the buffer, stop there."
 	"pdflatex -shell-escape -interaction nonstopmode %f"
 	"pdflatex -shell-escape -interaction nonstopmode %f" ))
 
+(setq skeleten/org-babel/safe-languages '("emacs-lisp"))
+
 (org-babel-do-load-languages 'org-babel-load-languages
 			     '((shell . t)))
+(setq org-confirm-babel-evaluate
+      (lambda (lang body) (not (member lang skeleten/org-babel/safe-languages))))
 
 (add-hook 'prog-mode-hook 'company-mode)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
@@ -529,6 +558,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (require 'eglot)
 
+(require 'lsp-rust)
 (autoload 'rust-mode "rust-mode" nil t)
 (add-to-list 'auto-mode-alist
      '("\\.rs\\'" . rust-mode))
@@ -536,6 +566,7 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'rust-mode-hook #'flycheck-mode)
 (add-hook 'rust-mode-hook 'origami-mode)
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
+(add-hook 'rust-mode-hook 'lsp-rust-enable)
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 (add-to-list 'auto-mode-alist
@@ -570,7 +601,7 @@ point reaches the beginning or end of the buffer, stop there."
   :init
   (setq slack-buffer-emojify t)
   (setq slack-prefer-current-team t)
-  :config 
+  :config
   (slack-register-team
    :name "Verbrennungskraftmaschinen und Fahrzeugantriebe"
    :client-id skeleten/slack/client-id
@@ -590,3 +621,44 @@ point reaches the beginning or end of the buffer, stop there."
 	(accent . (telephone-line-major-mode-segment))
 	(evil	. (telephone-line-airline-position-segment))))
 (telephone-line-mode t)
+
+(add-hook 'before-save-hook
+	  'delete-trailing-whitespace)
+
+(require 'promela-mode)
+(require 'ob-promela)
+(add-to-list 'auto-mode-alist
+	     '("\\.pml\\'" . promela-mode))
+
+(add-hook 'treemacs-mode-hook
+	  'treemacs-follow-mode)
+(add-hook 'treemacs-mode-hook
+	  (lambda () (treemacs-git-mode 'deferred)))
+
+;; dont use graphical icons, pretty please
+(setq treemacs-no-png-images t)
+
+;; Either `eclipse' or `intellij'
+(setq skeleten/java-mode/backend	'eclipse)
+
+(require 'company-lsp)
+(if (boundp 'skeleten/java-mode/backend)
+    (pcase skeleten/java-mode/backend
+      ('eclipse
+       (require 'lsp-java)
+       (add-hook 'java-mode-hook #'lsp-java-enable))
+      ('intellij
+       (require 'lsp-intellij)
+       (add-hook 'java-mode-hook #'lsp-intellij-enable)
+       (error "XXX: IntelliJ java backend unimplemented!"))
+      (other (error "Unknown java backend")))
+  (error "skeleten/java/backend undbound!"))
+
+(add-hook 'java-mode-hook 'company-mode)
+(add-hook 'java-mode-hook 'flycheck-mode)
+
+(require 'lsp-ui)
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+
+(add-hook 'lsp-ui-mode-hook
+	  (lambda () (lsp-ui-doc-mode 0)))

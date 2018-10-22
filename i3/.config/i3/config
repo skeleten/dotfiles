@@ -13,7 +13,7 @@ exec --no-startup-id redshift
 # status bar
 exec --no-startup-id ~/.bin/start_polybar.sh
 # hotkey daemon
-exec --no-startup-id sxhkd
+exec --no-startup-id sxhkd -c ~/.config/sxhkd/i3.conf
 
 
 # Colors

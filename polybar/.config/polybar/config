@@ -1,6 +1,5 @@
 # -*- mode: conf; eval: (rainbow-mode 1); -*-
 
-
 [global/wm]
 margin-bottom = 0
 margin-top = 0
@@ -26,7 +25,7 @@ foreground = ${colors.foreground}
 height = 30
 module-margin-left = 0
 module-margin-right = 0
-modules-left =i3
+modules-left = ${env:WM}
 modules-center = title
 modules-right = network-wired network-wireless date battery volume
 monitor = ${env:pb_disp}
@@ -64,6 +63,27 @@ headphone-soundcard = default
 type = custom/script
 exec = currently_playing.sh
 interval = 5
+
+
+[module/bspwm]
+type = internal/bspwm
+
+format=<label-state>
+
+label-focused = ◆
+label-focused-foreground = ${colors.yellow}
+label-focused-background = ${colors.background}
+label-focused-padding = 2
+
+label-empty = ◇
+label-empty-foreground = ${colors.gray}
+label-empty-background = ${colors.background}
+label-empty-padding = 2
+
+label-occupied = ◆
+label-occupied-foreground = ${colors.gray}
+label-occupied-background = ${colors.background}
+label-occupied-padding = 2
 
 [module/i3]
 type = internal/i3
@@ -159,3 +179,4 @@ label-connected = %essid% ↓%downspeed:9% ↑%upspeed:9%
 
 [settings]
 screenchange-reload = true
+
