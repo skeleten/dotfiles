@@ -334,7 +334,8 @@ point reaches the beginning or end of the buffer, stop there."
 #+begin_src emacs-lisp  :results silent
   (skeleten/define-global-prefix "M-m o" "Org mode")
   (skeleten/define-global-keys
-   '("M-m o a"    "Open Org Agenda"       org-agenda))
+   '("M-m o a"    "Open Org Agenda"       org-agenda
+     "M-m o e"	"Evaluate SRC-block"	org-babel-execute-src-block))
 #+end_src
 
 ** TODO Sort / Misc
@@ -372,7 +373,6 @@ point reaches the beginning or end of the buffer, stop there."
 	      [remap imenu]
 	      #'lsp-ui-imenu)))
 #+END_SRC
-
 * Coding
 ** Smartparens
 #+begin_src emacs-lisp  :results silent

@@ -28,6 +28,9 @@
 
 ;;; Requirements:
 
+;;; TODO
+;;; - Add possibility to add extra-flags
+
 ;;; Code:
 (require 'ob)
 (require 'ob-ref)
@@ -50,7 +53,7 @@
 
 (defun ob-promela--eval (session params file out)
   (call-process "spin" nil `(:file ,out) nil
-		"-run" file)
+		file)
   (ob-promela--read-file-to-string out))
 
 (defun ob-promela--read-file-to-string (path)

@@ -289,7 +289,8 @@ point reaches the beginning or end of the buffer, stop there."
 
 (skeleten/define-global-prefix "M-m o" "Org mode")
 (skeleten/define-global-keys
- '("M-m o a"    "Open Org Agenda"       org-agenda))
+ '("M-m o a"    "Open Org Agenda"       org-agenda
+   "M-m o e"	"Evaluate SRC-block"	org-babel-execute-src-block))
 
 (global-set-key (kbd "M-n") 'er/expand-region)
 (skeleten/define-global-key "M-m c" "Compile" 'compile)

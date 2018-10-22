@@ -11,6 +11,15 @@
 
 (load-file "~/.emacs.d/secrets.el")
 
+;; load use-package
+
+(condition-case nil
+    (require 'use-package)
+  (file-error
+   (package-refresh-contents)
+   (package-install 'use-package)
+   (require 'use-package)))
+
 (defun skeleten/load-init ()
   (interactive)
   (org-babel-load-file "~/.emacs.d/config.org"))
