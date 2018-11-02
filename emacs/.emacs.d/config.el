@@ -413,7 +413,7 @@ point reaches the beginning or end of the buffer, stop there."
 (setq mu4e-bookmarks
       `(,(make-mu4e-bookmark
 	   :name "VKM"
-	   :query "maildir:\"/VKM/INBOX*\" AND NOT flag:trashed"
+	   :query "maildir:\"/VKM/INBOX\" AND NOT flag:trashed"
 	   :key ?v)
 	,(make-mu4e-bookmark
 	  :name "Privat"
@@ -569,6 +569,7 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 (add-hook 'rust-mode-hook 'lsp-rust-enable)
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+(add-hook 'rust-mode-hook 'yas-minor-mode-on)
 
 (add-to-list 'auto-mode-alist
 	     '("\\.toml\\'" . toml-mode))
@@ -663,3 +664,5 @@ point reaches the beginning or end of the buffer, stop there."
 
 (add-hook 'lsp-ui-mode-hook
 	  (lambda () (lsp-ui-doc-mode 0)))
+
+(require 'ebnf-mode)

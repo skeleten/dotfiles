@@ -19,7 +19,7 @@ Channel VKM
 Master :VKM-remote:
 Slave :VKM-local:
 Pattern "*"
-Create Slave
+Create Both
 Expunge Both
 Sync All
 SyncState *

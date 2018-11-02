@@ -7,3 +7,17 @@ ls
 l
 ll
 cls
+ls
+gcc test.c 
+./a.out
+exit
+whoami
+ls
+rm a.out *\~
+ls
+cat test.c 
+bat test.c 
+exit
+(setq a "asd")
+echo $a
+quit
