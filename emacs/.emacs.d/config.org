@@ -1,4 +1,4 @@
-	#+STARTUP: overview
+#+STARTUP: overview
 
 * Definition of variables etc.
 
@@ -267,6 +267,13 @@ point reaches the beginning or end of the buffer, stop there."
 #+END_SRC
 
 * Keybindings
+
+** TODO Make use of keymaps
+
+That should be *way* cleaner than putting everything into that huge
+mess that is the global keymap. Should also be /the/ way to a
+configurable leader-key.
+
 ** Use `smarter-move-beginning-of-line`
 #+begin_src emacs-lisp  :results silent
   (global-set-key [remap move-beginning-of-line]
