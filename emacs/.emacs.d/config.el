@@ -10,14 +10,14 @@
 
 (setq skeleten/font "Fira Code 12"
       skeleten/setup-fira-code-ligatures t)
-(setq skeleten/theme 'gruvbox-dark-hard)	; Possible  values currently are:
-						;  'doom - for the Doom
-						;  'moe-dark or 'moe-light for the moe
-						; themes
-						;  'none - for no theme
-						;  everything else will be interpretet as
-						; a theme name and trying to get loaded
-						; via `load-theme'
+(setq skeleten/theme 'molokai)		; Possible  values currently are:
+					;  'doom - for the Doom
+					;  'moe-dark or 'moe-light for the moe
+					; themes
+					;  'none - for no theme
+					;  everything else will be interpretet as
+					; a theme name and trying to get loaded
+					; via `load-theme'
 (setq skeleten/org-files-base-dir "~/org")
 
 ;; add our custom themes to to be loaded
@@ -640,29 +640,26 @@ point reaches the beginning or end of the buffer, stop there."
 ;; dont use graphical icons, pretty please
 (setq treemacs-no-png-images t)
 
-;; Either `eclipse' or `intellij'
-(setq skeleten/java-mode/backend	'eclipse)
-
 (require 'company-lsp)
-(if (boundp 'skeleten/java-mode/backend)
-    (pcase skeleten/java-mode/backend
-      ('eclipse
-       (require 'lsp-java)
-       (add-hook 'java-mode-hook #'lsp-java-enable))
-      ('intellij
-       (require 'lsp-intellij)
-       (add-hook 'java-mode-hook #'lsp-intellij-enable)
-       (error "XXX: IntelliJ java backend unimplemented!"))
-      (other (error "Unknown java backend")))
-  (error "skeleten/java/backend undbound!"))
-
+(require 'lsp-java)
+(setq lsp-java-workspace-dir "/home/skeleten/eclipse-workspace"
+      lsp-inhibit-message t
+      lsp-java-format-settings-url "file:///home/skeleten/.emacs.d/assets/java-formatter.xml"
+      lsp-java-format-settings-profile "Default"
+      lsp-java-format-enabled t
+      company-lsp-async t)
+(add-hook 'java-mode-hook 'lsp-java-enable)
+(add-hook 'java-mode-hook (lambda () (lsp-ui-sideline-mode -1)))
 (add-hook 'java-mode-hook 'company-mode)
 (add-hook 'java-mode-hook 'flycheck-mode)
+(add-hook 'java-mode-hook (lambda () (setq tab-width		4
+				      c-basic-offset	4)))
 
 (require 'lsp-ui)
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
 (add-hook 'lsp-ui-mode-hook
-	  (lambda () (lsp-ui-doc-mode 0)))
+	  (lambda () (progn (lsp-ui-doc-mode -1)
+		       (lsp-ui-sideline-mode -1))))
 
 (require 'ebnf-mode)

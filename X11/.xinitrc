@@ -15,6 +15,8 @@ case $(hostname) in
     ;;
 esac
 
+echo "$DISPLAY" > /tmp/XDisplay
+
 setxkbmap de
 xrdb "$HOME/.Xresources"
 if [ -z "$WM" ]; then

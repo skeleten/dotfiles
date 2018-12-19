@@ -21,3 +21,31 @@ exit
 (setq a "asd")
 echo $a
 quit
+ps -aux | grep Xorg | grep -v grep | awk '{ print "su \"export DISPLAY=" $14 "; /home/skeleten/.bin/lock.sh\" - " $1};'
+ps -aux | grep Xorg | grep -v grep | awk '{ print "su \"export DISPLAY=" $13 "; /home/skeleten/.bin/lock.sh\" - " $1};'
+ps -aux | grep Xorg | grep -v grep | awk '{ print "su \"export DISPLAY=" $5 "; /home/skeleten/.bin/lock.sh\" - " $1};'
+ps -aux | grep Xorg | grep -v grep | awk '{ print "su \"export DISPLAY=" $6 "; /home/skeleten/.bin/lock.sh\" - " $1};'
+ps -aux | grep Xorg | grep -v grep | awk '{ print "su \"export DISPLAY=" $7 "; /home/skeleten/.bin/lock.sh\" - " $1};'
+ps -aux | grep Xorg | grep -v grep | awk '{ print "su \"export DISPLAY=" $8 "; /home/skeleten/.bin/lock.sh\" - " $1};'
+ps -aux | grep Xorg | grep -v grep | awk '{ print "su \"export DISPLAY=" $9"; /home/skeleten/.bin/lock.sh\" - " $1};'
+ps -aux | grep Xorg | grep -v grep | awk '{ print "su \"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\" - " $1};'
+ps -aux | grep Xorg | grep -v grep | awk '{ print "su \"export DISPLAY=" $13"; /home/skeleten/.bin/lock.sh\" - " $1};'
+ps -aux | grep Xorg | grep -v grep | awk '{ print "su \"export DISPLAY=" $12"; /home/skeleten/.bin/lock.sh\" - " $1};'
+ps -aux | grep Xorg
+skeleten 11604  0.0  0.0   8192  2288 pts/7    Ss+  23:10   0:00 /usr/bin/grep Xorg
+ps -aux | grep Xorg
+ps -aux | grep Xorg | grep -v grep | awk '{ print "su \"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\" - " $1};'
+ps -aux | grep Xorg | grep -v grep | awk '{ print "\"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\" - " $1};' |  xargs -I _ su _
+ps -aux | grep Xorg | grep -v grep | awk '{ print "\"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\" - " $1};' 
+ps -aux | grep Xorg | grep -v grep | awk '{ print "\"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\" - " $1};' |  xargs -0 -I _ su _ 
+ps -aux | grep Xorg | grep -v grep | awk '{ print "\"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\" - " $1};' |  xargs -1 -I _ su _ 
+ps -aux | grep Xorg | grep -v grep | awk '{ print "\"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\"\0-\0" $1};' |  xargs -1 -I _ su _ 
+ps -aux | grep Xorg | grep -v grep | awk '{ print "\"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\"\0-\0" $1};' |  xargs -0 -I _ su _ 
+Run COMMAND with arguments INITIAL-ARGS and more arguments read from input.
+ps -aux | grep Xorg | grep -v grep | awk '{ print "\"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\" - " $1};' |  xargs -I _ echo su _ 
+ps -aux | grep Xorg | grep -v grep | awk '{ print "\\\"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\\\" - " $1};' |  xargs -I _ echo su _ 
+ps -aux | grep Xorg | grep -v grep | awk '{ print "\\\"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\\\" - " $1};' |  xargs -I _ su _ 
+ps -aux | grep Xorg | grep -v grep | awk '{ print "\"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\"\0-\0" $1};' |  xargs -0 -I _ su _ 
+ps -aux | grep Xorg | grep -v grep | awk '{ print "\"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\"\0-\0" $1};' |  xargs -0 -I _ echo su _ 
+ps -aux | grep Xorg | grep -v grep | awk '{ print "\"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\"\0-\0" $1};' |  xargs -0 -I _ echo -e su _ 
+ps -aux | grep Xorg | grep -v grep | awk '{ print "echo \"export DISPLAY=" $14"; /home/skeleten/.bin/lock.sh\" - " $1};' |  xargs -0 -I _ eval _ 
