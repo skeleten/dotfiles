@@ -5,14 +5,14 @@ margin-bottom = 0
 margin-top = 0
 
 [colors]
-background	= #32302f
-foreground	= #fbf1c7
-gray		= #928374
-cyan		= #689d6a
-blue		= #458588
-green		= #98971a
-red		= #cc241d
-yellow		= #d79921
+background	= #0f1419
+foreground	= #e6e1cf
+gray		= #323232
+cyan		= #95e6cb
+blue		= #36a3d9
+green		= #b8cc52
+red		= #ff3333
+yellow		= #e7c547
 
 [bar/bar]
 background = ${colors.background}
@@ -46,7 +46,7 @@ label = %title%
 label-maxlen = 250
 
 [module/volume]
-type = internal/volume
+type = internal/alsa
 
 format-muted-foreground = ${colors.red}
 format-volume = <label-volume>
@@ -96,7 +96,7 @@ label-mode = %mode%
 label-mode-background = ${colors.background}
 
 label-focused = ◆
-label-focused-foreground = ${colors.yellow}
+label-focused-foreground = ${colors.blue}
 label-focused-background = ${colors.background}
 label-focused-padding = 2
 
@@ -149,7 +149,7 @@ ramp-capacity-0-foreground = ${colors.red}
 ramp-capacity-1-foreground = ${colors.yellow}
 ramp-capacity-2-foreground = ${colors.green}
 ramp-capacity-3-foreground = ${colors.green}
-ramp-capacity-0 =  
+ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
@@ -168,7 +168,6 @@ type = internal/network
 interface = enp0s25
 interval = 3.0
 
-
 [module/network-wireless]
 type = internal/network
 interface = wlp4s0
@@ -179,4 +178,3 @@ label-connected = %essid% ↓%downspeed:9% ↑%upspeed:9%
 
 [settings]
 screenchange-reload = true
-

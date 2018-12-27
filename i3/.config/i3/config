@@ -14,16 +14,18 @@ exec --no-startup-id redshift
 exec --no-startup-id ~/.bin/start_polybar.sh
 # hotkey daemon
 exec --no-startup-id sxhkd -c ~/.config/sxhkd/i3.conf
+# nm gui
+exec --no-startup-id nm-applet
 
 
 # Colors
-set $bg-color			#32302f
-set $inactive-bg-color		#32302f
-set $text-color			#fbf1c7
-set $inactive-text-color	#bdae93
-set $urgent-bg-color		#fb4934
-set $border-color		#504945
-set $indicator-color		#7c6f64
+set $bg-color			#0f1419
+set $inactive-bg-color		#0f1419
+set $text-color			#e6e1cf
+set $inactive-text-color	#323232
+set $urgent-bg-color		#ff3333
+set $border-color		#323232
+set $indicator-color		#525252
 # window colors
 #                       border              background         text                 indicator
 client.focused          $border-color       $border-color      $text-color          $indicator-color

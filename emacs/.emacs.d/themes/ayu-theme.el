@@ -23,20 +23,20 @@
  'ayu
  ;; basic theming.
 
- '(default ((t (:foreground "#D9D7CE" :background "#212733" ))))
- '(region  ((t (:background "#343F4C"))))
- '(cursor  ((t (:background "#FFCC66"))))
+ '(default ((t (:foreground "#B3B1AD" :background "#0A0E14" ))))
+ '(region  ((t (:background "#3D424D"))))
+ '(cursor  ((t (:background "#E6B450"))))
 
  ;; Temporary defaults
  '(linum                               ((t (:foreground "#444444"  :background "#333942" ))))
  '(fringe                              ((t (                       :background "#333942" ))))
 
- '(minibuffer-prompt                   ((t (:foreground "#1278A8"  :background nil       :weight bold                                  ))))
- '(escape-glyph                        ((t (:foreground "#95E6CB"   :background nil                                                     ))))
- '(highlight                           ((t (:foreground "#D4BFFF"   :background nil                                                     ))))
- '(shadow                              ((t (:foreground "#777777"  :background nil                                                     ))))
+ '(minibuffer-prompt                   ((t (:foreground "#39BAE6"  :background nil       :weight bold))))
+ '(escape-glyph                        ((t (:foreground "#95C2FF"  :background nil ))))
+ '(highlight                           ((t (:foreground "#D4BFFF"  :background nil ))))
+ '(shadow                              ((t (:foreground "#3E424D"  :background nil ))))
 
- '(trailing-whitespace                 ((t (:foreground "#FFFFFF"  :background "#C74000"                                               ))))
+ '(trailing-whitespace                 ((t (:foreground "#FFFFFF"  :background "#C74000" ))))
  '(link                                ((t (:foreground "#00b7f0"  :background nil       :underline t                                  ))))
  '(link-visited                        ((t (:foreground "#4488cc"                        :underline t :inherit (link)                  ))))
  '(button                              ((t (:foreground "#FFFFFF"  :background "#444444" :underline t :inherit (link)                  ))))
@@ -89,6 +89,7 @@
 
 
  '(font-lock-comment-face ((t (:foreground "#5C6773"  :italic t))))
+ '(font-lock-doc-face  ((t (:foreground "#609f70" :italic t))))
  '(font-lock-variable-name-face ((t (:foreground "#D9D7CE"  ))))
  '(font-lock-keyword-face ((t (:foreground "#FFAE57"  ))))
  '(font-lock-constant-face ((t (:foreground "#FFAE57"  ))))

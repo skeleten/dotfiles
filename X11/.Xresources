@@ -1,42 +1,49 @@
 !! -*- mode: conf; eval: (rainbow-mode 1); -*-
 
-! special
-*.foreground:   #fbf1c7
-*.background:   #32302f
-*.cursorColor:  #fbf1c7
-
-! black
-*.color0:       #32302f
-*.color8:       #928374
-
-! red
-*.color1:       #cc241d
-*.color9:       #fb4934
-
-! green
-*.color2:       #98971a
-*.color10:      #b8bb26
-
-! yellow
-*.color3:       #d79921
-*.color11:      #fabd2f
-
-! blue
-*.color4:       #458588
-*.color12:      #83a598
-
-! magenta
-*.color5:       #b16286
-*.color13:      #d3869b
-
-! cyan
-*.color6:       #689d6a
-*.color14:      #8ec07c
-
-! white
-*.color7:       #a89984
-*.color15:      #ebdbb2
-
+!
+! Generated with :
+! XRDB2Xreources.py
+!
+*.foreground:  #e6e1cf
+*.background:  #0f1419
+*.cursorColor: #f29718
+!
+! Black
+*.color0:      #000000
+*.color8:      #323232
+!
+! Red
+*.color1:      #ff3333
+*.color9:      #ff6565
+!
+! Green
+*.color2:      #b8cc52
+*.color10:     #eafe84
+!
+! Yellow
+*.color3:      #e7c547
+*.color11:     #fff779
+!
+! Blue
+*.color4:      #36a3d9
+*.color12:     #68d5ff
+!
+! Magenta
+*.color5:      #f07178
+*.color13:     #ffa3aa
+!
+! Cyan
+*.color6:      #95e6cb
+*.color14:     #c7fffd
+!
+! White
+*.color7:      #ffffff
+*.color15:     #ffffff
+!
+! Bold, Italic, Underline
+*.colorBD:     #e6e1cf
+!*.colorIT:
+!*.colorUL:
 
 ! +----------------------------------------------+
 ! |----->         Font configs             <-----|
@@ -48,8 +55,8 @@ Xft.antialias: 1
 
 URxvt.cursorBlink  :0
 URxvt.url-launcher :usr/bin/firefox-nightly
-URxvt.font         :xft:FiraCode:size=12,xft:Symboloa:size=12
-URxvt.boldFont     :xft:FiraCode:bold:size=12,xft:Symbola:size=12
+URxvt.font         :xft:FiraCode:size=12,xft:Source Code Pro:size=12
+URxvt.boldFont     :xft:FiraCode:bold:size=12,xft:Source Code Pro:size=12
 !URxvt.font	     :xft:scientifica:size=11
 !URxvt.boldFont	     :xft:scientifica:size=11
 

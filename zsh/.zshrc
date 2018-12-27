@@ -1,6 +1,6 @@
 export ZSH="/home/skeleten/.oh-my-zsh"
 
-ZSH_THEME="theunraveler"
+ZSH_THEME="fishy"
 
 plugins=(
     archlinux
@@ -21,6 +21,7 @@ source $ZSH/oh-my-zsh.sh
 setopt -o nomatch
 
 PATH+=":$HOME/.bin"
+PATH+=":$HOME/.cargo/bin"
 export EDITOR=emacsclient
 
 ################################################################################
@@ -30,6 +31,7 @@ export EDITOR=emacsclient
 # general / misc
 
 alias e="emacsclient"
+alias S="sudo"
 
 # pacman
 
@@ -41,6 +43,8 @@ alias scu="systemctl --user"
 
 alias ls="exa"
 alias ll="exa -lF"
+
+alias screeny="/usr/bin/gsu"
 
 ################################################################################
 # Functions

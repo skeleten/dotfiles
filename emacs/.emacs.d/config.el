@@ -8,16 +8,16 @@
 (defvar skeleten/java/backend nil
   "Completion backend for java. One of: `eclipse', `intellij'")
 
-(setq skeleten/font "Fira Code 12"
-      skeleten/setup-fira-code-ligatures t)
-(setq skeleten/theme 'molokai)		; Possible  values currently are:
-					;  'doom - for the Doom
-					;  'moe-dark or 'moe-light for the moe
-					; themes
-					;  'none - for no theme
-					;  everything else will be interpretet as
-					; a theme name and trying to get loaded
-					; via `load-theme'
+(setq skeleten/font "Source Code Pro 12"
+      skeleten/setup-fira-code-ligatures nil)
+(setq skeleten/theme 'ayu)			; Possible  values currently are:
+						;  'doom - for the Doom
+						;  'moe-dark or 'moe-light for the moe
+						; themes
+						;  'none - for no theme
+						;  everything else will be interpretet as
+						; a theme name and trying to get loaded
+						; via `load-theme'
 (setq skeleten/org-files-base-dir "~/org")
 
 ;; add our custom themes to to be loaded
@@ -234,7 +234,7 @@ point reaches the beginning or end of the buffer, stop there."
 	    ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
 
 (defun add-fira-code-symbol-keywords ()
-  (when window-system
+  (when (and  window-system skeleten/setup-fira-code-ligatures)
     (font-lock-add-keywords nil fira-code-font-lock-keywords-alist)))
 
 (add-hook 'prog-mode-hook
@@ -298,7 +298,7 @@ point reaches the beginning or end of the buffer, stop there."
  '("M-m s"      "Jump to char on screen"        ace-jump-char-mode
    "C-."        "Toggle folding"                origami-toggle-node))
 (skeleten/define-global-key "M-m f f" "Find file in Project"
-			    'fiplr-find-file)
+			    'projectile-find-file)
 (skeleten/define-global-key "C-S-i" "Open iMenu"
 			    'imenu)
 
@@ -567,7 +567,6 @@ point reaches the beginning or end of the buffer, stop there."
 (add-hook 'rust-mode-hook #'flycheck-mode)
 (add-hook 'rust-mode-hook 'origami-mode)
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
-(add-hook 'rust-mode-hook 'lsp-rust-enable)
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 (add-hook 'rust-mode-hook 'yas-minor-mode-on)
 
@@ -649,17 +648,11 @@ point reaches the beginning or end of the buffer, stop there."
       lsp-java-format-enabled t
       company-lsp-async t)
 (add-hook 'java-mode-hook 'lsp-java-enable)
-(add-hook 'java-mode-hook (lambda () (lsp-ui-sideline-mode -1)))
 (add-hook 'java-mode-hook 'company-mode)
 (add-hook 'java-mode-hook 'flycheck-mode)
 (add-hook 'java-mode-hook (lambda () (setq tab-width		4
 				      c-basic-offset	4)))
 
-(require 'lsp-ui)
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
-(add-hook 'lsp-ui-mode-hook
-	  (lambda () (progn (lsp-ui-doc-mode -1)
-		       (lsp-ui-sideline-mode -1))))
 
 (require 'ebnf-mode)

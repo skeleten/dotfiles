@@ -1,7 +1,3 @@
 * Default Workspace
 ** inventory
  - path :: /home/skeleten/src/vkm/inventory
-** ansible-playbook
- - path :: /home/skeleten/src/vkm/ansible-playbook
-** license_management
- - path :: /home/skeleten/src/vkm/license_management

@@ -16,16 +16,16 @@
 
 * General settings
 #+begin_src emacs-lisp  :results silent
-  (setq skeleten/font "Fira Code 12"
-	skeleten/setup-fira-code-ligatures t)
-  (setq skeleten/theme 'molokai)		; Possible  values currently are:
-					  ;  'doom - for the Doom
-					  ;  'moe-dark or 'moe-light for the moe
-					  ; themes
-					  ;  'none - for no theme
-					  ;  everything else will be interpretet as
-					  ; a theme name and trying to get loaded
-					  ; via `load-theme'
+  (setq skeleten/font "Source Code Pro 12"
+	skeleten/setup-fira-code-ligatures nil)
+  (setq skeleten/theme 'ayu)			; Possible  values currently are:
+						  ;  'doom - for the Doom
+						  ;  'moe-dark or 'moe-light for the moe
+						  ; themes
+						  ;  'none - for no theme
+						  ;  everything else will be interpretet as
+						  ; a theme name and trying to get loaded
+						  ; via `load-theme'
   (setq skeleten/org-files-base-dir "~/org")
 
   ;; add our custom themes to to be loaded
@@ -259,7 +259,7 @@ point reaches the beginning or end of the buffer, stop there."
 	      ("[^\\*/<>]\\(\\*\\)[^\\*/<>]" #Xe16f))))
 
   (defun add-fira-code-symbol-keywords ()
-    (when window-system
+    (when (and  window-system skeleten/setup-fira-code-ligatures)
       (font-lock-add-keywords nil fira-code-font-lock-keywords-alist)))
 
   (add-hook 'prog-mode-hook
@@ -353,7 +353,7 @@ configurable leader-key.
    '("M-m s"      "Jump to char on screen"        ace-jump-char-mode
      "C-."        "Toggle folding"                origami-toggle-node))
   (skeleten/define-global-key "M-m f f" "Find file in Project"
-			      'fiplr-find-file)
+			      'projectile-find-file)
   (skeleten/define-global-key "C-S-i" "Open iMenu"
 			      'imenu)
 
@@ -680,7 +680,6 @@ configurable leader-key.
   (add-hook 'rust-mode-hook #'flycheck-mode)
   (add-hook 'rust-mode-hook 'origami-mode)
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
-  (add-hook 'rust-mode-hook 'lsp-rust-enable)
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
   (add-hook 'rust-mode-hook 'yas-minor-mode-on)
 #+end_src
@@ -793,7 +792,6 @@ configurable leader-key.
 	lsp-java-format-enabled t
 	company-lsp-async t)
   (add-hook 'java-mode-hook 'lsp-java-enable)
-  (add-hook 'java-mode-hook (lambda () (lsp-ui-sideline-mode -1)))
   (add-hook 'java-mode-hook 'company-mode)
   (add-hook 'java-mode-hook 'flycheck-mode)
   (add-hook 'java-mode-hook (lambda () (setq tab-width		4
@@ -801,16 +799,14 @@ configurable leader-key.
 #+END_SRC
 ** lsp-mode
 #+BEGIN_SRC emacs-lisp :results silent
-  (require 'lsp-ui)
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-#+END_SRC
-** lsp-ui
-#+BEGIN_SRC emacs-lisp :results silent
-  (add-hook 'lsp-ui-mode-hook
-	    (lambda () (progn (lsp-ui-doc-mode -1)
-			 (lsp-ui-sideline-mode -1))))
+
 #+END_SRC
 ** ebnf-mode
 #+BEGIN_SRC emacs-lisp :results silent
   (require 'ebnf-mode)
+#+END_SRC
+** adoc-mode
+#+BEGIN_SRC emacs-lisp :results silent
+  (add-to-list 'auto-mode-alist
+	       '("\\.adoc\\'" . adoc-mode))
 #+END_SRC
