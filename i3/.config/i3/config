@@ -8,15 +8,10 @@ set $mod Mod4
 exec --no-startup-id feh --bg-scale ~/.wallpaper
 # Display Notifications
 exec --no-startup-id dunst
-# tint the screen orange-y while dark
-exec --no-startup-id redshift
 # status bar
 exec --no-startup-id ~/.bin/start_polybar.sh
 # hotkey daemon
 exec --no-startup-id sxhkd -c ~/.config/sxhkd/i3.conf
-# nm gui
-exec --no-startup-id nm-applet
-
 
 # Colors
 set $bg-color			#0f1419

@@ -96,7 +96,7 @@ label-mode = %mode%
 label-mode-background = ${colors.background}
 
 label-focused = ◆
-label-focused-foreground = ${colors.blue}
+label-focused-foreground = ${colors.green}
 label-focused-background = ${colors.background}
 label-focused-padding = 2
 
@@ -106,8 +106,8 @@ label-unfocused-background = ${colors.background}
 label-unfocused-padding = 2
 
 label-urgent = ◆
-label-urgent-background = ${colors.background}
 label-urgent-foreground = ${colors.red}
+label-urgent-background = ${colors.background}
 label-urgent-padding = 2
 
 label-empty = ◇
@@ -116,8 +116,8 @@ label-empty-background = ${colors.background}
 label-empty-padding = 2
 
 label-visible = ◆
-label-visible-background = ${colors.background}
 label-visible-foreground = ${colors.foreground}
+label-visible-background = ${colors.background}
 label-visible-padding = 2
 
 strip-wsnumbers = true
