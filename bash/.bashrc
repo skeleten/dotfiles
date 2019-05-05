@@ -17,7 +17,7 @@ alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 
 case $TERM in
-    *xterm* | *rxvt* | *screen* | *eterm*)
+    *xterm* | *rxvt* | *screen* | *eterm* | *kitty*)
 	# on any terminal like tty, we're gonna run a fish shell
         exec /usr/bin/zsh
         ;;
