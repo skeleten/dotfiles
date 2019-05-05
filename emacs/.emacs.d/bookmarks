@@ -1,10 +1,10 @@
-;;;; Emacs Bookmark Format Version 1 ;;;;
+;;;; Emacs Bookmark Format Version 1 ;;;; -*- coding: utf-8-emacs -*- 
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("config.org"
- (filename . "~/dotfiles/emacs/.emacs.d/config.org")
- (front-context-string . "#+STARTUP: conte")
+(("config.el"
+ (filename . "~/dotfiles/emacs/.emacs.d/config.el")
+ (front-context-string . ";; Variablen\n\n(d")
  (rear-context-string)
  (position . 1))
 )

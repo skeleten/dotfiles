@@ -9,8 +9,6 @@
 
 (package-initialize)
 
-(load-file "~/.emacs.d/secrets.el")
-
 ;; load use-package
 
 (condition-case nil
@@ -20,29 +18,26 @@
    (package-install 'use-package)
    (require 'use-package)))
 
-(defun skeleten/load-init ()
-  (interactive)
-  (org-babel-load-file "~/.emacs.d/config.org"))
+(load-file "~/.emacs.d/config.el")
 
-(skeleten/load-init)
+;; Settings
 
+(setq skeleten/font		"Source Code Pro 12"
+      skeleten/theme		'ayu)
 
+;;
+(skeleten/init)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auth-source-save-behavior nil)
  '(package-selected-packages
    (quote
-    (adoc-mode projectile arduino-mode haskell-mode edit-server lsp-rust treemacs lsp-java lsp-intellij intellij-theme company-lsp company-emacs-eclim eclim ob-sagemath telephone-line zencoding-mode yasnippet-snippets yaml-mode window-number which-key use-package undo-tree toml-mode swiper-helm sourcerer-theme smartparens slack rainbow-mode rainbow-delimiters racer powershell paredit origami org-mime org-bullets offlineimap ob-rust neotree multiple-cursors mu4e-alert monokai-theme moe-theme mediawiki magit jdee ivy-yasnippet ivy-pass ivy-dired-history ivy-bibtex htmlize gruvbox-theme font-lock+ flycheck-rust flatland-theme fish-mode fiplr expand-region eglot dracula-theme doom-themes dockerfile-mode dashboard cyberpunk-theme counsel-tramp company-restclient cargo all-the-icons-ivy all-the-icons-gnus all-the-icons-dired ace-popup-menu ace-jump-mode)))
+    (flymake flymake-rust zencoding-mode yasnippet-snippets yaml-mode window-number which-key use-package undo-tree treemacs toml-mode telephone-line swiper-helm sourcerer-theme smartparens slack rainbow-mode rainbow-delimiters racer projectile powershell paredit origami org-mime org-bullets offlineimap ob-rust neotree multiple-cursors mu4e-alert monokai-theme moe-theme mediawiki magit-popup magit lsp-java lsp-intellij ivy-yasnippet ivy-pass ivy-dired-history ivy-bibtex intellij-theme htmlize gruvbox-theme ghub font-lock+ flycheck-rust flatland-theme fish-mode fiplr expand-region eglot edit-server dracula-theme doom-themes dockerfile-mode dashboard cyberpunk-theme counsel-tramp company-restclient company-lsp company-emacs-eclim cargo arduino-mode all-the-icons-ivy all-the-icons-gnus all-the-icons-dired adoc-mode ace-popup-menu ace-jump-mode)))
  '(safe-local-variable-values
    (quote
-    ((eval when
-	   (fboundp
-	    (quote rainbow-mode))
-	   (rainbow-mode 1)))))
- '(send-mail-function (quote smtpmail-send-it)))
+    ((eval setenv "OPENSSL_INCLUDE_DIR" "/usr/include/openssl-1.0")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -1,0 +1,7 @@
+sudo pacman -Syu zsh
+sudo pacman -Syu rustup
+clear
+sudo pacman -Syu sxhkd
+cd dotfiles/
+ls
+git status
