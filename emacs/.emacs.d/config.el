@@ -141,8 +141,10 @@
   (use-package mu4e
     :init
     (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+
     :bind (("M-m m o" . mu4e)
 	   ("M-m m u" . mu4e-update-mail-and-index))
+
     :config
     (when (fboundp 'imagemagick-register-types)
       (imagemagick-register-types))
@@ -151,7 +153,7 @@
     (mu4e-alert-enable-mode-line-display)
 
     ;; accounts
-    (setq mu4e-context
+    (setq mu4e-contexts
 	  `( ,(make-mu4e-context
 	       :name "skeleten"
 	       :match-func
@@ -187,14 +189,14 @@
 	     (smtpmail-smtp-service 587))))
 
     ;; bookmarks
-    (setq mu4e-bookmark
+    (setq mu4e-bookmarks
 	  `( ,(make-mu4e-bookmark
 	       :name "VKM"
-	       :query "maildir:\"/VKM/INBOX\" AND NOT flag:tashed"
+	       :query "maildir:\"/VKM/Inbox*\" AND NOT flag:tashed"
 	       :key ?v)
 	     ,(make-mu4e-bookmark
 	       :name "Privat"
-	       :query "maildir:\"skeleten/INBOX*\" AND NOT flag:trashed"
+	       :query "maildir:\"/skeleten/Inbox*\" AND NOT flag:trashed"
 	       :key ?p)
 	     ,(make-mu4e-bookmark
 	       :name "Unread messages"
