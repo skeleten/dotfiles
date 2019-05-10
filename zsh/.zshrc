@@ -14,6 +14,7 @@ plugins=(
     systemd
     vagrant
     zsh-syntax-highlighting
+    zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
