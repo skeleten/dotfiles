@@ -21,7 +21,8 @@
     ignore_newline = no
 
     # geometry [{width}]x{height}][+/-{x}+/-{y}]
-    geometry = "0x4-10+40"
+    geometry = "400x4-10+40"
+
     transparency = 0
     idle_threshold = 120
     monitor = 0
@@ -31,7 +32,7 @@
     separator_height = 2;
     padding = 8
     horizontal_padding = 10
-    
+
     separator_color = frame
     startup_notification = false
 
@@ -39,11 +40,11 @@
     browser = /usr/bin/firefox -new-tab
 
     icon_position = left
-    max_icon_size = 80
-    shrink = yes
-    
-    frame_width = 4
-    frame_color = "#a89984"
+    max_icon_size = 120
+    #shrink = yes
+
+    frame_width = 0
+    frame_color = "#0f1419"
 
 [shortcuts]
     close = ctrl+space
@@ -52,16 +53,16 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = "#32302f"
-    foreground = "#fbf1c7"
+    background = "#0f1419"
+    foreground = "#e6e1cf"
     timeout = 10
 
 [urgency_normal]
-    background = "#32302f"
-    foreground = "#fbf1c7"
+    background = "#0f1419"
+    foreground = "#e6e1cf"
     timeout = 10
 
 [urgency_critical]
-    background = "#32302f"
-    foreground = "#fbf1c7"
+    background = "#0f1419"
+    foreground = "#e6e1cf"
     timeout = 0
