@@ -101,47 +101,7 @@
 
 
 ;; INIT
-(defun skeleten/init ()
-  (interactive)
-
-  (quelpa
-   '(quelpa-use-package
-     :fetcher git
-     :url "https://framagit.org/steckerhalter/quelpa-use-package.git"))
-
-  (require 'quelpa-use-package)
-
-  ;; Keybindings
-  (global-set-key [remap move-beginning-of-line]
-		  'skeleten/helper/smarter-move-beginning-of-line)
-  (global-unset-key (kbd "M-m"))
-  ;; finding and searching
-  ;; TODO: move these into `use-packages`'s ASAP
-  (global-set-key [?\M-\t] 'company-complete)
-  (global-set-key [?\C-\t] 'company-complete)
-  (global-set-key (kbd "C-S-i") 'imenu)
-
-  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-
-  ;; load theme and font on appriopiate time
-  (if (daemonp)
-      (add-hook 'after-make-frame-functions
-		(lambda (frm) (with-selected-frame frm
-			   (skeleten/helper/load-theme)
-			   (skeleten/helper/load-font))))
-    (skeleten/helper/load-theme)
-    (skeleten/helper/load-font))
-
-  ;; less clutter
-  (tool-bar-mode -1)
-  (menu-bar-mode -1)
-  (scroll-bar-mode -1)
-
-  (use-package quelpa-use-package
-    :ensure t
-    :config
-    (setq use-package-ensure-function 'quelpa
-	  use-package-always-ensure t))
+(defun skeleten/init/packages ()
 
   (use-package window-number
     :config
@@ -287,7 +247,7 @@
      (prog-mode . display-line-numbers-mode)
      (prog-mode . prettify-symbols-mode)
      (prog-mode . smartparens-mode)
-     (prog-mode . rainbow-delimiters-mode)))
+     (prog-mode . rainbow-delimiters-mode)))0
   (use-package restclient-mode
     :hook
     ((restcleint-mode . company-mode)))
@@ -382,10 +342,48 @@
     :config
     (setq org-agenda-files '("~/org")))
 
+  (use-package gdb-mi :quelpa (gdb-mi :fetcher git
+				      :url "https://github.com/weirdNox/emacs-gdb.git"
+				      :files ("*.el" "*.c" "*.h" "Makefile"))
+    :init
+    (fmakunbound 'gdb)
+    (fmakunbound 'gdb-enable-debug)))
+
+(defun skeleten/init/misc ()
+  ;; Keybindings
+  (global-set-key [remap move-beginning-of-line]
+		  'skeleten/helper/smarter-move-beginning-of-line)
+  (global-unset-key (kbd "M-m"))
+  ;; finding and searching
+  ;; TODO: move these into `use-packages`'s ASAP
+  (global-set-key [?\M-\t] 'company-complete)
+  (global-set-key [?\C-\t] 'company-complete)
+  (global-set-key (kbd "C-S-i") 'imenu)
+
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
+  ;; load theme and font on appriopiate time
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions
+		(lambda (frm) (with-selected-frame frm
+			   (skeleten/helper/load-theme)
+			   (skeleten/helper/load-font))))
+    (skeleten/helper/load-theme)
+    (skeleten/helper/load-font))
+
+  ;; less clutter
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+
   ;; misc hooks
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
   ;; (global-set-key (kbd "M-n") 'er/expand-region)
   ;; (skeleten/helper/def-global-key "M-m c" "compile" 'compile)
-  (global-set-key (kbd "M-p") 'skeleten/helper/edit-above)
-)
+  (global-set-key (kbd "M-p") 'skeleten/helper/edit-above))
+
+(defun skeleten/init ()
+  (interactive)
+  (progn (skeleten/init/misc)
+	 (skeleten/init/packages)))
