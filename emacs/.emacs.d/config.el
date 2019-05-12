@@ -104,6 +104,13 @@
 (defun skeleten/init ()
   (interactive)
 
+  (quelpa
+   '(quelpa-use-package
+     :fetcher git
+     :url "https://framagit.org/steckerhalter/quelpa-use-package.git"))
+
+  (require 'quelpa-use-package)
+
   ;; Keybindings
   (global-set-key [remap move-beginning-of-line]
 		  'skeleten/helper/smarter-move-beginning-of-line)
@@ -130,14 +137,21 @@
   (menu-bar-mode -1)
   (scroll-bar-mode -1)
 
-  ;; modes
+  (use-package quelpa-use-package
+    :ensure t
+    :config
+    (setq use-package-ensure-function 'quelpa
+	  use-package-always-ensure t))
+
   (use-package window-number
     :config
     (window-number-mode)
     (window-number-meta-mode))
+
   (use-package smartparens
     :config
     (require 'smartparens-config))
+
   (use-package mu4e
     :init
     (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
@@ -235,9 +249,11 @@
 	     :channels ("#vana")))))
 
   (use-package dashboard
+    :ensure t
     :config
-    (dashboard-setup-startup-hook))
-
+    (dashboard-setup-startup-hook)
+    (setq dashboard-items '((recents . 10)
+			    (bookmarks . 5))))
   ;; modes, mostly
 
   (use-package css-mode
@@ -359,6 +375,12 @@
 
   (use-package treemacs
     :bind (("M-m f t" . treemacs)))
+
+  (use-package org
+    :bind
+    (("M-m o a" . org-agenda))
+    :config
+    (setq org-agenda-files '("~/org")))
 
   ;; misc hooks
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
