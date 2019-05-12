@@ -114,7 +114,6 @@
     (require 'smartparens-config))
 
   (use-package mu4e
-    :requires mu4e-alert
     :init
     (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
@@ -125,8 +124,6 @@
     (when (fboundp 'imagemagick-register-types)
       (imagemagick-register-types))
     (setq mu4e-update-interval 60)
-    (mu4e-alert-set-default-style 'libnotify)
-    (mu4e-alert-enable-mode-line-display)
 
     ;; accounts
     (setq mu4e-contexts
@@ -188,11 +185,13 @@
 				(:from . 22)
 				(:subject)))
 
-    :hook ((after-init . mu4e-alert-enable-notifications)
-	   (mu4e-compose-pre . skeleten/helper/mail/set-account)
+    :hook ((mu4e-compose-pre . skeleten/helper/mail/set-account)
 	   (mu4e-headers-mode . skeleten/helper/mail/unbold-fonts)))
 
-
+  (use-package mu4e-alert
+    :requires mu4e
+    :config (setq mu4e-alert-set-default-style 'libnotify)
+    :hook ((after-init . mu4e-alert-enable-notifications)))
 
   (use-package company
     :config
