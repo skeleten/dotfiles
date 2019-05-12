@@ -10,18 +10,25 @@
 
 (package-initialize)
 
-;; load use-package
-(condition-case nil
-      (require 'use-package)
-    (file-error
-     (package-refresh-contents)
-     (package-install 'use-package)
-     (require 'use-package)))
-  (require 'use-package-ensure)
-  (require 'quelpa-use-package)
+(if (require 'quelpa nil t)
+    ; (quelpa-self-upgrade)
+  (with-temp-buffer
+    (url-insert-file-contents
+     "https://framagit.org/steckerhalter/quelpa/raw/master/bootstrap.el")
+    (eval-buffer)))
 
-  (setq use-package-always-ensure t
-	use-package-ensure-function 'quelpa)
+(quelpa
+ '(quelpa-use-package
+   :fetcher git
+   :url "https://framagit.org/steckerhalter/quelpa-use-package.git"
+   :stable nil))
+
+(require 'quelpa-use-package)
+(require 'use-package-ensure)
+(require 'quelpa-use-package)
+
+(setq use-package-always-ensure t
+      use-package-ensure-function 'quelpa)
 
 (load-file "~/.emacs.d/config.el")
 
@@ -32,7 +39,6 @@
 
 ;;
 (skeleten/init)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -40,7 +46,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (yasnippet-snippets yaml-mode window-number which-key undo-tree treemacs telephone-line swiper-helm sourcerer-theme smartparens slack rainbow-mode rainbow-delimiters racer projectile powershell paredit origami org-mime org-bullets offlineimap ob-rust neotree multiple-cursors mu4e-alert monokai-theme moe-theme mediawiki magit-popup magit lsp-java lsp-intellij ivy-yasnippet ivy-pass ivy-dired-history ivy-bibtex intellij-theme htmlize gruvbox-theme ghub font-lock+ flymake-rust flycheck-rust flatland-theme fish-mode fiplr expand-region edit-server dracula-theme doom-themes dockerfile-mode dashboard cyberpunk-theme counsel-tramp company-restclient company-lsp company-emacs-eclim cargo arduino-mode all-the-icons-ivy all-the-icons-gnus all-the-icons-dired adoc-mode ace-popup-menu ace-jump-mode))))
+    (undo-tree yasnippet yaml-mode window-number which-key treemacs toml-mode telephone-line swiper smartparens rust-mode quelpa-use-package projectile paredit origami multiple-cursors magit gdb-mi eglot dashboard company adoc-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -6,15 +6,17 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "bootstrap" "bootstrap.el" (0 0 0 0))
-;;; Generated autoloads from bootstrap.el
+;;;### (autoloads "actual autoloads are elsewhere" "bootstrap" "../../../../../.emacs.d/elpa/quelpa-20190217.1350/bootstrap.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/quelpa-20190217.1350/bootstrap.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "bootstrap" '("quelpa-ci-dir")))
 
 ;;;***
 
-;;;### (autoloads nil "quelpa" "quelpa.el" (0 0 0 0))
-;;; Generated autoloads from quelpa.el
+;;;### (autoloads nil "quelpa" "../../../../../.emacs.d/elpa/quelpa-20190217.1350/quelpa.el"
+;;;;;;  "751db9e05d8596a8a69258956c7c29ad")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/quelpa-20190217.1350/quelpa.el
 
 (autoload 'quelpa-build-package "quelpa" "\
 Create PACKAGE-NAME with VERSION.
@@ -67,12 +69,22 @@ C-u M-x quelpa) it will try to upgrade the given package even if
 the global var `quelpa-upgrade-p' is set to nil.
 
 \(fn ARG &rest PLIST)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "quelpa" "../../../../../.emacs.d/elpa/quelpa-20190217.1350/quelpa.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/quelpa-20190217.1350/quelpa.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "quelpa" '("quelpa-")))
 
 ;;;***
+
+;;;***
 
-;;;### (autoloads nil nil ("quelpa-pkg.el") (0 0 0 0))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/quelpa-20190217.1350/bootstrap.el"
+;;;;;;  "../../../../../.emacs.d/elpa/quelpa-20190217.1350/quelpa-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/quelpa-20190217.1350/quelpa-pkg.el"
+;;;;;;  "../../../../../.emacs.d/elpa/quelpa-20190217.1350/quelpa.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

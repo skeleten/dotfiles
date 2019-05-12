@@ -6,6 +6,7 @@
   "Theme to load, or 'none to skip")
 (defvar skeleten/org-files-base-dir ""
   "Base directory of org files")
+
 
 ;; Helper
 (defun skeleten/helper/smarter-move-beginning-of-line (arg)
@@ -113,6 +114,7 @@
     (require 'smartparens-config))
 
   (use-package mu4e
+    :requires mu4e-alert
     :init
     (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
@@ -241,13 +243,16 @@
 
     :requires smartparens)
 
+  (use-package rainbow-delimiters)
+
   (use-package prog-mode
     :hook
     ((prog-mode . company-mode)
      (prog-mode . display-line-numbers-mode)
      (prog-mode . prettify-symbols-mode)
      (prog-mode . smartparens-mode)
-     (prog-mode . rainbow-delimiters-mode)))0
+     (prog-mode . rainbow-delimiters-mode)))
+
   (use-package restclient-mode
     :hook
     ((restcleint-mode . company-mode)))
@@ -280,7 +285,7 @@
     :init
     (which-key-mode))
   (use-package undo-tree
-    :init
+    :config
     (global-undo-tree-mode))
   (use-package multiple-cursors
     :bind (("C-S-c C-S-c" . mc/edit-lines)
@@ -316,11 +321,18 @@
   (use-package adoc-mode
     :mode "\\.adoc\\'")
 
+  (use-package ivy
+    :config
+    (ivy-mode 1))
   (use-package swiper
-    :bind (("C-s" . swiper)
-	   ("M-x" . counsel-M-x)
-	   ("C-x C-f" . counsel-find-file)
-	   ("C-h f" . counsel-describe-function)))
+    :requires ivy
+    :bind (("C-s"	. swiper)))
+  (use-package counsel
+    :requires swiper ivy
+    :bind (("M-x"	. counsel-M-x)
+	   ("C-x C-f"	. counsel-find-file)
+	   ("C-h f"	. counsel-describe-function)))
+
   (use-package magit
     :bind (("C-x g" . magit-status)))
 
@@ -342,12 +354,15 @@
     :config
     (setq org-agenda-files '("~/org")))
 
-  (use-package gdb-mi :quelpa (gdb-mi :fetcher git
-				      :url "https://github.com/weirdNox/emacs-gdb.git"
-				      :files ("*.el" "*.c" "*.h" "Makefile"))
+  (use-package gdb-mi
+    :quelpa (gdb-mi :fetcher git
+		    :url "https://github.com/weirdNox/emacs-gdb.git"
+		    :files ("*.el" "*.c" "*.h" "Makefile"))
     :init
     (fmakunbound 'gdb)
-    (fmakunbound 'gdb-enable-debug)))
+    (fmakunbound 'gdb-enable-debug))
+
+  (use-package yasnippet))
 
 (defun skeleten/init/misc ()
   ;; Keybindings
