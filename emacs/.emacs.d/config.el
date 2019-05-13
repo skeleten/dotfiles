@@ -6,6 +6,7 @@
   "Theme to load, or 'none to skip")
 (defvar skeleten/org-files-base-dir ""
   "Base directory of org files")
+
 
 ;; Helper
 (defun skeleten/helper/smarter-move-beginning-of-line (arg)
@@ -101,43 +102,17 @@
 
 
 ;; INIT
-(defun skeleten/init ()
-  (interactive)
+(defun skeleten/init/packages ()
 
-  ;; Keybindings
-  (global-set-key [remap move-beginning-of-line]
-		  'skeleten/helper/smarter-move-beginning-of-line)
-  (global-unset-key (kbd "M-m"))
-  ;; finding and searching
-  ;; TODO: move these into `use-packages`'s ASAP
-  (global-set-key [?\M-\t] 'company-complete)
-  (global-set-key [?\C-\t] 'company-complete)
-  (global-set-key (kbd "C-S-i") 'imenu)
-
-  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-
-  ;; load theme and font on appriopiate time
-  (if (daemonp)
-      (add-hook 'after-make-frame-functions
-		(lambda (frm) (with-selected-frame frm
-			   (skeleten/helper/load-theme)
-			   (skeleten/helper/load-font))))
-    (skeleten/helper/load-theme)
-    (skeleten/helper/load-font))
-
-  ;; less clutter
-  (tool-bar-mode -1)
-  (menu-bar-mode -1)
-  (scroll-bar-mode -1)
-
-  ;; modes
   (use-package window-number
     :config
     (window-number-mode)
     (window-number-meta-mode))
+
   (use-package smartparens
     :config
     (require 'smartparens-config))
+
   (use-package mu4e
     :init
     (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
@@ -149,8 +124,6 @@
     (when (fboundp 'imagemagick-register-types)
       (imagemagick-register-types))
     (setq mu4e-update-interval 60)
-    (mu4e-alert-set-default-style 'libnotify)
-    (mu4e-alert-enable-mode-line-display)
 
     ;; accounts
     (setq mu4e-contexts
@@ -212,11 +185,13 @@
 				(:from . 22)
 				(:subject)))
 
-    :hook ((after-init . mu4e-alert-enable-notifications)
-	   (mu4e-compose-pre . skeleten/helper/mail/set-account)
+    :hook ((mu4e-compose-pre . skeleten/helper/mail/set-account)
 	   (mu4e-headers-mode . skeleten/helper/mail/unbold-fonts)))
 
-
+  (use-package mu4e-alert
+    :requires mu4e
+    :config (setq mu4e-alert-set-default-style 'libnotify)
+    :hook ((after-init . mu4e-alert-enable-notifications)))
 
   (use-package company
     :config
@@ -235,9 +210,11 @@
 	     :channels ("#vana")))))
 
   (use-package dashboard
+    :ensure t
     :config
-    (dashboard-setup-startup-hook))
-
+    (dashboard-setup-startup-hook)
+    (setq dashboard-items '((recents . 10)
+			    (bookmarks . 5))))
   ;; modes, mostly
 
   (use-package css-mode
@@ -265,6 +242,8 @@
 
     :requires smartparens)
 
+  (use-package rainbow-delimiters)
+
   (use-package prog-mode
     :hook
     ((prog-mode . company-mode)
@@ -272,6 +251,7 @@
      (prog-mode . prettify-symbols-mode)
      (prog-mode . smartparens-mode)
      (prog-mode . rainbow-delimiters-mode)))
+
   (use-package restclient-mode
     :hook
     ((restcleint-mode . company-mode)))
@@ -304,7 +284,7 @@
     :init
     (which-key-mode))
   (use-package undo-tree
-    :init
+    :config
     (global-undo-tree-mode))
   (use-package multiple-cursors
     :bind (("C-S-c C-S-c" . mc/edit-lines)
@@ -340,11 +320,18 @@
   (use-package adoc-mode
     :mode "\\.adoc\\'")
 
+  (use-package ivy
+    :config
+    (ivy-mode 1))
   (use-package swiper
-    :bind (("C-s" . swiper)
-	   ("M-x" . counsel-M-x)
-	   ("C-x C-f" . counsel-find-file)
-	   ("C-h f" . counsel-describe-function)))
+    :requires ivy
+    :bind (("C-s"	. swiper)))
+  (use-package counsel
+    :requires swiper ivy
+    :bind (("M-x"	. counsel-M-x)
+	   ("C-x C-f"	. counsel-find-file)
+	   ("C-h f"	. counsel-describe-function)))
+
   (use-package magit
     :bind (("C-x g" . magit-status)))
 
@@ -360,10 +347,57 @@
   (use-package treemacs
     :bind (("M-m f t" . treemacs)))
 
+  (use-package org
+    :bind
+    (("M-m o a" . org-agenda))
+    :config
+    (setq org-agenda-files '("~/org")))
+
+  (use-package gdb-mi
+    :quelpa (gdb-mi :fetcher git
+		    :url "https://github.com/weirdNox/emacs-gdb.git"
+		    :files ("*.el" "*.c" "*.h" "Makefile"))
+    :init
+    (fmakunbound 'gdb)
+    (fmakunbound 'gdb-enable-debug))
+
+  (use-package yasnippet))
+
+(defun skeleten/init/misc ()
+  ;; Keybindings
+  (global-set-key [remap move-beginning-of-line]
+		  'skeleten/helper/smarter-move-beginning-of-line)
+  (global-unset-key (kbd "M-m"))
+  ;; finding and searching
+  ;; TODO: move these into `use-packages`'s ASAP
+  (global-set-key [?\M-\t] 'company-complete)
+  (global-set-key [?\C-\t] 'company-complete)
+  (global-set-key (kbd "C-S-i") 'imenu)
+
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
+  ;; load theme and font on appriopiate time
+  (if (daemonp)
+      (add-hook 'after-make-frame-functions
+		(lambda (frm) (with-selected-frame frm
+			   (skeleten/helper/load-theme)
+			   (skeleten/helper/load-font))))
+    (skeleten/helper/load-theme)
+    (skeleten/helper/load-font))
+
+  ;; less clutter
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+
   ;; misc hooks
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
   ;; (global-set-key (kbd "M-n") 'er/expand-region)
   ;; (skeleten/helper/def-global-key "M-m c" "compile" 'compile)
-  (global-set-key (kbd "M-p") 'skeleten/helper/edit-above)
-)
+  (global-set-key (kbd "M-p") 'skeleten/helper/edit-above))
+
+(defun skeleten/init ()
+  (interactive)
+  (progn (skeleten/init/misc)
+	 (skeleten/init/packages)))
