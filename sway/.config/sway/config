@@ -53,13 +53,15 @@ input * xkb_layout de,us
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
-output * bg ~/.wallpaper fill
+output *  	bg ~/.wallpaper fill
+output HDMI-A-1 pos 0 	 0	res 1920x1080
+output DP-1	pos 1920 0	res 1920x1080
 
 exec waybar
-exec setxkbmap de
+exec mako
 exec_always {
-	gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark'
-	gsettings set org.gnome.desktop.interface icon-theme 'Arc'
+	gsettings set org.gnome.desktop.interface gtk-theme 'Stiloetto-dark'
+	gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 }
 exec swayidle -w timeout 300 'swaylock ' \
      	      	 timeout 600 'swaymsg "output * dpms off"' \
