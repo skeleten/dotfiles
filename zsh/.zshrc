@@ -29,9 +29,15 @@ PATH+=":$HOME/.bin"
 PATH+=":$HOME/.cargo/bin"
 export EDITOR=emacsclient
 
+export GNOME_KEYRING_CONTROL="$XDG_RUNTIME_DIR/keyring"
+
 ################################################################################
 # Custom aliases
 ################################################################################
+
+# git
+
+alias gd="git difftool --no-symlinks --dir-diff"
 
 # general / misc
 
@@ -40,7 +46,7 @@ alias S="sudo"
 
 # pacman
 
-alias pminst="trizen -S --noconfirm"
+alias pminst="trizen -Syu --noconfirm"
 alias pmsrch="trizen -Ss"
 
 # systemd
