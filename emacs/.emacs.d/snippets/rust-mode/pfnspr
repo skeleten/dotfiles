@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: pub fn _n(&self) -> _r
+# key: pfnspr
+# --
+
+pub ${1:M}(&self$, ${2:P}) -> ${3:T} {
+    $0
+}

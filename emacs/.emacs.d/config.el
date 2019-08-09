@@ -160,7 +160,6 @@
 	     (smtpmail-default-smtp-server "mail.vkm.tu-darmstadt.de")
 	     (smtpmail-smtp-server "mail.vkm.tu-darmstadt.de")
 	     (smtpmail-smtp-service 587))))
-
     ;; bookmarks
     (setq mu4e-bookmarks
 	  `( ,(make-mu4e-bookmark
@@ -175,7 +174,6 @@
 	       :name "Unread messages"
 	       :query "flag:unread AND NOT flag:trashed"
 	       :key ?u)))
-
     ;; Customization
     (setq mu4e-headers-date-format "%Y-%m-%d"
 	  mu4e-use-fancy-chars nil
@@ -183,7 +181,8 @@
 	  mu4e-headers-fields '((:human-date . 12)
 				(:flags . 6)
 				(:from . 22)
-				(:subject)))
+				(:subject))
+	  mu4e-get-mail-command "mbsync -a")
 
     :hook ((mu4e-compose-pre . skeleten/helper/mail/set-account)
 	   (mu4e-headers-mode . skeleten/helper/mail/unbold-fonts)))
@@ -255,8 +254,10 @@
   (use-package restclient-mode
     :hook
     ((restcleint-mode . company-mode)))
+  (use-package cargo)
   (use-package rust-mode
     :mode "\\.rs\\'"
+    :requires cargo
     :init
     (autoload 'rust-mode "rust-mode" nil t)
 
@@ -317,9 +318,6 @@
   (use-package eglot
     :requires rust-mode)
 
-  (use-package adoc-mode
-    :mode "\\.adoc\\'")
-
   (use-package ivy
     :config
     (ivy-mode 1))
@@ -334,9 +332,6 @@
 
   (use-package magit
     :bind (("C-x g" . magit-status)))
-
-  (use-package ace-jump-char
-    :bind (("M-m s" . ace-jump-char-mode)))
 
   (use-package origami
     :bind (("C-." . origami-toggle-node)))
@@ -361,7 +356,20 @@
     (fmakunbound 'gdb)
     (fmakunbound 'gdb-enable-debug))
 
-  (use-package yasnippet))
+  (use-package yasnippet)
+  (use-package protobuf-mode
+    :hook ((protobuf-mode . smartparens-mode)
+	   (protobuf-mode . display-line-number-mode)))
+  (use-package ace-jump-mode)
+  (use-package docker)
+  (use-package dockerfile-mode)
+  (use-package avy
+    :bind (("M-m s" . avy-goto-char)
+	   ("M-m S" . avy-goto-char-2)
+	   ("M-m w" . avy-copy-line)
+	   ("M-m W" . avy-copy-region)
+	   ("M-m k" . avy-kill-region)))
+  (use-package dracula-theme))
 
 (defun skeleten/init/misc ()
   ;; Keybindings
