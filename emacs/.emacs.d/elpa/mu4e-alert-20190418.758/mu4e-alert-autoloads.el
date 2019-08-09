@@ -6,8 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "mu4e-alert" "mu4e-alert.el" (0 0 0 0))
-;;; Generated autoloads from mu4e-alert.el
+;;;### (autoloads nil "mu4e-alert" "../../../../../.emacs.d/elpa/mu4e-alert-20190418.758/mu4e-alert.el"
+;;;;;;  "a0f3f47e7a8d037eb7ae8c1196327ac5")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/mu4e-alert-20190418.758/mu4e-alert.el
 
 (autoload 'mu4e-alert-set-default-style "mu4e-alert" "\
 Set the default style for unread email notifications.
@@ -25,8 +26,20 @@ Enable display of unread emails in mode-line.
 Enable desktop notifications for unread emails.
 
 \(fn)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "mu4e-alert" "../../../../../.emacs.d/elpa/mu4e-alert-20190418.758/mu4e-alert.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/mu4e-alert-20190418.758/mu4e-alert.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "mu4e-alert" '("mu4e-alert-")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/mu4e-alert-20190418.758/mu4e-alert-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/mu4e-alert-20190418.758/mu4e-alert.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

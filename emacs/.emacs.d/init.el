@@ -2,6 +2,7 @@
 ;; Package stuff                                                              ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq vc-follow-symlinks t)
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
@@ -35,7 +36,7 @@
 ;; Settings
 
 (setq skeleten/font		"Source Code Pro 12"
-      skeleten/theme		'ayu)
+      skeleten/theme		'badwolf)
 
 ;;
 (skeleten/init)
@@ -46,7 +47,8 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (undo-tree yasnippet yaml-mode window-number which-key treemacs toml-mode telephone-line swiper smartparens rust-mode quelpa-use-package projectile paredit origami multiple-cursors magit gdb-mi eglot dashboard company adoc-mode))))
+    (rustic xterm-color helm-lsp helm helm-core popup markdown-mode dash-functional cmake-mode yasnippet yaml-mode window-number which-key undo-tree treemacs toml-mode telephone-line smartparens rust-mode rainbow-delimiters quelpa-use-package protobuf-mode projectile paredit origami multiple-cursors mu4e-alert minimal-theme magit gdb-mi eglot dashboard counsel company badwolf-theme adoc-mode)))
+ '(send-mail-function (quote smtpmail-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

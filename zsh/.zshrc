@@ -40,7 +40,7 @@ alias S="sudo"
 
 # pacman
 
-alias pminst="trizen -S --noconfirm"
+alias pminst="trizen -Syu --noconfirm"
 alias pmsrch="trizen -Ss"
 
 # systemd
