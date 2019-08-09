@@ -254,19 +254,17 @@
   (use-package restclient-mode
     :hook
     ((restcleint-mode . company-mode)))
-  (use-package cargo)
-  (use-package rust-mode
-    :mode "\\.rs\\'"
-    :requires cargo
+  (use-package rustic
+    :mode ("\\.rs\\'" . rustic-mode)
     :init
-    (autoload 'rust-mode "rust-mode" nil t)
-
+    ;; (autoload 'rustic-mode "rustic-mode" nil t)
     :hook
-    ((rust-mode . flycheck-mode)
-     (rust-mode . origami-mode)
-     (rust-mode . cargo-minor-mode)
-     (rust-mode . yas-minor-mode-on)
+    ((rustic-mode . flycheck-mode)
+     (rustic-mode . origami-mode)
+     (rustic-mode . cargo-minor-mode)
+     (rustic-mode . yas-minor-mode-on)
      (flycheck-mode . flycheck-rust-setup)))
+
   (use-package toml-mode
     :mode "\\.toml\\'"
     :hook
@@ -315,8 +313,23 @@
     :hook
     ((treemacs-mode . treemacs-follow-mode)))
 
-  (use-package eglot
-    :requires rust-mode)
+  (use-package lsp-mode)
+  (use-package lsp-ui
+    :requires lsp-mode
+    :hook ((lsp-mode . lsp-ui-mode))
+    :config
+    (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
+    (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
+    (setq lsp-ui-doc-enable nil)
+    (setq lsp-ui-sideline-enable nil))
+  (use-package company-lsp
+    :requires lsp-mode)
+  (use-package lsp-treemacs
+    :requires lsp-mode)
+  (use-package helm-lsp
+    :requires lsp-mode)
+  (use-package dap-mode
+    :requires lsp-mode)
 
   (use-package ivy
     :config
@@ -332,6 +345,13 @@
 
   (use-package magit
     :bind (("C-x g" . magit-status)))
+
+  (use-package avy
+    :bind (("M-m s" . avy-goto-char)
+	   ("M-m S" . avy-goto-char-2)
+	   ("M-m w" . avy-copy-region)
+	   ("M-m k" . avy-kill-line)
+	   ("M-m K" . avy-kill-region)))
 
   (use-package origami
     :bind (("C-." . origami-toggle-node)))

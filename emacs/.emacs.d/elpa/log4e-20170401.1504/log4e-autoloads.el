@@ -6,8 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "log4e" "log4e.el" (0 0 0 0))
-;;; Generated autoloads from log4e.el
+;;;### (autoloads nil "log4e" "../../../../../.emacs.d/elpa/log4e-20170401.1504/log4e.el"
+;;;;;;  "d6569f6c057e3ab31974b4c23f0878d0")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/log4e-20170401.1504/log4e.el
 
 (autoload 'log4e-mode "log4e" "\
 Major mode for browsing a buffer made by log4e.
@@ -21,8 +22,20 @@ Major mode for browsing a buffer made by log4e.
 Insert logging statment for trace level log at start of current function/macro.
 
 \(fn)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "log4e" "../../../../../.emacs.d/elpa/log4e-20170401.1504/log4e.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/log4e-20170401.1504/log4e.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "log4e" '("log4e")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/log4e-20170401.1504/log4e-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/log4e-20170401.1504/log4e.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

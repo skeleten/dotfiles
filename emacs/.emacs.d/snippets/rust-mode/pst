@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: pub struct
+# key: pst
+# --
+pub struct ${1:Name} {
+    $0
+}
