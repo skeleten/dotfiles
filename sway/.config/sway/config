@@ -17,9 +17,9 @@ set $right l
 set $term kitty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu rofi -show run -theme sidebar
-set $rofi rofi -theme sidebar
-# dmenu_path | dmenu | xargs swaymsg exec --
+set $rofi rofi -theme theme
+set $menu $rofi -show run
+# demnu_path | dmenu | xargs swaymsg exec --
 
 # gaps
 
@@ -49,10 +49,12 @@ for_window [class=".*"] border pixel 2
 ### input
 
 input * xkb_layout de,us
+input "12431:10:Input_Club_Keyboard_-_WhiteFox:truefox_PixelMap_USB" xkb_layout us
+## input "Input Club Keyword - WhiteFox:truefox PixelMap USB" xkb_layout us
 
-### Output configuration
+### Output Configuration
 #
-# Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
+# Defaultz wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 output * bg ~/.wallpaper fill
 
 exec waybar

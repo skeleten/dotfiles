@@ -381,7 +381,8 @@
     (fmakunbound 'gdb-enable-debug))
 
   (use-package yasnippet)
-  (use-package protobuf-mode))
+  (use-package protobuf-mode)
+  (use-package dracula-theme))
 
 (defun skeleten/init/misc ()
   ;; Keybindings

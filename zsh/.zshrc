@@ -54,6 +54,10 @@ alias screeny="/usr/bin/gsu"
 alias kdiff="kitty +kitten diff"
 alias icat="kitty +kitten icat"
 
+# argh
+alias fd="/usr/bin/fd"
+alias gd="git difftool"
+
 ################################################################################
 # Functions
 ################################################################################
