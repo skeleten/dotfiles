@@ -27,27 +27,27 @@
   (interactive)
   (if (boundp 'skeleten/theme)
       (pcase skeleten/theme
-	;; some special treatments
-	('doom (progn (require 'doom-themes)
-		      (setq doom-themes-enable-bold t
-			    doom-themes-enable-italic t)
-		      (load-theme 'doom-one t)
-		      (doom-themes-visual-bell-config)
-		      (doom-themes-neotree-config)))
-	('doom-safe (progn (require 'doom-themes)
-			   (setq doom-themes-enable-bold t
-				 doom-themes-enable-italic t)
-			   (load-theme 'doom-molokai t)
-			   (doom-themes-visual-bell-config)))
-	('moe-dark (progn (require 'moe-theme)
-			  (setq custom-safe-themes 't)
-			  (load-theme 'moe-dark)))
-	('moe-light (progn (require 'moe-theme)
-			   (setq custom-safe-themes 't)
-			   (load-theme 'moe-light)))
-	('none nil)
-	(other (progn (setq custom-safe-themes 't)
-		      (load-theme other))))))
+		;; some special treatments
+		('doom (progn (require 'doom-themes)
+					  (setq doom-themes-enable-bold t
+							doom-themes-enable-italic t)
+					  (load-theme 'doom-one t)
+					  (doom-themes-visual-bell-config)
+					  (doom-themes-neotree-config)))
+		('doom-safe (progn (require 'doom-themes)
+						   (setq doom-themes-enable-bold t
+								 doom-themes-enable-italic t)
+						   (load-theme 'doom-molokai t)
+						   (doom-themes-visual-bell-config)))
+		('moe-dark (progn (require 'moe-theme)
+						  (setq custom-safe-themes 't)
+						  (load-theme 'moe-dark)))
+		('moe-light (progn (require 'moe-theme)
+						   (setq custom-safe-themes 't)
+						   (load-theme 'moe-light)))
+		('none nil)
+		(other (progn (setq custom-safe-themes 't)
+				  (load-theme other))))))
 
 (defun skeleten/helper/load-font ()
   (interactive)
@@ -103,6 +103,33 @@
 
 ;; INIT
 (defun skeleten/init/packages ()
+  "Initialize packages."
+  (use-package emacs
+    :preface
+    (defvar skeleten/indent-width 4)
+    :config
+    (setq frame-title-format '("emacs")
+		  ring-bell-function 'ignore
+		  frame-resize-pixelwise t
+		  default-directory "~/")
+	;; scrolling
+    (setq scroll-margin 0
+		  scroll-conservatively 10000
+		  scroll-preserve-screen-position t
+		  auto-window-vscroll nil
+		  mouse-wheel-scroll-amount '(1 ((shift) . 1))
+		  mouse-wheel-progressive-speed nil)
+    (setq line-spacing 3)
+    (setq-default indent-tabs-mode t
+				  tab-width skeleten/indent-width)
+	;; less clutter
+	(tool-bar-mode -1)
+    (menu-bar-mode -1)
+	(scroll-bar-mode -1)
+	(delete-selection-mode +1)
+	(column-number-mode +1)
+	;; offsets
+	(setq-default c-basic-offset skeleten/indent-width))
 
   (use-package window-number
     :config
@@ -221,7 +248,7 @@
 
   (use-package paredit
     :ensure t
-    :hook ((emacs-lisp-mode . paredit-mode)))
+    :hook ((emacs-lisp-mode . enable-paredit-mode)))
 
   (use-package latex
     :init
@@ -251,19 +278,31 @@
      (prog-mode . smartparens-mode)
      (prog-mode . rainbow-delimiters-mode)))
 
+  (use-package flycheck :config (global-flycheck-mode +1))
   (use-package restclient-mode
     :hook
     ((restcleint-mode . company-mode)))
   (use-package rustic
     :mode ("\\.rs\\'" . rustic-mode)
-    :init
-    ;; (autoload 'rustic-mode "rustic-mode" nil t)
+    :requires ra-emacs-lsp lsp-mode dash ht
+    :config
+    (lsp-register-client
+     (make-lsp-client
+      :new-connection (lsp-stdio-connection (lambda () rust-analyzer-command))
+      :notification-handlers (ht<-alist rust-analyzer--notification-handlers)
+      :action-handlers (ht<-alist rust-analyzer--action-handlers)
+      :major-modes '(rustic-mode rust-mode)
+      :priority 1
+      :ignore-messages nil
+      :server-id 'rust-analyzer))
     :hook
-    ((rustic-mode . flycheck-mode)
+    ((rustic-mode . lsp)
+     (rustic-mode . flycheck-mode)
      (rustic-mode . origami-mode)
      (rustic-mode . cargo-minor-mode)
      (rustic-mode . yas-minor-mode-on)
-     (flycheck-mode . flycheck-rust-setup)))
+     ;; (flycheck-mode . flycheck-rust-setup)
+	 ))
 
   (use-package toml-mode
     :mode "\\.toml\\'"
@@ -331,6 +370,14 @@
   (use-package dap-mode
     :requires lsp-mode)
 
+  (use-package lsp-java
+	:after lsp-mode
+	:hook (java-mode . lsp))
+
+  (use-package ra-emacs-lsp
+    :load-path "/home/skeleten/.emacs.d/cust"
+    :requires lsp-mode)
+
   (use-package ivy
     :config
     (ivy-mode 1))
@@ -342,6 +389,52 @@
     :bind (("M-x"	. counsel-M-x)
 	   ("C-x C-f"	. counsel-find-file)
 	   ("C-h f"	. counsel-describe-function)))
+  (use-package ivy-posframe
+	:after ivy
+	:diminish
+	:config
+	(setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center))
+		  ivy-posframe-height-alist '((t . 20))
+		  ivy-posframe-parameters '((internal-border-width . 10))
+		  ivy-posframe-width 70)
+	(ivy-posframe-mode +1))
+  (use-package ivy-rich
+	:preface
+	(defun ivy-rich-switch-buffer-icon (candidate)
+	  (with-current-buffer
+		  (get-buffer candidate)
+		(all-the-icons-icon-for-mode major-mode)))
+	:init
+	(setq ivy-rich-display-transformers-list
+		  '(ivy-switch-buffer
+			(:columns
+			 ((ivy-rich-switch-buffer-icon (:widht 2))
+			  (ivy-rich-candidate (:width 35))
+			  (ivy-rich-switch-buffer-project (:width 15 :face success))
+			  (ivy-rich-switch-buffer-major-mode (:width 13 :face warning)))
+			 :predicate
+			 #'(lambda (cand) (get-buffer cand)))
+			counsel-M-x
+			(:columns
+			 ((counsel-M-x-transformer (:width 35))
+			  (ivy-rich-counsel-function-docstring (:width 34 :face font-lock-doc-face))))
+			counsel-describe-function
+			(:columns
+			 ((counsel-describe-function-transformer (:width 35))
+			  (ivy-rich-counsel-function-docstring (:width 34 :face font-lock-doc-face))))
+			counsel-describe-variable
+          (:columns
+           ((counsel-describe-variable-transformer (:width 35))
+            (ivy-rich-counsel-variable-docstring (:width 34 :face font-lock-doc-face))))
+          package-install
+          (:columns
+           ((ivy-rich-candidate (:width 25))
+            (ivy-rich-package-version (:width 12 :face font-lock-comment-face))
+            (ivy-rich-package-archive-summary (:width 7 :face font-lock-builtin-face))
+            (ivy-rich-package-install-summary (:width 23 :face font-lock-doc-face))))))
+  :config
+  (ivy-rich-mode +1)
+  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line))
 
   (use-package magit
     :bind (("C-x g" . magit-status)))
@@ -375,8 +468,6 @@
     :init
     (fmakunbound 'gdb)
     (fmakunbound 'gdb-enable-debug))
-
-  (use-package yasnippet)
   (use-package protobuf-mode
     :hook ((protobuf-mode . smartparens-mode)
 	   (protobuf-mode . display-line-number-mode)))
@@ -389,9 +480,79 @@
 	   ("M-m w" . avy-copy-line)
 	   ("M-m W" . avy-copy-region)
 	   ("M-m k" . avy-kill-region)))
-  (use-package dracula-theme))
+
+  ;; java
+  (use-package gradle-mode)
+  (use-package jdee
+    :config (setq jdee-server-dir "~/.jars/"))
+  (use-package ediff
+	:ensure nil
+	:config
+	(setq ediff-split-window-function 'split-window-horizontally))
+
+  (use-package highlight-numbers
+	:hook (prog-mode . highlight-numbers-mode))
+  (use-package highlight-operators
+	:hook ((c-mode . highlight-operators-mode)
+		   (rust-mode . highlight-operators-mode)))
+  (use-package highlight-escape-sequences
+	:hook (prog-mode . hes-mode))
+  (use-package solaire-mode
+	:hook
+	((change-major-mode after-revert ediff-prepare-buffer) . turn-on-solaire-mode)
+	(minibuffer-setup . solaire-mode-in-minibuffer)
+	:config
+	(solaire-global-mode +1)
+	(solaire-mode-swap-bg))
+  (use-package all-the-icons)
+  (use-package centaur-tabs
+	:demand
+	:config
+	(centaur-tabs-mode +1)
+	(centaur-tabs-headline-match)
+	(centaur-tabs-group-by-projectile-project)
+	(setq centaur-tabs-style "bar"
+		  centaur-tabs-set-icons t
+		  centaur-tabs-set-bar 'under
+		  centaur-tabs-set-modified-marker t
+		  centaur-tabs-cycle-scope 'tabs
+		  centaur-tabs-modified-marker " ● "
+		  centaur-tabs-close-button " × "
+		  centaur-tabs-height 30)
+	:bind
+	("C-<tab>" . centaur-tabs-forward)
+	("C-<prior>" . centaur-tabs-backward)
+	("C-S-<prior>" . centaur-tabs-backward-group)
+	("C-<next>" . centaur-tabs-forward)
+	("C-S-<next>" . centaur-tabs-forward-group)
+	("C-S-<return>" . centaur-tabs-switch-group))
+
+  (use-package highlight-indent-guides
+	:config (setq highlight-indent-guides-method 'character)
+	:hook (prog-mode . highlight-indent-guides-mode))
+
+  (use-package flx)
+  (use-package prescient
+	:config
+	(setq precient-filter-method '(literal regexp initialism fuzzy))
+	(prescient-persist-mode +1))
+  (use-package ivy-prescient
+	:after (prescient ivy)
+	:config
+	(setq ivy-prescient-sort-commands '(:not swiper counsel-grp ivy-switch-buffer))
+	(setq ivy-prescient-retain-classic-highlighting t)
+	(ivy-prescient-mode +1))
+  (use-package company-prescient
+	:after (prescient company)
+	:config (company-prescient-mode +1))
+  (use-package diminish)
+  ;; END OF USE-PACKAGE
+  )
+
+
 
 (defun skeleten/init/misc ()
+  "Misc stuff, that hasnt been sorted yet."
   ;; Keybindings
   (global-set-key [remap move-beginning-of-line]
 		  'skeleten/helper/smarter-move-beginning-of-line)
@@ -413,11 +574,10 @@
     (skeleten/helper/load-theme)
     (skeleten/helper/load-font))
 
-  ;; less clutter
-  (tool-bar-mode -1)
-  (menu-bar-mode -1)
-  (scroll-bar-mode -1)
-
+  ;; Kill background processes
+  (setq confirm-kill-processes nil)
+  ;; no backup files
+  (setq make-backup-files nil)
   ;; misc hooks
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -426,6 +586,10 @@
   (global-set-key (kbd "M-p") 'skeleten/helper/edit-above))
 
 (defun skeleten/init ()
+  "Custom initializiation routines."
   (interactive)
-  (progn (skeleten/init/misc)
-	 (skeleten/init/packages)))
+  (progn
+	(skeleten/init/misc)
+	(skeleten/init/packages)))
+
+;;; config.el ends here

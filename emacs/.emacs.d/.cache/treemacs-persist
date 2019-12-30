@@ -1,3 +1,5 @@
 * Default Workspace
-** inventory
- - path :: ~/src/vkm/inventory
+** vkm
+ - path :: ~/src/vkm
+** bp
+ - path :: ~/uni/wise1920/bp

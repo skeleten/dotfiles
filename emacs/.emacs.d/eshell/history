@@ -12,3 +12,4 @@ export ccccd ..
 export RUST_LOG=authen_s=trace
 cargo run
 exit
+setxkbmap us

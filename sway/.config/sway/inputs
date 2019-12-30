@@ -1,0 +1,13 @@
+# -*- mode: conf -*-
+# SWAY input configuration
+
+
+# Default settings
+input  * {
+       xkb_layout	"de, us"
+}
+
+# Might nightfox is US-Layout based
+input	"12431:10:Input_Club_Keyboard_-_WhiteFox:truefox_PixelMap_USB" {
+	xkb_layout	us
+}

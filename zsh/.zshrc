@@ -67,3 +67,9 @@ alias icat="kitty +kitten icat"
 function mkcd() {
     mkdir -p $1 && cd $1
 }
+
+################################################################################
+# Bugfixes and workarounds
+################################################################################
+
+export _JAVA_AWT_WM_NONREPARENTING=1

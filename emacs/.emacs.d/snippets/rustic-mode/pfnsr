@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: pub fn N(&self) -> R
+# key: pfnsr
+# --
+pub fn ${1:N}(&self) -> ${2:R} {
+    $0
+}

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: deriving
+# key: deriving
+# --
+#[derive($1)]$0

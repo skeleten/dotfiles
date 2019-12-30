@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: let mut
+# key: letm
+# --
+let mut ${1:name} = ${2:value};
+$0
