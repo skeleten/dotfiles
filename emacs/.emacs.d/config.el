@@ -23,32 +23,6 @@
     (when (= orig-point (point))
       (move-beginning-of-line 1))))
 
-(defun skeleten/helper/load-theme ()
-  (interactive)
-  (if (boundp 'skeleten/theme)
-      (pcase skeleten/theme
-		;; some special treatments
-		('doom (progn (require 'doom-themes)
-					  (setq doom-themes-enable-bold t
-							doom-themes-enable-italic t)
-					  (load-theme 'doom-one t)
-					  (doom-themes-visual-bell-config)
-					  (doom-themes-neotree-config)))
-		('doom-safe (progn (require 'doom-themes)
-						   (setq doom-themes-enable-bold t
-								 doom-themes-enable-italic t)
-						   (load-theme 'doom-molokai t)
-						   (doom-themes-visual-bell-config)))
-		('moe-dark (progn (require 'moe-theme)
-						  (setq custom-safe-themes 't)
-						  (load-theme 'moe-dark)))
-		('moe-light (progn (require 'moe-theme)
-						   (setq custom-safe-themes 't)
-						   (load-theme 'moe-light)))
-		('none nil)
-		(other (progn (setq custom-safe-themes 't)
-				  (load-theme other))))))
-
 (defun skeleten/helper/load-font ()
   (interactive)
   (set-face-attribute 'default nil :font skeleten/font)
@@ -347,8 +321,8 @@
     (add-hook 'treemacs-mode-hook
 	      (lambda () (treemacs-git-mode 'deferred)))
     (setq treemacs-width 25
-	  treemacs-show-hidden-files t
-	  treemacs-no-png-images t)
+		  treemacs-show-hidden-files t
+		  treemacs-no-png-images nil)
     :hook
     ((treemacs-mode . treemacs-follow-mode)))
 
@@ -398,22 +372,26 @@
 		  ivy-posframe-parameters '((internal-border-width . 10))
 		  ivy-posframe-width 70)
 	(ivy-posframe-mode +1))
+
   (use-package ivy-rich
 	:preface
 	(defun ivy-rich-switch-buffer-icon (candidate)
 	  (with-current-buffer
 		  (get-buffer candidate)
-		(all-the-icons-icon-for-mode major-mode)))
+		(all-the-icons-icon-for-buffer)))
+	(defun ivy-rich-switch-buffer-get-buffer (cand)
+	  (get-buffer cand))
 	:init
-	(setq ivy-rich-display-transformers-list
+	(setq ivy-rich-display-transformers-list ; max column width sum = (ivy-poframe-width - 1)
 		  '(ivy-switch-buffer
 			(:columns
-			 ((ivy-rich-switch-buffer-icon (:widht 2))
+			 ((ivy-rich-switch-buffer-icon (:width 2))
 			  (ivy-rich-candidate (:width 35))
 			  (ivy-rich-switch-buffer-project (:width 15 :face success))
-			  (ivy-rich-switch-buffer-major-mode (:width 13 :face warning)))
-			 :predicate
-			 #'(lambda (cand) (get-buffer cand)))
+			  (ivy-rich-switch-buffer-major-mode (:width 13 :face warning))
+			  )
+			 :predicate ivy-rich-switch-buffer-get-buffer
+			 )
 			counsel-M-x
 			(:columns
 			 ((counsel-M-x-transformer (:width 35))
@@ -423,18 +401,18 @@
 			 ((counsel-describe-function-transformer (:width 35))
 			  (ivy-rich-counsel-function-docstring (:width 34 :face font-lock-doc-face))))
 			counsel-describe-variable
-          (:columns
-           ((counsel-describe-variable-transformer (:width 35))
-            (ivy-rich-counsel-variable-docstring (:width 34 :face font-lock-doc-face))))
-          package-install
-          (:columns
-           ((ivy-rich-candidate (:width 25))
-            (ivy-rich-package-version (:width 12 :face font-lock-comment-face))
-            (ivy-rich-package-archive-summary (:width 7 :face font-lock-builtin-face))
-            (ivy-rich-package-install-summary (:width 23 :face font-lock-doc-face))))))
-  :config
-  (ivy-rich-mode +1)
-  (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line))
+			(:columns
+			 ((counsel-describe-variable-transformer (:width 35))
+			  (ivy-rich-counsel-variable-docstring (:width 34 :face font-lock-doc-face))))
+			package-install
+			(:columns
+			 ((ivy-rich-candidate (:width 25))
+			  (ivy-rich-package-version (:width 12 :face font-lock-comment-face))
+			  (ivy-rich-package-archive-summary (:width 7 :face font-lock-builtin-face))
+			  (ivy-rich-package-install-summary (:width 23 :face font-lock-doc-face))))))
+	:config
+	(ivy-rich-mode +1)
+	(setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line))
 
   (use-package magit
     :bind (("C-x g" . magit-status)))
@@ -507,18 +485,19 @@
   (use-package all-the-icons)
   (use-package centaur-tabs
 	:demand
+	:init
+	(setq centaur-tabs-set-bar 'over)
 	:config
 	(centaur-tabs-mode +1)
 	(centaur-tabs-headline-match)
 	(centaur-tabs-group-by-projectile-project)
 	(setq centaur-tabs-style "bar"
 		  centaur-tabs-set-icons t
-		  centaur-tabs-set-bar 'under
 		  centaur-tabs-set-modified-marker t
 		  centaur-tabs-cycle-scope 'tabs
 		  centaur-tabs-modified-marker " ● "
 		  centaur-tabs-close-button " × "
-		  centaur-tabs-height 30)
+		  centaur-tabs-height 34)
 	:bind
 	("C-<tab>" . centaur-tabs-forward)
 	("C-<prior>" . centaur-tabs-backward)
@@ -546,6 +525,17 @@
 	:after (prescient company)
 	:config (company-prescient-mode +1))
   (use-package diminish)
+  (use-package doom-themes
+	:config
+	(setq doom-themes-enable-bold t
+		  doom-themes-enable-italic t)
+	(load-theme 'doom-vibrant t)
+	(doom-themes-visual-bell-config)
+	(doom-themes-neotree-config)
+	(setq doom-themes-treemacs-theme "doom-colors")
+	(doom-themes-treemacs-config)
+	(doom-themes-org-config))
+
   ;; END OF USE-PACKAGE
   )
 
@@ -569,9 +559,7 @@
   (if (daemonp)
       (add-hook 'after-make-frame-functions
 		(lambda (frm) (with-selected-frame frm
-			   (skeleten/helper/load-theme)
 			   (skeleten/helper/load-font))))
-    (skeleten/helper/load-theme)
     (skeleten/helper/load-font))
 
   ;; Kill background processes

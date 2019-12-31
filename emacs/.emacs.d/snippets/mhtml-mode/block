@@ -4,4 +4,4 @@
 # --
 {% block ${1:blockname} %}
 $0
-{% endblock $1}
+{% endblock $1 %}
