@@ -47,7 +47,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(doom-themes swiper transient lsp-ui lsp-treemacs lsp-mode ivy dracula-theme docker dap-mode avy quelpa diminish request company-prescient ivy-prescient prescient ivy-rich ivy-posframe posframe flx highlight-indent-guides all-the-icons centaur-tabs powerline jdee memoize flycheck gradle-mode rainbow-mode rustic xterm-color helm-lsp helm helm-core popup markdown-mode dash-functional cmake-mode yasnippet yaml-mode window-number which-key undo-tree treemacs toml-mode telephone-line smartparens rainbow-delimiters quelpa-use-package protobuf-mode projectile paredit origami multiple-cursors mu4e-alert minimal-theme magit gdb-mi eglot dashboard counsel company badwolf-theme adoc-mode)))
+	(ranger doom-themes swiper transient lsp-ui lsp-treemacs lsp-mode ivy dracula-theme docker dap-mode avy quelpa diminish request company-prescient ivy-prescient prescient ivy-rich ivy-posframe posframe flx highlight-indent-guides all-the-icons centaur-tabs powerline jdee memoize flycheck gradle-mode rainbow-mode rustic xterm-color helm-lsp helm helm-core popup markdown-mode dash-functional cmake-mode yasnippet yaml-mode window-number which-key undo-tree treemacs toml-mode telephone-line smartparens rainbow-delimiters quelpa-use-package protobuf-mode projectile paredit origami multiple-cursors mu4e-alert minimal-theme magit gdb-mi eglot dashboard counsel company badwolf-theme adoc-mode)))
  '(safe-local-variable-values (quote ((eval sql-highlight-postgres-keywords))))
  '(send-mail-function (quote smtpmail-send-it)))
 (custom-set-faces

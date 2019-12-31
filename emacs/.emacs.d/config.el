@@ -357,9 +357,13 @@
     (ivy-mode 1))
   (use-package swiper
     :requires ivy
+	:config
+	(setq swiper-action-recenter t
+		  swiper-goto-start-of-match t)
     :bind (("C-s"	. swiper)))
   (use-package counsel
     :requires swiper ivy
+	:hook (ivy-mode . counsel-mode)
     :bind (("M-x"	. counsel-M-x)
 	   ("C-x C-f"	. counsel-find-file)
 	   ("C-h f"	. counsel-describe-function)))
@@ -532,12 +536,14 @@
 	(load-theme 'doom-vibrant t)
 	(doom-themes-visual-bell-config)
 	(doom-themes-neotree-config)
-	(setq doom-themes-treemacs-theme "doom-colors")
+	(setq doom-themes-treemacs-theme "doom-vibrant")
 	(doom-themes-treemacs-config)
 	(doom-themes-org-config))
-
+  (use-package ranger
+	:config
+	(setq ranger-cleanup-eagerly t))
   ;; END OF USE-PACKAGE
-  )
+)
 
 
 
