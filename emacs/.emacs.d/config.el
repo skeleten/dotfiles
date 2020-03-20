@@ -1,15 +1,17 @@
-;; Variablen
-
+;;; config -- Configuration methods
+;;; Commentary:
+;;; Code:
 (defvar skeleten/font nil
-  "Font to use in buffers")
+  "Font to use in buffers.")
 (defvar skeleten/theme 'none
-  "Theme to load, or 'none to skip")
+  "Theme to load, or 'none to skip.")
 (defvar skeleten/org-files-base-dir ""
-  "Base directory of org files")
+  "Base directory of org files.")
 
 
 ;; Helper
 (defun skeleten/helper/smarter-move-beginning-of-line (arg)
+  "Move to the beginning of text in the current line."
   (interactive "^p")
   (setq arg (or arg 1))
 
@@ -24,27 +26,31 @@
       (move-beginning-of-line 1))))
 
 (defun skeleten/helper/load-font ()
+  "Load the configured fonts."
   (interactive)
   (set-face-attribute 'default nil :font skeleten/font)
   (set-frame-font skeleten/font nil t)
-  (set-default-font skeleten/font)
+  (set-frame-font skeleten/font)
   (add-to-list 'default-frame-alist `(font . ,skeleten/font)))
 
 (defun skeleten/helper/mail/set-account ()
+  "Setup mail accounts for mu4e."
   (let* ((account
-	  (if mu4e-compose-parent-message
-	      (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
-		(string-match "/\\(.*?\\)/" maildir))
-	    (mu4e-context-name (mu4e-context-current))))
-	 (account-vars (cdr (assoc account my-mu4e-account-alist))))
+		  (if mu4e-compose-parent-message
+			  (let ((maildir (mu4e-message-field mu4e-compose-parent-message
+												 :maildir)))
+				(string-match "/\\(.*?\\)/" maildir))
+			(mu4e-context-name (mu4e-context-current))))
+		 (account-vars (cdr (assoc account my-mu4e-account-alist))))
     (if account-vars
-	(mapc #'(lambda (var)
-		  (message "set " (car var) " to " (cadr var))
-		  (set (car var) (cadr var)))
-	      account-vars)
+		(mapc #'(lambda (var)
+				  (message "set " (car var) " to " (cadr var))
+				  (set (car var) (cadr var)))
+			  account-vars)
       (error "No email account found"))))
 
 (defun skeleten/helper/mail/unbold-fonts ()
+  "Alter faces used in mu4e to not be bold."
   (interactive)
   (set-face-attribute 'mu4e-header-highlight-face nil :bold nil)
   (set-face-attribute 'mu4e-unread-face nil :bold nil)
@@ -52,14 +58,17 @@
   (set-face-attribute 'mu4e-context-face nil :bold nil))
 
 (defun skeleten/helper/def-global-key (key desc command)
+  "Define a global keybinding KEY with the description DESC to execute COMMAND."
   (global-set-key (kbd key) command)
   (which-key-add-key-based-replacements key desc))
 
 (defun skeleten/helper/def-global-prefix (pref desc)
+  "Define a global prefix PREF with the description DESC."
   (which-key-add-prefix-title pref desc))
 
 (defun skeleten/helper/draw-pgbrk-as-line ()
-  "Credit: http://ergoemacs.org/emacs/emacs_form_feed_section_paging.html"
+  "Draw pagebreaks as a solid Line.
+Credit: http://ergoemacs.org/emacs/emacs_form_feed_section_paging.html ."
   (interactive)
   (progn (when (not buffer-display-table)
 	   (setq buffer-display-table (make-display-table)))
@@ -68,16 +77,19 @@
 	 (redraw-frame)))
 
 (defun skeleten/helper/edit-above ()
+  "Insert a new line above the current and move the cursor there."
   (interactive)
-  (previous-line)
-  (end-of-line)
+  (beginning-of-line)
   (newline)
+  (previous-line)
   (indent-for-tab-command))
 
 
 ;; INIT
 (defun skeleten/init/packages ()
-  "Initialize packages."
+  "Initialize packages.
+This will download/install any missing packages and take care of the
+configuration using `use-package'."
   (use-package emacs
     :preface
     (defvar skeleten/indent-width 4)
@@ -100,6 +112,7 @@
 	(tool-bar-mode -1)
     (menu-bar-mode -1)
 	(scroll-bar-mode -1)
+	;; other tweaks
 	(delete-selection-mode +1)
 	(column-number-mode +1)
 	;; offsets
@@ -245,12 +258,16 @@
   (use-package rainbow-delimiters)
 
   (use-package prog-mode
+	:config
+	(setq-default fill-column 100)
     :hook
     ((prog-mode . company-mode)
      (prog-mode . display-line-numbers-mode)
+	 (prog-mode . display-fill-column-indicator-mode)
      (prog-mode . prettify-symbols-mode)
      (prog-mode . smartparens-mode)
-     (prog-mode . rainbow-delimiters-mode)))
+     (prog-mode . rainbow-delimiters-mode)
+	 (prog-mode . hs-minor-mode)))
 
   (use-package flycheck :config (global-flycheck-mode +1))
   (use-package restclient-mode
@@ -260,6 +277,7 @@
     :mode ("\\.rs\\'" . rustic-mode)
     :requires ra-emacs-lsp lsp-mode dash ht
     :config
+	(setq fill-column 100)
     (lsp-register-client
      (make-lsp-client
       :new-connection (lsp-stdio-connection (lambda () rust-analyzer-command))
@@ -269,14 +287,16 @@
       :priority 1
       :ignore-messages nil
       :server-id 'rust-analyzer))
+	(defun /skeleten/rustic-mode/setup ()
+	  (setq fill-column 100))
     :hook
     ((rustic-mode . lsp)
      (rustic-mode . flycheck-mode)
      (rustic-mode . origami-mode)
      (rustic-mode . cargo-minor-mode)
      (rustic-mode . yas-minor-mode-on)
-     ;; (flycheck-mode . flycheck-rust-setup)
-	 ))
+	 (rustic-mode . /skeleten/rustic-mode/setup)
+     (flycheck-mode . flycheck-rust-setup)))
 
   (use-package toml-mode
     :mode "\\.toml\\'"
@@ -343,10 +363,6 @@
     :requires lsp-mode)
   (use-package dap-mode
     :requires lsp-mode)
-
-  (use-package lsp-java
-	:after lsp-mode
-	:hook (java-mode . lsp))
 
   (use-package ra-emacs-lsp
     :load-path "/home/skeleten/.emacs.d/cust"
@@ -420,6 +436,14 @@
 
   (use-package magit
     :bind (("C-x g" . magit-status)))
+  (use-package forge
+	:after magit
+	:config
+	(add-to-list 'forge-alist
+				 '("git.vkm.maschinenbau.tu-darmstadt.de"
+				   "git.vkm.maschinenbau.tu-darmstadt.de/api/v4"
+				   "git.vkm.maschinenbau.tu-darmstadt.de"
+				   forge-gitlab-repository)))
 
   (use-package avy
     :bind (("M-m s" . avy-goto-char)
@@ -428,10 +452,11 @@
 	   ("M-m k" . avy-kill-line)
 	   ("M-m K" . avy-kill-region)))
 
-  (use-package origami
-    :bind (("C-." . origami-toggle-node)))
+  (use-package hs-minor-mode
+	:bind (("C-." . hs-toggle-hiding)))
 
   (use-package projectile
+	:config (setq projectile-completion-system 'ivy)
     :bind (("M-m f f" . projectile-find-file)))
 
   (use-package treemacs
@@ -443,13 +468,6 @@
     :config
     (setq org-agenda-files '("~/org")))
 
-  (use-package gdb-mi
-    :quelpa (gdb-mi :fetcher git
-		    :url "https://github.com/weirdNox/emacs-gdb.git"
-		    :files ("*.el" "*.c" "*.h" "Makefile"))
-    :init
-    (fmakunbound 'gdb)
-    (fmakunbound 'gdb-enable-debug))
   (use-package protobuf-mode
     :hook ((protobuf-mode . smartparens-mode)
 	   (protobuf-mode . display-line-number-mode)))
@@ -463,10 +481,8 @@
 	   ("M-m W" . avy-copy-region)
 	   ("M-m k" . avy-kill-region)))
 
-  ;; java
   (use-package gradle-mode)
-  (use-package jdee
-    :config (setq jdee-server-dir "~/.jars/"))
+
   (use-package ediff
 	:ensure nil
 	:config
@@ -536,16 +552,20 @@
 	(load-theme 'doom-vibrant t)
 	(doom-themes-visual-bell-config)
 	(doom-themes-neotree-config)
-	(setq doom-themes-treemacs-theme "doom-vibrant")
+	(setq doom-themes-treemacs-theme "doom-colors")
 	(doom-themes-treemacs-config)
 	(doom-themes-org-config))
   (use-package ranger
 	:config
 	(setq ranger-cleanup-eagerly t))
+  (use-package sublimity)
+  (use-package sublimity-scroll
+	:requires sublimity)
+  (use-package expand-region
+	:bind
+	(("M-n" . 'er/expand-region)))
   ;; END OF USE-PACKAGE
 )
-
-
 
 (defun skeleten/init/misc ()
   "Misc stuff, that hasnt been sorted yet."
@@ -585,5 +605,4 @@
   (progn
 	(skeleten/init/misc)
 	(skeleten/init/packages)))
-
 ;;; config.el ends here

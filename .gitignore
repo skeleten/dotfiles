@@ -13,3 +13,9 @@ emacs/.emacs.d/.#recentf
 .offlineimaprc
 emacs/.emacs.d/secrets.el
 *.elc
+emacs/.emacs.d/elpa/.
+emacs/.emacs.d/quelpa/.
+emacs/.emacs.d/quelpa/**
+emacs/.emacs.d/elpa/**
+emacs/.emacs.d/quelpa/cache
+emacs/.emacs.d/quelpa/melpa/**
