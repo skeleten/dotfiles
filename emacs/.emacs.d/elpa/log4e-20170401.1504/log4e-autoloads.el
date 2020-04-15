@@ -19,9 +19,7 @@ Major mode for browsing a buffer made by log4e.
 \(fn)" t nil)
 
 (autoload 'log4e:insert-start-log-quickly "log4e" "\
-Insert logging statment for trace level log at start of current function/macro.
-
-\(fn)" t nil)
+Insert logging statment for trace level log at start of current function/macro." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "log4e" "../../../../../.emacs.d/elpa/log4e-20170401.1504/log4e.el"
 ;;;;;;  (0 0 0 0))

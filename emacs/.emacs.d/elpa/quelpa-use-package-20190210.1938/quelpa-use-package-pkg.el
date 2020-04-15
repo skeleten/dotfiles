@@ -1,2 +1,2 @@
-;;; -*- no-byte-compile: t -*-
-(define-package "quelpa-use-package" "20190210.1938" "quelpa handler for use-package" '((emacs "24.3") (quelpa "0") (use-package "2")) :authors '(("steckerhalter")) :maintainer '("steckerhalter") :url "https://framagit.org/steckerhalter/quelpa-use-package")
+;;; Generated package description from /home/skeleten/.emacs.d/elpa/quelpa-use-package-20190210.1938/quelpa-use-package.el  -*- no-byte-compile: t -*-
+(define-package "quelpa-use-package" "20190210.1938" "quelpa handler for use-package" '((emacs "24.3") (quelpa "0") (use-package "2")) :authors '(("steckerhalter")) :maintainer '("steckerhalter") :keywords '("package" "management" "elpa" "use-package") :url "https://framagit.org/steckerhalter/quelpa-use-package")

@@ -1,2 +1,2 @@
-;;; -*- no-byte-compile: t -*-
-(define-package "ivy-posframe" "20191226.737" "Using posframe to show Ivy" '((emacs "26.0") (posframe "0.1.0") (ivy "0.11.0")) :authors '(("Feng Shu")) :maintainer '("Feng Shu" . "tumashu@163.com") :url "https://github.com/tumashu/ivy-posframe")
+;;; Generated package description from /home/skeleten/.emacs.d/elpa/ivy-posframe-20191226.737/ivy-posframe.el  -*- no-byte-compile: t -*-
+(define-package "ivy-posframe" "20191226.737" "Using posframe to show Ivy" '((emacs "26.0") (posframe "0.1.0") (ivy "0.11.0")) :authors '(("Feng Shu")) :maintainer '("Feng Shu" . "tumashu@163.com") :keywords '("abbrev" "convenience" "matching" "ivy") :url "https://github.com/tumashu/ivy-posframe")

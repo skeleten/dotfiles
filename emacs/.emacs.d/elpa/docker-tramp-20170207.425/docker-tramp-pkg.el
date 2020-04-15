@@ -1,12 +1,12 @@
 (define-package "docker-tramp" "20170207.425" "TRAMP integration for docker containers"
   '((emacs "24")
-    (cl-lib "0.5"))
-  :keywords
-  '("docker" "convenience")
+	(cl-lib "0.5"))
   :authors
   '(("Mario Rodas" . "marsam@users.noreply.github.com"))
   :maintainer
   '("Mario Rodas" . "marsam@users.noreply.github.com")
+  :keywords
+  '("docker" "convenience")
   :url "https://github.com/emacs-pe/docker-tramp.el")
 ;; Local Variables:
 ;; no-byte-compile: t

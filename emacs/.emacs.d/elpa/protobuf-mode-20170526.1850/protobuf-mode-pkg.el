@@ -1,2 +1,2 @@
-;;; -*- no-byte-compile: t -*-
-(define-package "protobuf-mode" "20170526.1850" "major mode for editing protocol buffers." 'nil :authors '(("Alexandre Vassalotti" . "alexandre@peadrop.com")) :maintainer '("Alexandre Vassalotti" . "alexandre@peadrop.com"))
+;;; Generated package description from /home/skeleten/.emacs.d/elpa/protobuf-mode-20170526.1850/protobuf-mode.el  -*- no-byte-compile: t -*-
+(define-package "protobuf-mode" "20170526.1850" "major mode for editing protocol buffers." 'nil :authors '(("Alexandre Vassalotti" . "alexandre@peadrop.com")) :maintainer '("Alexandre Vassalotti" . "alexandre@peadrop.com") :keywords '("google" "protobuf" "languages"))

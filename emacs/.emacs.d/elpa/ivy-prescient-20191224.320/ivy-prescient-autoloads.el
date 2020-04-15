@@ -6,8 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "ivy-prescient" "ivy-prescient.el" (0 0 0 0))
-;;; Generated autoloads from ivy-prescient.el
+;;;### (autoloads nil "ivy-prescient" "../../../../../.emacs.d/elpa/ivy-prescient-20191224.320/ivy-prescient.el"
+;;;;;;  "45ed1e4e86104ba767c4a8393e8b023b")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/ivy-prescient-20191224.320/ivy-prescient.el
 
 (defvar ivy-prescient-mode nil "\
 Non-nil if Ivy-Prescient mode is enabled.
@@ -22,13 +23,27 @@ or call the function `ivy-prescient-mode'.")
 (autoload 'ivy-prescient-mode "ivy-prescient" "\
 Minor mode to use prescient.el in Ivy menus.
 
+If called interactively, enable Ivy-Prescient mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called
+from Lisp, also enable the mode if ARG is omitted or nil, and
+toggle it if ARG is `toggle'; disable the mode otherwise.
+
 \(fn &optional ARG)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "ivy-prescient"
+;;;;;;  "../../../../../.emacs.d/elpa/ivy-prescient-20191224.320/ivy-prescient.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/ivy-prescient-20191224.320/ivy-prescient.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ivy-prescient" '("ivy-prescient-")))
 
 ;;;***
+
+;;;***
 
-;;;### (autoloads nil nil ("ivy-prescient-pkg.el") (0 0 0 0))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/ivy-prescient-20191224.320/ivy-prescient-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/ivy-prescient-20191224.320/ivy-prescient.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

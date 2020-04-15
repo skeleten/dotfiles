@@ -1,5 +1,9 @@
 * Default Workspace
 ** vkm
  - path :: ~/src/vkm
+** dotfiles
+ - path :: ~/dotfiles
 ** bp
  - path :: ~/uni/wise1920/bp
+** skeleten
+ - path :: ~/src/skeleten

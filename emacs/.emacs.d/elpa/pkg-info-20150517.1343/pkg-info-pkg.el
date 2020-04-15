@@ -1,2 +1,2 @@
-;;; -*- no-byte-compile: t -*-
-(define-package "pkg-info" "20150517.1343" "Information about packages" '((epl "0.8")) :authors '(("Sebastian Wiesner" . "swiesner@lunaryorn.com")) :maintainer '("Sebastian Wiesner" . "swiesner@lunaryorn.com") :url "https://github.com/lunaryorn/pkg-info.el")
+;;; Generated package description from /home/skeleten/.emacs.d/elpa/pkg-info-20150517.1343/pkg-info.el  -*- no-byte-compile: t -*-
+(define-package "pkg-info" "20150517.1343" "Information about packages" '((epl "0.8")) :authors '(("Sebastian Wiesner" . "swiesner@lunaryorn.com")) :maintainer '("Sebastian Wiesner" . "swiesner@lunaryorn.com") :keywords '("convenience") :url "https://github.com/lunaryorn/pkg-info.el")

@@ -1,0 +1,2 @@
+;;; Generated package description from /home/skeleten/.emacs.d/elpa/ranger-20200218.303/ranger.el  -*- no-byte-compile: t -*-
+(define-package "ranger" "20200218.303" "Make dired more like ranger" '((emacs "24.4")) :authors '(("Rich Alesi <https://github.com/ralesi>")) :maintainer '("Rich Alesi <https://github.com/ralesi>") :keywords '("files" "convenience" "dired") :url "https://github.com/ralesi/ranger")

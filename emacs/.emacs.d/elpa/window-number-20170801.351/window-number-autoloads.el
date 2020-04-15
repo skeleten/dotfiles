@@ -6,10 +6,18 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "window-number" "window-number.el" (0 0 0 0))
-;;; Generated autoloads from window-number.el
+;;;### (autoloads "actual autoloads are elsewhere" "window-number"
+;;;;;;  "../../../../../.emacs.d/elpa/window-number-20170801.351/window-number.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/window-number-20170801.351/window-number.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "window-number" '("window-number")))
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/window-number-20170801.351/window-number-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/window-number-20170801.351/window-number.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

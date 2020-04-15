@@ -6,15 +6,17 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "bootstrap" "bootstrap.el" (0 0 0 0))
-;;; Generated autoloads from bootstrap.el
+;;;### (autoloads "actual autoloads are elsewhere" "bootstrap" "../../../../../.emacs.d/elpa/quelpa-20191123.1519/bootstrap.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/quelpa-20191123.1519/bootstrap.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "bootstrap" '("quelpa-ci-dir")))
 
 ;;;***
 
-;;;### (autoloads nil "quelpa" "quelpa.el" (0 0 0 0))
-;;; Generated autoloads from quelpa.el
+;;;### (autoloads nil "quelpa" "../../../../../.emacs.d/elpa/quelpa-20191123.1519/quelpa.el"
+;;;;;;  "64ac32f689780351161756f881f194f2")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/quelpa-20191123.1519/quelpa.el
 
 (autoload 'quelpa-build-package "quelpa" "\
 Create PACKAGE-NAME with VERSION.
@@ -51,9 +53,7 @@ ARGS are additional options for the quelpa recipe.
 (autoload 'quelpa-upgrade "quelpa" "\
 Upgrade all packages found in `quelpa-cache'.
 This provides an easy way to upgrade all the packages for which
-the `quelpa' command has been run in the current Emacs session.
-
-\(fn)" t nil)
+the `quelpa' command has been run in the current Emacs session." t nil)
 
 (autoload 'quelpa "quelpa" "\
 Build and install a package with quelpa.
@@ -68,12 +68,22 @@ given package even if the global var `quelpa-upgrade-p' is set to
 nil.
 
 \(fn ARG &rest PLIST)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "quelpa" "../../../../../.emacs.d/elpa/quelpa-20191123.1519/quelpa.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/quelpa-20191123.1519/quelpa.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "quelpa" '("quelpa-")))
 
 ;;;***
+
+;;;***
 
-;;;### (autoloads nil nil ("quelpa-pkg.el") (0 0 0 0))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/quelpa-20191123.1519/bootstrap.el"
+;;;;;;  "../../../../../.emacs.d/elpa/quelpa-20191123.1519/quelpa-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/quelpa-20191123.1519/quelpa-pkg.el"
+;;;;;;  "../../../../../.emacs.d/elpa/quelpa-20191123.1519/quelpa.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

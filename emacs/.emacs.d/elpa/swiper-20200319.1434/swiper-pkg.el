@@ -1,0 +1,2 @@
+;;; Generated package description from /home/skeleten/.emacs.d/elpa/swiper-20200319.1434/swiper.el  -*- no-byte-compile: t -*-
+(define-package "swiper" "20200319.1434" "Isearch with an overview. Oh, man!" '((emacs "24.5") (ivy "0.13.0")) :authors '(("Oleh Krehel" . "ohwoeowho@gmail.com")) :maintainer '("Oleh Krehel" . "ohwoeowho@gmail.com") :keywords '("matching") :url "https://github.com/abo-abo/swiper")

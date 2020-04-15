@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: fnpr
+# key: fnpr
+# --
+fn ${1:name}(${2:params}) -> ${3:return_type} {
+   $0
+}

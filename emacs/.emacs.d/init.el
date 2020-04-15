@@ -1,8 +1,6 @@
-;;; init -- Initialization for my emacs config
-;;; Commentary:
-;;; Code:
-
-;; Package stuff
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Package stuff                                                              ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq vc-follow-symlinks t)
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (require 'package)
@@ -34,8 +32,9 @@
 (load-file "~/.emacs.d/config.el")
 
 ;; Settings
-(setq skeleten/font		"Source Code Pro 11"
-	  skeleten/theme	'ayu)
+
+(setq skeleten/font		"Iosevka 12"
+      skeleten/theme	'modus-operandi)
 
 ;;
 (skeleten/init)
@@ -44,8 +43,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("fa30a26973f443ce67664be32a5287e7f980a24d389e97cf183f8a0ff676e41f" "ae65ccecdcc9eb29ec29172e1bfb6cadbe68108e1c0334f3ae52414097c501d2" default))
+ '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(forge ghub treepy closql emacsql-sqlite emacsql yasnippet yaml-mode window-number which-key undo-tree toml-mode telephone-line sublimity solaire-mode smartparens rustic ranger rainbow-mode rainbow-delimiters quelpa-use-package protobuf-mode paredit origami multiple-cursors mu4e-conversation mu4e-alert minimal-theme magit-popup magit lsp-ui lsp-treemacs lsp-java ivy-rich ivy-prescient ivy-posframe highlight-operators highlight-numbers highlight-indent-guides highlight-escape-sequences helm-lsp gradle-mode gdb-mi flycheck flx expand-region eglot dracula-theme doom-themes dockerfile-mode docker diminish dashboard dap-mode counsel company-prescient company-lsp centaur-tabs badwolf-theme all-the-icons adoc-mode ace-jump-mode)))
+   '(protobuf-mode rustic ob-mermaid groovy-mode systemd modus-vivendi-theme modus-operandi-theme forge ghub treepy closql emacsql-sqlite emacsql mediawiki expand-region treemacs-magit treemacs-projectile ansible ranger doom-themes swiper transient lsp-ui lsp-treemacs lsp-mode ivy dracula-theme docker dap-mode avy quelpa diminish request company-prescient ivy-prescient prescient ivy-rich ivy-posframe posframe flx highlight-indent-guides all-the-icons centaur-tabs powerline memoize flycheck gradle-mode rainbow-mode xterm-color helm-lsp helm helm-core popup markdown-mode dash-functional cmake-mode yasnippet yaml-mode window-number which-key undo-tree treemacs toml-mode telephone-line smartparens rainbow-delimiters quelpa-use-package projectile paredit origami multiple-cursors mu4e-alert minimal-theme magit gdb-mi eglot dashboard counsel company badwolf-theme adoc-mode))
+ '(safe-local-variable-values '((eval sql-highlight-postgres-keywords)))
+ '(send-mail-function 'smtpmail-send-it))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

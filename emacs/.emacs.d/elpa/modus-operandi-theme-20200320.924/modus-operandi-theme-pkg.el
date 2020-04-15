@@ -1,0 +1,2 @@
+;;; Generated package description from /home/skeleten/.emacs.d/elpa/modus-operandi-theme-20200320.924/modus-operandi-theme.el  -*- no-byte-compile: t -*-
+(define-package "modus-operandi-theme" "20200320.924" "Accessible light theme (WCAG AAA)" '((emacs "26.1")) :authors '(("Protesilaos Stavrou" . "info@protesilaos.com")) :maintainer '("Protesilaos Stavrou" . "info@protesilaos.com") :keywords '("faces" "theme" "accessibility") :url "https://gitlab.com/protesilaos/modus-themes")

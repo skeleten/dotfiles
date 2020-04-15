@@ -6,26 +6,40 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "rainbow-delimiters" "rainbow-delimiters.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from rainbow-delimiters.el
+;;;### (autoloads nil "rainbow-delimiters" "../../../../../.emacs.d/elpa/rainbow-delimiters-20191018.1433/rainbow-delimiters.el"
+;;;;;;  "d4984e57ecb360c80cdfcb722a474f14")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/rainbow-delimiters-20191018.1433/rainbow-delimiters.el
 
 (autoload 'rainbow-delimiters-mode "rainbow-delimiters" "\
 Highlight nested parentheses, brackets, and braces according to their depth.
 
+If called interactively, enable Rainbow-Delimiters mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called
+from Lisp, also enable the mode if ARG is omitted or nil, and
+toggle it if ARG is `toggle'; disable the mode otherwise.
+
 \(fn &optional ARG)" t nil)
 
 (autoload 'rainbow-delimiters-mode-enable "rainbow-delimiters" "\
-Enable `rainbow-delimiters-mode'.
-
-\(fn)" nil nil)
+Enable `rainbow-delimiters-mode'." nil nil)
 
 (autoload 'rainbow-delimiters-mode-disable "rainbow-delimiters" "\
-Disable `rainbow-delimiters-mode'.
-
-\(fn)" nil nil)
+Disable `rainbow-delimiters-mode'." nil nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "rainbow-delimiters"
+;;;;;;  "../../../../../.emacs.d/elpa/rainbow-delimiters-20191018.1433/rainbow-delimiters.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/rainbow-delimiters-20191018.1433/rainbow-delimiters.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "rainbow-delimiters" '("rainbow-delimiters-")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/rainbow-delimiters-20191018.1433/rainbow-delimiters-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/rainbow-delimiters-20191018.1433/rainbow-delimiters.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

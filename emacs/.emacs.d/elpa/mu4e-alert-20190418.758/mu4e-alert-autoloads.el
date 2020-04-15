@@ -18,14 +18,10 @@ VALUE is the value to be used as the default style.
 \(fn VALUE)" nil nil)
 
 (autoload 'mu4e-alert-enable-mode-line-display "mu4e-alert" "\
-Enable display of unread emails in mode-line.
-
-\(fn)" t nil)
+Enable display of unread emails in mode-line." t nil)
 
 (autoload 'mu4e-alert-enable-notifications "mu4e-alert" "\
-Enable desktop notifications for unread emails.
-
-\(fn)" t nil)
+Enable desktop notifications for unread emails." t nil)
 
 ;;;### (autoloads "actual autoloads are elsewhere" "mu4e-alert" "../../../../../.emacs.d/elpa/mu4e-alert-20190418.758/mu4e-alert.el"
 ;;;;;;  (0 0 0 0))

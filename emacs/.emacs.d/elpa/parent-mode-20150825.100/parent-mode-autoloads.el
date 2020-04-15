@@ -6,10 +6,18 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "parent-mode" "parent-mode.el" (0 0 0 0))
-;;; Generated autoloads from parent-mode.el
+;;;### (autoloads "actual autoloads are elsewhere" "parent-mode"
+;;;;;;  "../../../../../.emacs.d/elpa/parent-mode-20150825.100/parent-mode.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/parent-mode-20150825.100/parent-mode.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "parent-mode" '("parent-mode-")))
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/parent-mode-20150825.100/parent-mode-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/parent-mode-20150825.100/parent-mode.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

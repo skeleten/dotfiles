@@ -1,2 +1,2 @@
-;;; -*- no-byte-compile: t -*-
+;;; Generated package description from /home/skeleten/.emacs.d/elpa/highlight-indent-guides-20190108.103/highlight-indent-guides.el  -*- no-byte-compile: t -*-
 (define-package "highlight-indent-guides" "20190108.103" "Minor mode to highlight indentation" '((emacs "24")) :authors '(("DarthFennec" . "darthfennec@derpymail.org")) :maintainer '("DarthFennec" . "darthfennec@derpymail.org") :url "https://github.com/DarthFennec/highlight-indent-guides")

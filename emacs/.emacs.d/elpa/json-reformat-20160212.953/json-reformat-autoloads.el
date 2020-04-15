@@ -6,8 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "json-reformat" "json-reformat.el" (0 0 0 0))
-;;; Generated autoloads from json-reformat.el
+;;;### (autoloads nil "json-reformat" "../../../../../.emacs.d/elpa/json-reformat-20160212.953/json-reformat.el"
+;;;;;;  "ebc0fb3b42389d66c7637f3c7345da58")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/json-reformat-20160212.953/json-reformat.el
 
 (autoload 'json-reformat-region "json-reformat" "\
 Reformat the JSON in the specified region.
@@ -17,8 +18,21 @@ please see the documentation of `json-reformat:indent-width'
 and `json-reformat:pretty-string?'.
 
 \(fn BEGIN END)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "json-reformat"
+;;;;;;  "../../../../../.emacs.d/elpa/json-reformat-20160212.953/json-reformat.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/json-reformat-20160212.953/json-reformat.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "json-reformat" '("json-reformat")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/json-reformat-20160212.953/json-reformat-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/json-reformat-20160212.953/json-reformat.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

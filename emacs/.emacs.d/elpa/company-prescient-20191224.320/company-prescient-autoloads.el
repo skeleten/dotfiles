@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "company-prescient" "company-prescient.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from company-prescient.el
+;;;### (autoloads nil "company-prescient" "../../../../../.emacs.d/elpa/company-prescient-20191224.320/company-prescient.el"
+;;;;;;  "d1f1bd7a3abc0e217b6fc77a5bf4290d")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/company-prescient-20191224.320/company-prescient.el
 
 (defvar company-prescient-mode nil "\
 Non-nil if Company-Prescient mode is enabled.
@@ -23,9 +23,27 @@ or call the function `company-prescient-mode'.")
 (autoload 'company-prescient-mode "company-prescient" "\
 Minor mode to use prescient.el in Company completions.
 
+If called interactively, enable Company-Prescient mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called
+from Lisp, also enable the mode if ARG is omitted or nil, and
+toggle it if ARG is `toggle'; disable the mode otherwise.
+
 \(fn &optional ARG)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "company-prescient"
+;;;;;;  "../../../../../.emacs.d/elpa/company-prescient-20191224.320/company-prescient.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/company-prescient-20191224.320/company-prescient.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "company-prescient" '("company-prescient-")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/company-prescient-20191224.320/company-prescient-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/company-prescient-20191224.320/company-prescient.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

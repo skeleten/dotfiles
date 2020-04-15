@@ -6,19 +6,15 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "highlight-escape-sequences" "highlight-escape-sequences.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from highlight-escape-sequences.el
+;;;### (autoloads nil "highlight-escape-sequences" "../../../../../.emacs.d/elpa/highlight-escape-sequences-20171117.1337/highlight-escape-sequences.el"
+;;;;;;  "1220e8784d8ccfe5c8ba806b168538d2")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/highlight-escape-sequences-20171117.1337/highlight-escape-sequences.el
 
 (autoload 'turn-on-hes-mode "highlight-escape-sequences" "\
-Turn on highlighting of escape sequences.
-
-\(fn)" t nil)
+Turn on highlighting of escape sequences." t nil)
 
 (autoload 'turn-off-hes-mode "highlight-escape-sequences" "\
-Turn off highlighting of escape sequences
-
-\(fn)" t nil)
+Turn off highlighting of escape sequences" t nil)
 
 (defvar hes-mode nil "\
 Non-nil if Hes mode is enabled.
@@ -33,9 +29,27 @@ or call the function `hes-mode'.")
 (autoload 'hes-mode "highlight-escape-sequences" "\
 Toggle highlighting of escape sequences.
 
+If called interactively, enable Hes mode if ARG is positive, and
+disable it if ARG is zero or negative.  If called from Lisp, also
+enable the mode if ARG is omitted or nil, and toggle it if ARG is
+`toggle'; disable the mode otherwise.
+
 \(fn &optional ARG)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "highlight-escape-sequences"
+;;;;;;  "../../../../../.emacs.d/elpa/highlight-escape-sequences-20171117.1337/highlight-escape-sequences.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/highlight-escape-sequences-20171117.1337/highlight-escape-sequences.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "highlight-escape-sequences" '("hes-")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/highlight-escape-sequences-20171117.1337/highlight-escape-sequences-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/highlight-escape-sequences-20171117.1337/highlight-escape-sequences.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

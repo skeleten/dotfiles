@@ -13,11 +13,3 @@ export RUST_LOG=authen_s=trace
 cargo run
 exit
 setxkbmap us
-cd ../AndroidAPS/
-ls
-gss
-git status
-git add app/src/test/java/info/nightscout/androidaps/utils/BolusCalculatorTest.java 
-git diff
-git status
-exit

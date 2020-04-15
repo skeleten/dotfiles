@@ -6,9 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "telephone-line" "telephone-line.el" (0 0 0
-;;;;;;  0))
-;;; Generated autoloads from telephone-line.el
+;;;### (autoloads nil "telephone-line" "../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line.el"
+;;;;;;  "06831275d80da35f7184109175748ff8")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line.el
 
 (defvar telephone-line-mode nil "\
 Non-nil if Telephone-Line mode is enabled.
@@ -23,42 +23,54 @@ or call the function `telephone-line-mode'.")
 (autoload 'telephone-line-mode "telephone-line" "\
 Toggle telephone-line on or off.
 
+If called interactively, enable Telephone-Line mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called
+from Lisp, also enable the mode if ARG is omitted or nil, and
+toggle it if ARG is `toggle'; disable the mode otherwise.
+
 \(fn &optional ARG)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "telephone-line"
+;;;;;;  "../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "telephone-line" '("telephone-line-")))
 
 ;;;***
-
-;;;### (autoloads nil "telephone-line-config" "telephone-line-config.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from telephone-line-config.el
-
-(autoload 'telephone-line-evil-config "telephone-line-config" "\
-Deprecated, just call (telephone-line-mode t) instead.
-
-\(fn)" nil nil)
 
 ;;;***
 
-;;;### (autoloads nil "telephone-line-segments" "telephone-line-segments.el"
+;;;### (autoloads nil "telephone-line-config" "../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-config.el"
+;;;;;;  "c23854588ccc42a8e063d2c95fd27457")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-config.el
+
+(autoload 'telephone-line-evil-config "telephone-line-config" "\
+Deprecated, just call (telephone-line-mode t) instead." nil nil)
+
+;;;***
+
+;;;### (autoloads "actual autoloads are elsewhere" "telephone-line-segments"
+;;;;;;  "../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-segments.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from telephone-line-segments.el
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-segments.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "telephone-line-segments" '("telephone-line-")))
 
 ;;;***
 
-;;;### (autoloads nil "telephone-line-separators" "telephone-line-separators.el"
+;;;### (autoloads "actual autoloads are elsewhere" "telephone-line-separators"
+;;;;;;  "../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-separators.el"
 ;;;;;;  (0 0 0 0))
-;;; Generated autoloads from telephone-line-separators.el
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-separators.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "telephone-line-separators" '("telephone-line-")))
 
 ;;;***
 
-;;;### (autoloads nil "telephone-line-utils" "telephone-line-utils.el"
-;;;;;;  (0 0 0 0))
-;;; Generated autoloads from telephone-line-utils.el
+;;;### (autoloads nil "telephone-line-utils" "../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-utils.el"
+;;;;;;  "17ded0329d5cf261d641adb1c6b78c99")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-utils.el
 
 (autoload 'telephone-line-defsegment* "telephone-line-utils" "\
 Define NAME as a segment function.
@@ -87,12 +99,26 @@ Conditionally render STR as mode-line data, or just verify output if not PREFORM
 Return nil for blank/empty strings.
 
 \(fn STR &optional PREFORMATTED)" nil nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "telephone-line-utils"
+;;;;;;  "../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-utils.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-utils.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "telephone-line-utils" '("telephone-line-")))
 
 ;;;***
+
+;;;***
 
-;;;### (autoloads nil nil ("telephone-line-pkg.el") (0 0 0 0))
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-config.el"
+;;;;;;  "../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-pkg.el"
+;;;;;;  "../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-segments.el"
+;;;;;;  "../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-separators.el"
+;;;;;;  "../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line-utils.el"
+;;;;;;  "../../../../../.emacs.d/elpa/telephone-line-20191120.127/telephone-line.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

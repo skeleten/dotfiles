@@ -6,11 +6,17 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "yasnippet" "yasnippet.el" (0 0 0 0))
-;;; Generated autoloads from yasnippet.el
+;;;### (autoloads nil "yasnippet" "../../../../../.emacs.d/elpa/yasnippet-20191222.2306/yasnippet.el"
+;;;;;;  "c0553a20e9e7fbb55e681304ed20620c")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/yasnippet-20191222.2306/yasnippet.el
 
 (autoload 'yas-minor-mode "yasnippet" "\
 Toggle YASnippet mode.
+
+If called interactively, enable Yas minor mode if ARG is
+positive, and disable it if ARG is zero or negative.  If called
+from Lisp, also enable the mode if ARG is omitted or nil, and
+toggle it if ARG is `toggle'; disable the mode otherwise.
 
 When YASnippet mode is enabled, `yas-expand', normally bound to
 the TAB key, expands snippets of code depending on the major
@@ -24,6 +30,8 @@ Key bindings:
 \\{yas-minor-mode-map}
 
 \(fn &optional ARG)" t nil)
+
+(put 'yas-global-mode 'globalized-minor-mode t)
 
 (defvar yas-global-mode nil "\
 Non-nil if Yas-Global mode is enabled.
@@ -47,8 +55,20 @@ See `yas-minor-mode' for more information on Yas minor mode.
 
 \(fn &optional ARG)" t nil)
 (autoload 'snippet-mode "yasnippet" "A mode for editing yasnippets" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "yasnippet" "../../../../../.emacs.d/elpa/yasnippet-20191222.2306/yasnippet.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/yasnippet-20191222.2306/yasnippet.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "yasnippet" '("yas" "help-snippet-def" "snippet-mode-map")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "yasnippet" '("help-snippet-def" "snippet-mode-map" "yas")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/yasnippet-20191222.2306/yasnippet-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/yasnippet-20191222.2306/yasnippet.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

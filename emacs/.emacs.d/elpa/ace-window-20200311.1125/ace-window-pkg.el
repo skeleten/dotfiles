@@ -1,0 +1,2 @@
+;;; Generated package description from /home/skeleten/.emacs.d/elpa/ace-window-20200311.1125/ace-window.el  -*- no-byte-compile: t -*-
+(define-package "ace-window" "20200311.1125" "Quickly switch windows." '((avy "0.5.0")) :authors '(("Oleh Krehel" . "ohwoeowho@gmail.com")) :maintainer '("Oleh Krehel" . "ohwoeowho@gmail.com") :keywords '("window" "location") :url "https://github.com/abo-abo/ace-window")

@@ -7,7 +7,7 @@
 
 
 ;;;### (autoloads nil "quelpa" "../../../../../.emacs.d/elpa/quelpa-0.0.1/quelpa.el"
-;;;;;;  "751db9e05d8596a8a69258956c7c29ad")
+;;;;;;  "64ac32f689780351161756f881f194f2")
 ;;; Generated autoloads from ../../../../../.emacs.d/elpa/quelpa-0.0.1/quelpa.el
 
 (autoload 'quelpa-build-package "quelpa" "\
@@ -30,7 +30,7 @@ Returns the archive entry for the package.
 \(fn PACKAGE-NAME VERSION FILE-SPECS SOURCE-DIR TARGET-DIR)" nil nil)
 
 (autoload 'quelpa-expand-recipe "quelpa" "\
-Expand a given recipe name into full recipe.
+Expand a given RECIPE-NAME into full recipe.
 If called interactively, let the user choose a recipe name and
 insert the result into the current buffer.
 
@@ -45,9 +45,7 @@ ARGS are additional options for the quelpa recipe.
 (autoload 'quelpa-upgrade "quelpa" "\
 Upgrade all packages found in `quelpa-cache'.
 This provides an easy way to upgrade all the packages for which
-the `quelpa' command has been run in the current Emacs session.
-
-\(fn)" t nil)
+the `quelpa' command has been run in the current Emacs session." t nil)
 
 (autoload 'quelpa "quelpa" "\
 Build and install a package with quelpa.
@@ -57,8 +55,9 @@ If called interactively, `quelpa' will prompt for a MELPA package
 to install.
 
 When `quelpa' is called interactively with a prefix argument (e.g
-C-u M-x quelpa) it will try to upgrade the given package even if
-the global var `quelpa-upgrade-p' is set to nil.
+\\[universal-argument] \\[quelpa]) it will try to upgrade the
+given package even if the global var `quelpa-upgrade-p' is set to
+nil.
 
 \(fn ARG &rest PLIST)" t nil)
 

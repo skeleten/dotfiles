@@ -1,0 +1,2 @@
+;;; Generated package description from /home/skeleten/.emacs.d/elpa/mediawiki-20170813.755/mediawiki.el  -*- no-byte-compile: t -*-
+(define-package "mediawiki" "20170813.755" "mediawiki frontend" 'nil :authors '(("Mark A. Hershberger" . "mah@everybody.org")) :maintainer '("Mark A. Hershberger" . "mah@everybody.org") :keywords '("mediawiki" "wikipedia" "network" "wiki") :url "https://github.com/hexmode/mediawiki-el")

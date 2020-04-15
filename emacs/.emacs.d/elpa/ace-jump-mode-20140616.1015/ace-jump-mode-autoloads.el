@@ -6,13 +6,12 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "ace-jump-mode" "ace-jump-mode.el" (0 0 0 0))
-;;; Generated autoloads from ace-jump-mode.el
+;;;### (autoloads nil "ace-jump-mode" "../../../../../.emacs.d/elpa/ace-jump-mode-20140616.1015/ace-jump-mode.el"
+;;;;;;  "d5e3d4a5fa37957b045c9f78293d5b7e")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/ace-jump-mode-20140616.1015/ace-jump-mode.el
 
 (autoload 'ace-jump-mode-pop-mark "ace-jump-mode" "\
-Pop up a postion from `ace-jump-mode-mark-ring', and jump back to that position
-
-\(fn)" t nil)
+Pop up a postion from `ace-jump-mode-mark-ring', and jump back to that position" t nil)
 
 (autoload 'ace-jump-char-mode "ace-jump-mode" "\
 AceJump char mode
@@ -29,9 +28,7 @@ buffer.
 
 (autoload 'ace-jump-line-mode "ace-jump-mode" "\
 AceJump line mode.
-Marked each no empty line and move there
-
-\(fn)" t nil)
+Marked each no empty line and move there" t nil)
 
 (autoload 'ace-jump-mode "ace-jump-mode" "\
 AceJump mode is a minor mode for you to quick jump to a
@@ -54,8 +51,21 @@ You can constrol whether use the case sensitive via
 `ace-jump-mode-case-fold'.
 
 \(fn &optional PREFIX)" t nil)
+
+;;;### (autoloads "actual autoloads are elsewhere" "ace-jump-mode"
+;;;;;;  "../../../../../.emacs.d/elpa/ace-jump-mode-20140616.1015/ace-jump-mode.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/ace-jump-mode-20140616.1015/ace-jump-mode.el
 
-(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ace-jump-mode" '("aj-" "ace-jump-")))
+(if (fboundp 'register-definition-prefixes) (register-definition-prefixes "ace-jump-mode" '("ace-jump-" "aj-")))
+
+;;;***
+
+;;;***
+
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/ace-jump-mode-20140616.1015/ace-jump-mode-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/ace-jump-mode-20140616.1015/ace-jump-mode.el")
+;;;;;;  (0 0 0 0))
 
 ;;;***
 

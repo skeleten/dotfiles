@@ -6,8 +6,9 @@
                          (or (file-name-directory #$) (car load-path))))
 
 
-;;;### (autoloads nil "docker-tramp" "docker-tramp.el" (0 0 0 0))
-;;; Generated autoloads from docker-tramp.el
+;;;### (autoloads nil "docker-tramp" "../../../../../.emacs.d/elpa/docker-tramp-20170207.425/docker-tramp.el"
+;;;;;;  "be22c4cdfbd986ef0f7a158ab22cd85d")
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/docker-tramp-20170207.425/docker-tramp.el
 
 (defvar docker-tramp-docker-options nil "\
 List of docker options.")
@@ -21,22 +22,28 @@ Default list of (FUNCTION FILE) pairs to be examined for docker method.")
 Method to connect docker containers.")
 
 (autoload 'docker-tramp-cleanup "docker-tramp" "\
-Cleanup TRAMP cache for docker method.
-
-\(fn)" t nil)
+Cleanup TRAMP cache for docker method." t nil)
 
 (autoload 'docker-tramp-add-method "docker-tramp" "\
-Add docker tramp method.
-
-\(fn)" nil nil)
+Add docker tramp method." nil nil)
 
 (eval-after-load 'tramp '(progn (docker-tramp-add-method) (tramp-set-completion-function docker-tramp-method docker-tramp-completion-function-alist)))
+
+;;;### (autoloads "actual autoloads are elsewhere" "docker-tramp"
+;;;;;;  "../../../../../.emacs.d/elpa/docker-tramp-20170207.425/docker-tramp.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from ../../../../../.emacs.d/elpa/docker-tramp-20170207.425/docker-tramp.el
 
 (if (fboundp 'register-definition-prefixes) (register-definition-prefixes "docker-tramp" '("docker-tramp-")))
 
 ;;;***
+
+;;;***
 
-;;;### (autoloads nil nil ("docker-tramp-compat.el" "docker-tramp-pkg.el")
+;;;### (autoloads nil nil ("../../../../../.emacs.d/elpa/docker-tramp-20170207.425/docker-tramp-autoloads.el"
+;;;;;;  "../../../../../.emacs.d/elpa/docker-tramp-20170207.425/docker-tramp-compat.el"
+;;;;;;  "../../../../../.emacs.d/elpa/docker-tramp-20170207.425/docker-tramp-pkg.el"
+;;;;;;  "../../../../../.emacs.d/elpa/docker-tramp-20170207.425/docker-tramp.el")
 ;;;;;;  (0 0 0 0))
 
 ;;;***

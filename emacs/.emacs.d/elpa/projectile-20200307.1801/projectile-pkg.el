@@ -1,0 +1,2 @@
+;;; Generated package description from /home/skeleten/.emacs.d/elpa/projectile-20200307.1801/projectile.el  -*- no-byte-compile: t -*-
+(define-package "projectile" "20200307.1801" "Manage and navigate projects in Emacs easily" '((emacs "25.1") (pkg-info "0.4")) :authors '(("Bozhidar Batsov" . "bozhidar@batsov.com")) :maintainer '("Bozhidar Batsov" . "bozhidar@batsov.com") :keywords '("project" "convenience") :url "https://github.com/bbatsov/projectile")

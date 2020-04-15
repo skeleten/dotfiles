@@ -1,0 +1,2 @@
+;;; Generated package description from /home/skeleten/.emacs.d/elpa/bind-key-20191110.516/bind-key.el  -*- no-byte-compile: t -*-
+(define-package "bind-key" "20191110.516" "A simple way to manage personal keybindings" 'nil :authors '(("John Wiegley" . "johnw@newartisans.com")) :maintainer '("John Wiegley" . "johnw@newartisans.com") :keywords '("keys" "keybinding" "config" "dotemacs") :url "https://github.com/jwiegley/use-package")
