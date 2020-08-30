@@ -46,7 +46,7 @@ Channel skeleten
 Master :skeleten-remote:
 Slave :skeleten-local:
 Patterns "*"
-Create Slave
+Create Both
 Expunge Both
 Sync All
 SyncState *

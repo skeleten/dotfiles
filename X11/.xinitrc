@@ -9,7 +9,7 @@ export SSH_AUTH_SOCK
 
 # Set up xrandr
 case $(hostname) in
-    "styx")
+    "erebos")
 	xrandr --output HDMI-A-0 --primary --auto \
 	       --output DisplayPort-2 --right-of HDMI-A-0 --auto
     ;;
@@ -17,9 +17,9 @@ esac
 
 echo "$DISPLAY" > /tmp/XDisplay
 
-setxkbmap de
+setxkbmap us
 xrdb "$HOME/.Xresources"
 if [ -z "$WM" ]; then
-    WM=i3
+    WM=xmonad
 fi
 exec $WM 2>/tmp/xinit_stderr >/tmp/xinit_stdout

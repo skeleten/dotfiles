@@ -103,44 +103,43 @@
   "Initialize packages."
   ;; Basic settings
   (use-package emacs
-	:config
+    :config
     (setq frame-title-format '("emacs")
-		  ring-bell-function 'ignore
-		  frame-resize-pixelwise t
-		  default-directory "~/")
-	;; scrolling
+	  ring-bell-function 'ignore
+	  frame-resize-pixelwise t
+	  default-directory "~/")
+    ;; scrolling
     (setq scroll-margin 0
-		  scroll-conservatively 10000
-		  scroll-preserve-screen-position t
-		  auto-window-vscroll nil
-		  mouse-wheel-scroll-amount '(1 ((shift) . 1))
-		  mouse-wheel-progressive-speed nil)
+	  scroll-conservatively 10000
+	  scroll-preserve-screen-position t
+	  auto-window-vscroll nil
+	  mouse-wheel-scroll-amount '(1 ((shift) . 1))
+	  mouse-wheel-progressive-speed nil)
     (setq line-spacing 3)
-	(set-fill-column 100)
+    (set-fill-column 100)
     (setq-default indent-tabs-mode t
-				  tab-width skeleten/indent-width)
-	;; less clutter
-	(tool-bar-mode -1)
+		  tab-width skeleten/indent-width)
+    ;; less clutter
+    (tool-bar-mode -1)
     (menu-bar-mode -1)
-	(scroll-bar-mode -1)
-	(delete-selection-mode +1)
-	(column-number-mode +1)
-	(setq confirm-kill-processes nil
-		  make-backup-files nil)
-	;; offsets
-	(setq-default c-basic-offset skeleten/indent-width)
+    (scroll-bar-mode -1)
+    (delete-selection-mode +1)
+    (column-number-mode +1)
+    (setq confirm-kill-processes nil
+	  make-backup-files nil)
+    ;; offsets
+    (setq-default c-basic-offset skeleten/indent-width)
 
-	(if (daemonp)
-		(add-hook 'after-make-frame-functions 'skeleten//make-frame))
-	(global-set-key [remap move-beginning-of-line]
-					'skeleten/helper/smarter-move-beginning-of-line)
-	:bind
-	(("C-S-i" . 'imenu)
-	 ("M-p" . 'skeleten//edit-above)
-	 ("C-<return>" . 'skeleten//edit-below))
-	:hook
-	((before-save . delete-trailing-whitespace)
-	 (skeleten/after-load-theme-hook . skeleten/helper/set-hl-line-color)))
+    (if (daemonp) (add-hook 'after-make-frame-functions 'skeleten//make-frame))
+    (global-set-key [remap move-beginning-of-line] 'skeleten/helper/smarter-move-beginning-of-line)
+    (global-unset-key (kbd "M-m"))
+    :bind
+    (("C-S-i" . 'imenu)
+     ("M-p" . 'skeleten//edit-above)
+     ("C-<return>" . 'skeleten//edit-below))
+    :hook
+    ((before-save . delete-trailing-whitespace)
+     (skeleten/after-load-theme-hook . skeleten/helper/set-hl-line-color)))
   (use-package smartparens
     :config
     (require 'smartparens-config))
@@ -156,6 +155,7 @@
     (when (fboundp 'imagemagick-register-types)
       (imagemagick-register-types))
     (setq mu4e-update-interval 60)
+	(setq user-mail-address "me@skeleten.me")
 
     ;; accounts
     (setq mu4e-contexts
@@ -244,7 +244,8 @@
     :config
     (dashboard-setup-startup-hook)
     (setq dashboard-items '((recents . 10)
-							(bookmarks . 5))))
+							(bookmarks . 5)
+							(agenda . 10))))
   (use-package window-number
     :config
     (window-number-mode)
@@ -346,13 +347,19 @@
     (setq TeX-auto-save t
 	  TeX-parse-self t
 	  TeX-save-query nil)
+	(add-to-list 'TeX-command-list
+				 '("LatexMk" "latexmk -lualatex %t" TeX-run-TeX))
 
     :hook
     ((latex-mode . display-line-numbers-mode)
      (latex-mode . company-mode)
-     (latex-mode . smartparens-mode))
+     (latex-mode . smartparens-mode)
+	 (latex-mode . turn-on-reftex))
 
     :requires smartparens)
+  (use-package reftex)
+  (use-package latex-preview-pane
+	:requires latex)
   (use-package prog-mode
     :hook
     ((prog-mode . company-mode)
@@ -364,15 +371,19 @@
 	:config (global-flycheck-mode +1))
   (use-package restclient-mode
     :hook
-    ((restcleint-mode . company-mode))) 
+    ((restcleint-mode . company-mode)))
   (use-package rustic
     :mode ("\\.rs\\'" . rustic-mode)
     :requires lsp-mode dash ht flycheck
 	:config
 	(push 'rustic-clippy flycheck-checkers)
+	(defun skeleten/rustic/setup ()
+	  (set-fill-column 100))
 	:hook
 	((rustic-mode . highlight-operators-mode)
-	 (rustic-mode . lsp)))
+	 (rustic-mode . lsp)
+	 (rustic-mode . lsp-ui-mode)
+	 (rustic-mode . skeleten/rustic/setup)))
   (use-package toml-mode
     :mode "\\.toml\\'"
     :hook
@@ -397,36 +408,44 @@
 	   ("C-<" . mc/mark-next-like-this)
 	   ("C->" . mc/mark-previous-like-this)
 	   ("C-c C-<" . mc/mark-all-like-this)))
-  (use-package treemacs
-	:after hl-line
-    :config
-    (add-hook 'treemacs-mode-hook
-	      (lambda () (treemacs-git-mode 'deferred)))
-    (setq treemacs-width 25
-		  treemacs-show-hidden-files t
-		  treemacs-show-cursor nil
-		  treemacs-no-png-images t
-		  treemacs-follow-after-init t
-		  treemacs-sorting 'alphabetic-case-insensitive-asc)
-    :hook
-    ((treemacs-mode . treemacs-follow-mode)
-	 (treemacs-mode . skeleten/helper/set-hl-line-color))
-	:bind
-	("M-m f t" . treemacs))
+  (use-package neotree
+	:bind ("M-m f t" . neotree))
+  ;; (use-package treemacs
+  ;; 	:after hl-line
+  ;;   :config
+  ;;   (add-hook 'treemacs-mode-hook
+  ;; 			  (lambda () (treemacs-git-mode 'deferred)))
+  ;;   (setq treemacs-width 25
+  ;; 		  treemacs-show-hidden-files t
+  ;; 		  treemacs-show-cursor nil
+  ;; 		  treemacs-no-png-images t
+  ;; 		  treemacs-follow-after-init t
+  ;; 		  treemacs-sorting 'alphabetic-case-insensitive-asc)
+  ;;   :hook
+  ;;   ((treemacs-mode . treemacs-follow-mode)
+  ;; 	 (treemacs-mode . skeleten/helper/set-hl-line-color))
+  ;; 	:bind
+  ;; 	("M-m f t" . treemacs))
   (use-package treemacs-projectile
 	:after treemacs)
   (use-package treemacs-magit
 	:after treemacs magit)
-  (use-package lsp-mode
-	:bind (("C-M-." . lsp-describe-thing-at-point)))
+  (use-package lsp-mode)
   (use-package lsp-ui
     :requires lsp-mode
     :hook ((lsp-mode . lsp-ui-mode))
+	:bind (("C-M-." . lsp-ui-peek-find-references)
+	       ("C-M-," . lsp-ui-peek-find-definitions)
+		   ("M-RET" . helm-lsp-code-actions))
     :config
     (define-key lsp-ui-mode-map [remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
     (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
-    (setq lsp-ui-doc-enable nil)
-    (setq lsp-ui-sideline-enable nil))
+    (setq lsp-ui-doc-enable t
+		  lsp-ui-doc-delay 3
+		  lsp-ui-doc-position 'top
+		  lsp-ui-doc-include-signature t
+		  lsp-ui-doc-use-webkit t)
+    (setq lsp-ui-sideline-enable t))
   (use-package company-lsp
     :requires lsp-mode)
   (use-package lsp-treemacs
@@ -457,9 +476,25 @@
     :bind (("M-m f f" . projectile-find-file)))
   (use-package org
     :bind
-    (("M-m o a" . org-agenda))
+    (("M-m o a" . org-agenda)
+	 ("M-m o c" . org-capture)
+	 ("M-m o ." . counsel-org-goto-all))
     :config
-    (setq org-agenda-files '("~/org")))  
+    (setq org-agenda-files '("~/org"))
+	(setq org-columns-default-format "%50ITEM(Task) %10CLOCKSUM %16TIEMSTAMP_IA")
+	(setq org-capture-templates
+		  '(("t"	"todo"		entry (file org-default-notes-file)
+			 "* TODO %?\n%u\n%a\n" :clock-in t :clock-resume t)
+			("m"	"Meeting"	entry (file org-default-notes-files)
+			 "* MEETING with %? :MEETING:\n%t" :clock-in t :clock-resume t)
+			("d"	"Diary"		entry (file+datetree "~/org/diary.org")
+			 "* %?\n%U\n" :clock-in t :clock-resume t)
+			("i"	"Idea"		entry (file org-default-notes-file)
+			 "* %? :IDEA: \n%t" :clock-in t :clock-resume t)
+			("n"	"Next Task"	entry (file+headline org-default-notes-file "Tasks")
+			 "** NEXT %? \nDEADLINE: %t")))
+	(setq org-refile-targets (quote ((nil :maxlevel . 9)
+									 (org-agenda-files :maxlevel . 9)))))
   (use-package ob-mermaid
 	:config
 	(setq ob-mermaid-cli-path "~/node_modules/.bin/mmdc"))
@@ -536,7 +571,18 @@
 	(setq mediawiki-site-alist '(("VKMWiki" "http://wiki.vkm.local/" "" "" "IT"))
 		  mediawiki-site-default "VKMWiki"))
   (use-package systemd)
-  (use-package groovy-mode) 
+  (use-package groovy-mode)
+  (use-package visual-fill-column
+	:hook
+	((visual-line-mode . visual-fill-column-mode)))
+  (use-package typescript-mode
+	:hook ((typescript-mode . eldoc-mode)
+		   (typescript-mode . company-mode)))
+  (use-package tide
+	:after (typescript-mode company flycheck)
+	:hook ((typescript-mode . tide-setup)
+		   (typescript-mode . tide-hl-identifier-mode)
+		   (before-save . tide-format-before-save)))
   ;; END OF USE-PACKAGE
   )
 (defun skeleten/init/misc ()
@@ -547,11 +593,11 @@
   (global-unset-key (kbd "C-z"))
   (if (daemonp) nil
 	(progn (skeleten/helper/load-font)
-		   (skeleten/helper/load-theme))))
+	       (skeleten/helper/load-theme))))
 (defun skeleten/init ()
   "Custom initializiation routines."
   (interactive)
   (progn
     (skeleten/init/misc)
-	(skeleten/init/packages)))
+    (skeleten/init/packages)))
 ;;; config.el ends here

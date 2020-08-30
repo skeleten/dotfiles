@@ -27,7 +27,9 @@ setopt -o nomatch
 
 PATH+=":$HOME/.bin"
 PATH+=":$HOME/.cargo/bin"
+export PATH
 export EDITOR=emacsclient
+export ALTERNATE_EDITOR=''
 
 export GNOME_KEYRING_CONTROL="$XDG_RUNTIME_DIR/keyring"
 

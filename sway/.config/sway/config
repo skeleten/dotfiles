@@ -136,7 +136,7 @@ exec swayidle -w timeout 300 'swaylock ' \
     bindsym $mod+Tab			exec $rofi -show window
 
     # emacs
-    bindsym $mod+shift+w		exec emacsclient -c
+    bindsym $mod+shift+w		exec emacsclient -c -a ''
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.

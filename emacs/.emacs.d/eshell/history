@@ -13,3 +13,10 @@ export RUST_LOG=authen_s=trace
 cargo run
 exit
 setxkbmap us
+cd Maildir/skeleten/
+ls
+cd Inbox/
+ls
+mu mkdir SoSe2020_PEASEC
+nmcli c s
+nmcli c u VKM_VPN_vkm_cert_vkm_vpn

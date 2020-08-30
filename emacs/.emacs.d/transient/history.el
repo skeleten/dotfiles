@@ -8,4 +8,5 @@
 			 ("--force"))
  (magit-rebase nil
 			   ("--interactive"))
- (magit-stash nil))
+ (magit-stash nil)
+ (magit-tag nil))
